@@ -1,0 +1,247 @@
+########################################################
+#
+# i3-config
+# #########
+#
+# Configuration file for i3wm
+# This configuration file is optimized for Kali Linux OS
+#
+# i3 version: 4.13
+# Config version: 3.32
+# Dependencies: i3blocks, scrot, feh, rofi,
+# compton, ranger, lxappearance
+#
+# Author: Brainfuck
+# https://github.com/brainfucksec/i3-config
+#
+########################################################
+
+
+## Colors
+# class                  border  backgr  text     indicator child_border
+client.focused		 #383c4a #383c4a #d3dae3  #eceff1   #869BAB
+client.focused_inactive  #383c4a #383c4a #d3dae3  #383c4a   #383c4a
+client.unfocused         #353945 #353945 #7c818c  #353945   #353945
+client.urgent            #5294e2 #5294e2 #ffffff  #5294e2   #5294e2
+
+## Windows style
+# font for window titles. ISO 10646 = Unicode
+#font pango:Source Code Pro for Powerline 12
+font pango: Fira Mono for Powerline Bold 12
+
+# Back and forth workplace switching
+workspace_auto_back_and_forth yes
+
+# Use Mouse+Ctrl to drag floating windows to their wanted position
+floating_modifier Ctrl
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym 113 resize shrink width 10 px or 10 ppt
+        bindsym 116 resize grow height 10 px or 10 ppt
+        bindsym 111 resize shrink height 10 px or 10 ppt
+        bindsym 114 resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+x mode "resize"
+
+
+## Keybindings
+# Mod4 = Super Key
+set $mod Mod4
+
+# start a terminal (xfce4-terminal)
+bindsym $mod+Return exec termite
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start rofi (a program launcher)
+#bindsym $mod+d exec rofi -show run -font "terminus 12"
+bindsym $mod+d exec dmenu_run
+
+# change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+J move left
+bindsym $mod+Shift+K move down
+bindsym $mod+Shift+L move up
+bindsym $mod+Shift+colon move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, default)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout default
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindcode $mod+d focus child
+
+# reload the configuration file
+bindsym $mod+Shift+C reload
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+R restart
+
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+
+## Workspaces
+# customize workspace name
+set $ws1  1
+set $ws2  2
+set $ws3  3
+set $ws4  4
+set $ws5  5
+set $ws6  6
+set $ws7  7
+set $ws8  8
+set $ws9  9
+set $ws0  10
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws0
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws0
+
+## workspaces assignment
+# force a window on a named workspace
+#assign [class="Xfce4-terminal"]	$ws1
+#assign [class="Firefox"]	    $ws2
+
+# enable floating mode for selected windows
+for_window [class="Lxappearance"] floating enable border pixel 2
+
+
+## Custom Keybindings
+# --no-startup-id = i don't need startup notifications
+# https://faq.i3wm.org/question/561/what-is-that-thing-called-no-startup-id
+bindsym $mod+F1 exec --no-startup-id firefox
+bindsym $mod+F2 exec --no-startup-id gvim
+#bindsym $mod+F3 exec --no-startup-id xfce4-terminal -x terminal_velocity  (outro?)
+
+#DEBUG
+bindsym $mod+Ctrl+n debuglog on
+# screenlock
+bindsym $mod+Ctrl+l exec ~/.config/i3/lock.sh
+
+
+## i3bar with i3blocks
+bar {
+	status_command i3blocks -c ~/.config/i3/i3blocks.conf
+        position bottom
+        font pango: ohsnap, awesome 13
+
+colors {
+	   		background #383c4a
+			statusline #d3dae3
+			separator  #8396af
+			#	           border  backgr  text
+			focused_workspace  #585e74 #585e74 #aaaaff
+			inactive_workspace #21242b #21242b #7c818c
+			urgent_workspace   #5294e2 #5294e2 #ffffff
+	   }
+}
+
+
+## Start Up commands and applications
+# compton
+exec --no-startup-id /usr/bin/compton --config ~/.config/compton.conf
+
+# network-manager applet
+exec --no-startup-id nm-applet
+
+# Randomizando wallpapers dentro do diretorio
+exec --no-startup-id feh --randomize --bg-fill ~/.wallpapers
+
+# PrintScreen Full
+bindsym --release Print exec scrot ~/Imagens/Captura_de_tela_%Y-%m-%d-%T.png
+
+# PrintScreen Com Seletor p/ Clipboard
+bindsym --release $mod+Print exec scrot ~/Imagens/temporario.png && xclip -selection clipboard -t image/png -i ~/Imagens/temporario.png && rm ~/Imagens/temporario.png
+
+# PrintScreen Com Seletor
+bindsym --release Shift+Print exec scrot -s ~/Imagens/Captura_de_area_%Y-%m-%d-%T.png
+
+# PrintScreen Com Seletor p/ Clipboard
+bindsym --release $mod+Shift+Print exec scrot -s ~/Imagens/temporario.png && xclip -selection clipboard -t image/png -i ~/Imagens/temporario.png && rm ~/Imagens/temporario.png
+
+
+# Pulse Audio controls (+/- volume c/ i3blocks integrado)
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle && pkill -RTMIN+1 i3blocks
+
+
+# Screen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness

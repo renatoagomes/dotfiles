@@ -1,0 +1,3 @@
+[submodule "i3/bumblebee-status"]
+	path = i3/bumblebee-status
+	url = git://github.com/tobi-wan-kenobi/bumblebee-status
