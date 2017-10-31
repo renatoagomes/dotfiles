@@ -185,7 +185,7 @@ for_window [class="Lxappearance"] floating enable border pixel 2
 ## Custom Keybindings
 # --no-startup-id = i don't need startup notifications
 # https://faq.i3wm.org/question/561/what-is-that-thing-called-no-startup-id
-bindsym $mod+F1 exec --no-startup-id firefox
+bindsym $mod+F1 exec --no-startup-id chromium-browser
 bindsym $mod+F2 exec --no-startup-id gvim
 #bindsym $mod+F3 exec --no-startup-id xfce4-terminal -x terminal_velocity  (outro?)
 
@@ -197,19 +197,24 @@ bindsym $mod+Ctrl+l exec ~/.config/i3/lock.sh
 
 ## i3bar with i3blocks
 bar {
-	status_command i3blocks -c ~/.config/i3/i3blocks.conf
-        position bottom
-        font pango: ohsnap, awesome 13
+    status_command i3blocks -c ~/.config/i3/i3blocks.conf
+#    status_command = ~/dotfiles/i3/bumblebee-status -m <list of modules> -p <list of module parameters> -t <theme>
 
-colors {
-	   		background #383c4a
-			statusline #d3dae3
-			separator  #8396af
-			#	           border  backgr  text
-			focused_workspace  #585e74 #585e74 #aaaaff
-			inactive_workspace #21242b #21242b #7c818c
-			urgent_workspace   #5294e2 #5294e2 #ffffff
-	   }
+ #       font pango:Inconsolata 12
+#	status_command ~/dotfiles/i3/bumblebee-status/bumblebee-status -m disk:root cpu memory battery date time -p root.path=/ time.format="%H:%M CW %V" date.format="%a, %b %d %Y" -t solarized-dark-awesome
+     
+    position bottom
+    font pango: Inconsolata, awesome 13
+
+#   colors {
+#       background #383c4a
+#       statusline #d3dae3
+#       separator  #8396af
+#       #	           border  backgr  text
+#       focused_workspace  #585e74 #585e74 #aaaaff
+#       inactive_workspace #21242b #21242b #7c818c
+#       urgent_workspace   #5294e2 #5294e2 #ffffff
+#   }
 }
 
 
@@ -235,13 +240,20 @@ bindsym --release Shift+Print exec scrot -s ~/Imagens/Captura_de_area_%Y-%m-%d-%
 # PrintScreen Com Seletor p/ Clipboard
 bindsym --release $mod+Shift+Print exec scrot -s ~/Imagens/temporario.png && xclip -selection clipboard -t image/png -i ~/Imagens/temporario.png && rm ~/Imagens/temporario.png
 
-
 # Pulse Audio controls (+/- volume c/ i3blocks integrado)
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% && pkill -RTMIN+1 i3blocks
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% && pkill -RTMIN+1 i3blocks
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle && pkill -RTMIN+1 i3blocks
 
-
 # Screen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
+# Lidando com multiplas screens (joga sempre pra esquerda)
+bindsym $mod+t exec xrandr --output VGA-1 --auto --left-of eDP-1
+
+# Trocando wallpapers
+bindsym $mod+g exec feh --randomize --bg-fill ~/.wallpapers
+
+# Lock da tela 
+bindsym $mod+F12 exec ~/dotfiles/i3lock-fancy-multimonitor/lock
