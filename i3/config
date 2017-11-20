@@ -146,8 +146,8 @@ set $ws5  5
 set $ws6  6
 set $ws7  7
 set $ws8  8
-set $ws9  9
-set $ws0  10
+set $ws9  9 - SOM 
+set $ws0  10 - GIMP 
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -187,6 +187,7 @@ for_window [class="Lxappearance"] floating enable border pixel 2
 # https://faq.i3wm.org/question/561/what-is-that-thing-called-no-startup-id
 bindsym $mod+F1 exec --no-startup-id chromium-browser
 bindsym $mod+F2 exec --no-startup-id gvim
+bindsym $mod+F3 exec --no-startup-id google-chrome-stable
 #bindsym $mod+F3 exec --no-startup-id xfce4-terminal -x terminal_velocity  (outro?)
 
 #DEBUG
