@@ -1,9 +1,9 @@
 # DOTFILES FTW :1st_place_medal: 
 
 Atualmente com:
-- I3WM
-- TERMITE 
-- ZSH
+- i3wm
+- termite 
+- zsh
 
 
 TODO:
@@ -14,7 +14,8 @@ TODO:
 # Copy / Paste
 
 ```
-git clone https://github.com/renatoagomes/dotfiles.git ~/
+cd ~
+git clone https://github.com/renatoagomes/dotfiles.git
 cd dotfiles
 git submodule update --recursive --init 
 ```
@@ -22,9 +23,9 @@ git submodule update --recursive --init
 # VIM
 
 ```
+cd ~
 ln -s ~/dotfiles/vim/vimrc .vimrc
 ```
 
 
 WIP...
-```
