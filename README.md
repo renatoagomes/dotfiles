@@ -9,7 +9,22 @@ Atualmente com:
 TODO:
 - Melhorar readme
 - Acertar submodulos do i3
-- Incluir .vimrc (submodulos+pathogen x Vundle) ??
 - .sh pra automatizar o/
 
+# Copy / Paste
 
+```
+git clone https://github.com/renatoagomes/dotfiles.git ~/
+cd dotfiles
+git submodule update --recursive --init 
+```
+
+# VIM
+
+```
+ln -s ~/dotfiles/vim/vimrc .vimrc
+```
+
+
+WIP...
+```
