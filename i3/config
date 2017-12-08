@@ -16,6 +16,9 @@
 #
 ########################################################
 
+#Escodendo Title?
+#for_window [class="^.*"] border pixel 0
+
 
 ## Colors
 # class                  border  backgr  text     indicator child_border
@@ -27,7 +30,7 @@ client.urgent            #5294e2 #5294e2 #ffffff  #5294e2   #5294e2
 ## Windows style
 # font for window titles. ISO 10646 = Unicode
 #font pango:Source Code Pro for Powerline 12
-font pango: Fira Mono for Powerline Bold 12
+font pango: FuraMonoForPowerline Nerd Font Medium 12
 
 # Back and forth workplace switching
 workspace_auto_back_and_forth yes
@@ -60,7 +63,6 @@ mode "resize" {
 }
 
 bindsym $mod+x mode "resize"
-
 
 ## Keybindings
 # Mod4 = Super Key
@@ -135,19 +137,18 @@ bindsym $mod+Shift+R restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
-
 ## Workspaces
 # customize workspace name
-set $ws1  1
-set $ws2  2
-set $ws3  3
+set $ws1  1 - 
+set $ws2  2 - 
+set $ws3  3 - 
 set $ws4  4
 set $ws5  5
 set $ws6  6
 set $ws7  7
 set $ws8  8
-set $ws9  9 - SOM 
-set $ws0  10 - GIMP 
+set $ws9  9 - 
+set $ws0  10 - 
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -177,6 +178,7 @@ bindsym $mod+Shift+0 move container to workspace $ws0
 # force a window on a named workspace
 #assign [class="Xfce4-terminal"]	$ws1
 #assign [class="Firefox"]	    $ws2
+assign [class="GVIM"]	    $ws3
 
 # enable floating mode for selected windows
 for_window [class="Lxappearance"] floating enable border pixel 2
@@ -198,24 +200,10 @@ bindsym $mod+Ctrl+l exec ~/.config/i3/lock.sh
 
 ## i3bar with i3blocks
 bar {
-    status_command i3blocks -c ~/.config/i3/i3blocks.conf
-#    status_command = ~/dotfiles/i3/bumblebee-status -m <list of modules> -p <list of module parameters> -t <theme>
-
- #       font pango:Inconsolata 12
-#	status_command ~/dotfiles/i3/bumblebee-status/bumblebee-status -m disk:root cpu memory battery date time -p root.path=/ time.format="%H:%M CW %V" date.format="%a, %b %d %Y" -t solarized-dark-awesome
-     
+    status_command ~/dotfiles/i3/bumblebee-status/bumblebee-status -m brightness pasink pasource  disk cpu memory datetime battery -p time.format="%H:%M" date.format="%a, %d %b %Y" memory.format='{percent:05.02f}%' disk.format="{percent:05.02f}%" -t powerline
+    tray_output none
     position bottom
-    font pango: Inconsolata, awesome 13
-
-#   colors {
-#       background #383c4a
-#       statusline #d3dae3
-#       separator  #8396af
-#       #	           border  backgr  text
-#       focused_workspace  #585e74 #585e74 #aaaaff
-#       inactive_workspace #21242b #21242b #7c818c
-#       urgent_workspace   #5294e2 #5294e2 #ffffff
-#   }
+    font pango: FuraMonoForPowerline Nerd Font Medium 12
 }
 
 
