@@ -8,6 +8,7 @@ Atualmente com:
 
 TODO:
 - Melhorar readme
+- Acertar submodulos do i3
 - Incluir .vimrc (submodulos+pathogen x Vundle) ??
 - .sh pra automatizar o/
 
