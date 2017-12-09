@@ -3,13 +3,8 @@
 Atualmente com:
 - i3wm
 - termite 
-- zsh
-
-
-TODO:
-- Melhorar readme
-- Acertar submodulos do i3
-- .sh pra automatizar o/
+- zsh & oh-my-zsh
+- vim
 
 # Copy / Paste
 
@@ -39,6 +34,11 @@ ln -s ~/dotfiles/vim .vim
 ln -s ~/dotfiles/vim/vimrc .vimrc
 ```
 
+# Termite
+
+- [termite-install](https://github.com/Corwind/termite-install)
+
+
 # i3
 ```
 cd ~
@@ -47,12 +47,13 @@ sudo apt-get install i3
 ```
 
 # @TODO:
+- Melhorar readme
 - i3
+    - Acertar submodulos
     - i3gaps
     - compton
     - bumblebee-status
         - dependencias?
-- 
 
 
-WIP...
+WIP... 
