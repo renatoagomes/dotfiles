@@ -191,7 +191,7 @@ bindsym $mod+Ctrl+l exec ~/.config/i3/lock.sh
 
 ## i3bar with i3blocks
 bar {
-    status_command ~/dotfiles/i3/bumblebee-status/bumblebee-status -m brightness pasink pasource  disk cpu memory datetime battery -p time.format="%H:%M" date.format="%a, %d %b %Y" memory.format='{percent:05.02f}%' disk.format="{percent:05.02f}%" -t powerline
+    status_command ~/dotfiles/i3/bumblebee-status/bumblebee-status -m brightness pasink pasource  disk cpu memory datetime battery -p time.format="%H:%M" date.format="%a, %d %b %Y" memory.format='{percent:05.02f}%' disk.format="{percent:05.02f}%" -t gruvbox-powerline
     tray_output none
     position bottom
     font pango: FuraMonoForPowerline Nerd Font Medium 12

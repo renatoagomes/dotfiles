@@ -39,11 +39,12 @@ ln -s ~/dotfiles/vim/vimrc .vimrc
 - [termite-install](https://github.com/Corwind/termite-install)
 
 
-# i3
+# i3 &7 [bumblebee-status bar](https://github.com/tobi-wan-kenobi/bumblebee-status)
+
 ```
 cd ~
 ln -s ~/dotfiles/i3 .config/i3
-sudo apt-get install i3
+sudo apt-get install i3 python-psutil python-netifaces python-requests
 ```
 
 # @TODO:
