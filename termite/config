@@ -3,7 +3,7 @@
 #audible_bell = false
 #clickable_url = true
 #dynamic_title = true
-font = FuraMonoForPowerline Nerd Font Medium 15
+#font = FuraMonoForPowerline Nerd Font Medium 15
 font = FuraMono Nerd Font Medium 15
 
 #fullscreen = true
