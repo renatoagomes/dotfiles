@@ -2,9 +2,11 @@
 
 Atualmente com:
 - i3wm
+    - bumblebee-status-bar
 - termite 
 - zsh & oh-my-zsh
 - vim
+- NerdFonts
 
 # Copy / Paste
 
@@ -47,6 +49,13 @@ ln -s ~/dotfiles/i3 .config/i3
 sudo apt-get install i3 python-psutil python-netifaces python-requests
 ```
 
+Precisei instalar o `pyyaml` recentemente para funcionar, talvez seja uma dependencia nova:
+
+```
+pip install pyyaml
+```
+
+
 # @TODO:
 - Melhorar readme
 - i3
@@ -55,6 +64,9 @@ sudo apt-get install i3 python-psutil python-netifaces python-requests
     - compton
     - bumblebee-status
         - dependencias?
+- vim
+    - Retirar submodulo
+    - Plugin Manager que resolva as dependencias s/ a necessidade dos submodulos?
 
 
 WIP... 
