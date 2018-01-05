@@ -3,22 +3,12 @@
 # i3-config
 # #########
 #
-# Configuration file for i3wm
-# This configuration file is optimized for Kali Linux OS
-#
-# i3 version: 4.13
-# Config version: 3.32
-# Dependencies: i3blocks, scrot, feh, rofi,
-# compton, ranger, lxappearance
-#
-# Author: Brainfuck
-# https://github.com/brainfucksec/i3-config
+# Forked From: [Brainfuck's i3-config](https://github.com/brainfucksec/i3-config)
 #
 ########################################################
 
 #Escodendo Title?
 #for_window [class="^.*"] border pixel 0
-
 
 ## Colors
 # class                  border  backgr  text     indicator child_border
@@ -31,6 +21,7 @@ client.urgent            #5294e2 #5294e2 #ffffff  #5294e2   #5294e2
 # font for window titles. ISO 10646 = Unicode
 #font pango:Source Code Pro for Powerline 12
 font pango: FuraMonoForPowerline Nerd Font Medium 12
+
 
 # Back and forth workplace switching
 workspace_auto_back_and_forth yes
@@ -142,7 +133,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i
 set $ws1  1 - 
 set $ws2  2 - 
 set $ws3  3 - 
-set $ws4  4
+set $ws4  4 -
 set $ws5  5
 set $ws6  6
 set $ws7  7
@@ -200,10 +191,11 @@ bindsym $mod+Ctrl+l exec ~/.config/i3/lock.sh
 
 ## i3bar with i3blocks
 bar {
-    status_command ~/dotfiles/i3/bumblebee-status/bumblebee-status -m brightness pasink pasource  disk cpu memory datetime battery -p time.format="%H:%M" date.format="%a, %d %b %Y" memory.format='{percent:05.02f}%' disk.format="{percent:05.02f}%" -t powerline
-    tray_output none
+    status_command ~/dotfiles/i3/bumblebee-status/bumblebee-status -m  pasink pasource  disk cpu memory datetime battery -p time.format="%H:%M" date.format="%a, %d %b %Y" memory.format='{percent:05.02f}%' disk.format="{percent:05.02f}%" -t gruvbox-powerline
+    tray_output primary
     position bottom
     font pango: FuraMonoForPowerline Nerd Font Medium 12
+    font pango: FuraMono Nerd Font Medium 12
 }
 
 
