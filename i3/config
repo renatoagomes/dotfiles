@@ -1,10 +1,7 @@
 ########################################################
+# i3-config - @renatoagomes
 #
-# i3-config
-# #########
-#
-# Forked From: [Brainfuck's i3-config](https://github.com/brainfucksec/i3-config)
-#
+# Dependencies: i3blocks, scrot, feh, compton, ranger, lxappearance bumblebee-status
 ########################################################
 
 #Escodendo Title?
@@ -194,7 +191,6 @@ bar {
     status_command ~/dotfiles/i3/bumblebee-status/bumblebee-status -m  pasink pasource  disk cpu memory datetime battery -p time.format="%H:%M" date.format="%a, %d %b %Y" memory.format='{percent:05.02f}%' disk.format="{percent:05.02f}%" -t gruvbox-powerline
     tray_output primary
     position bottom
-    font pango: FuraMonoForPowerline Nerd Font Medium 12
     font pango: FuraMono Nerd Font Medium 12
 }
 
