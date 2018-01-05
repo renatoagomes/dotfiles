@@ -228,9 +228,10 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightne
 
 # Lidando com multiplas screens (joga sempre pra esquerda)
 bindsym $mod+t exec xrandr --output VGA-1 --auto --left-of eDP-1
+bindsym $mod+Shift+t exec xrandr --output VGA-1 --auto --left-of LVDS-1
 
 # Trocando wallpapers
-bindsym $mod+g exec feh --randomize --bg-fill ~/.wallpapers
+bindsym $mod+g exec feh --randomize --bg-fill ~/wallpapers
 
 # Lock da tela 
 bindsym $mod+F12 exec ~/dotfiles/i3lock-fancy-multimonitor/lock
