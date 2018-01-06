@@ -1,17 +1,8 @@
-# Repo com minhas configurações do .vimrc
+# VIM FTW
 
 ### Copy/Paste sh
 
-Plugins foram instalados utilizando o [vim-pathogen](https://github.com/tpope/vim-pathogen).
-
-``` sh
-git clone https://github.com/renatoagomes/vimrc.git ~/.vim
-ln -s ~/.vim/vimrc ~/.vimrc
-```
-
-### Atual:
-
-![Imgur](http://i.imgur.com/6PGAk1s.png)
+Plugins instalados utilizando o [vim-pathogen](https://github.com/tpope/vim-pathogen).
 
 ### Plugins
 
@@ -31,11 +22,4 @@ ln -s ~/.vim/vimrc ~/.vimrc
 * [pdv](https://github.com/tobyS/pdv) - PHP Documentor for VIM (gera docblocks)
 * [vmustache](https://github.com/tobyS/vmustache) - Vmustache template system p/ VIM (required p/ pdv)
 * [vim-wakatime](https://github.com/wakatime) - Tentativa de TimeTracker automatico o/
-
-### TODO:
-
-* Acertar submodules e usar o Pathogen direito: [How-to use Tim Pope's Pathogen](https://gist.github.com/romainl/9970697)
-* Snippets / Acertar ultisnips para o laravel
-* Acertar mappings do vimwiki para facilitar a navegacao entre todo-lists etc..
-* Acertar outros checkers do syntastic (PATH / style PSR checkers / syntax highlight para react / blade)
 

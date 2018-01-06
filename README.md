@@ -40,7 +40,6 @@ ln -s ~/dotfiles/vim/vimrc .vimrc
 
 - [termite-install](https://github.com/Corwind/termite-install)
 
-
 # i3 &7 [bumblebee-status bar](https://github.com/tobi-wan-kenobi/bumblebee-status)
 
 ```
@@ -57,16 +56,9 @@ pip install pyyaml
 
 
 # @TODO:
+
 - Melhorar readme
 - i3
-    - Acertar submodulos
     - i3gaps
     - compton
     - bumblebee-status
-        - dependencias?
-- vim
-    - Retirar submodulo
-    - Plugin Manager que resolva as dependencias s/ a necessidade dos submodulos?
-
-
-WIP... 
