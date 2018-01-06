@@ -64,3 +64,6 @@
 [submodule "vim/bundle/vim-pathogen"]
 	path = vim/bundle/vim-pathogen
 	url = https://github.com/tpope/vim-pathogen.git
+[submodule "i3/i3lock-fancy-multimonitor"]
+	path = i3/i3lock-fancy-multimonitor
+	url = https://github.com/renatoagomes/i3lock-fancy-multimonitor.git
