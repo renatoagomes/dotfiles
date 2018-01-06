@@ -1,9 +1,6 @@
 [submodule "i3/bumblebee-status"]
 	path = i3/bumblebee-status
 	url = git://github.com/tobi-wan-kenobi/bumblebee-status
-[submodule "i3lock-fancy-multimonitor"]
-	path = i3lock-fancy-multimonitor
-	url = https://github.com/renatoagomes/i3lock-fancy-multimonitor.git
 [submodule "zsh/zsh-autosuggestions"]
 	path = zsh/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
