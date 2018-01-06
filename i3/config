@@ -1,7 +1,7 @@
 ########################################################
 # i3-config - @renatoagomes
 #
-# Dependencies: i3blocks, scrot, feh, compton, ranger, lxappearance bumblebee-status
+# Dependencies: scrot, feh, compton, ranger, lxappearance bumblebee-status
 ########################################################
 
 #Escodendo Title?
@@ -16,9 +16,7 @@ client.urgent            #5294e2 #5294e2 #ffffff  #5294e2   #5294e2
 
 ## Windows style
 # font for window titles. ISO 10646 = Unicode
-#font pango:Source Code Pro for Powerline 12
 font pango: FuraMonoForPowerline Nerd Font Medium 12
-
 
 # Back and forth workplace switching
 workspace_auto_back_and_forth yes
@@ -113,9 +111,6 @@ bindsym $mod+space focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
 
-# focus the child container
-#bindcode $mod+d focus child
-
 # reload the configuration file
 bindsym $mod+Shift+C reload
 
@@ -171,20 +166,17 @@ assign [class="GVIM"]	    $ws3
 # enable floating mode for selected windows
 for_window [class="Lxappearance"] floating enable border pixel 2
 
-
 ## Custom Keybindings
 # --no-startup-id = i don't need startup notifications
 # https://faq.i3wm.org/question/561/what-is-that-thing-called-no-startup-id
-bindsym $mod+F1 exec --no-startup-id chromium-browser
-bindsym $mod+F2 exec --no-startup-id gvim
-bindsym $mod+F3 exec --no-startup-id google-chrome-stable
-#bindsym $mod+F3 exec --no-startup-id xfce4-terminal -x terminal_velocity  (outro?)
+bindsym $mod+F1 exec --no-startup-id firefox
+bindsym $mod+F2 exec --no-startup-id google-chrome-stable
+bindsym $mod+F3 exec --no-startup-id gvim
 
 #DEBUG
 bindsym $mod+Ctrl+n debuglog on
 # screenlock
 bindsym $mod+Ctrl+l exec ~/.config/i3/lock.sh
-
 
 ## i3bar with i3blocks
 bar {
@@ -193,7 +185,6 @@ bar {
     position bottom
     font pango: FuraMono Nerd Font Medium 12
 }
-
 
 ## Start Up commands and applications
 # compton
@@ -218,9 +209,9 @@ bindsym --release Shift+Print exec scrot -s ~/Imagens/Captura_de_area_%Y-%m-%d-%
 bindsym --release $mod+Shift+Print exec scrot -s ~/Imagens/temporario.png && xclip -selection clipboard -t image/png -i ~/Imagens/temporario.png && rm ~/Imagens/temporario.png
 
 # Pulse Audio controls (+/- volume c/ i3blocks integrado)
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% && pkill -RTMIN+1 i3blocks
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% && pkill -RTMIN+1 i3blocks
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% 
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 
 # Screen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
