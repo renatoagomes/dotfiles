@@ -67,3 +67,6 @@
 [submodule "i3/i3lock-fancy-multimonitor"]
 	path = i3/i3lock-fancy-multimonitor
 	url = https://github.com/renatoagomes/i3lock-fancy-multimonitor.git
+[submodule "i3/i3-gaps"]
+	path = i3/i3-gaps
+	url = https://www.github.com/Airblader/i3.git
