@@ -2,11 +2,11 @@
 
 Atualmente com:
 - i3wm
-    - bumblebee-status-bar
 - termite 
 - zsh & oh-my-zsh
 - vim
 - NerdFonts
+...
 
 # Copy / Paste
 
@@ -23,7 +23,7 @@ Depende do `curl`
 
 ```
 cd ~
-ln -s ~/dotfiles/zshrc .zshrc
+ln -s ~/dotfiles/zsh/zshrc .zshrc
 sudo apt-get install zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
@@ -40,20 +40,16 @@ ln -s ~/dotfiles/vim/vimrc .vimrc
 
 - [termite-install](https://github.com/Corwind/termite-install)
 
-# i3 &7 [bumblebee-status bar](https://github.com/tobi-wan-kenobi/bumblebee-status)
+# i3
+
+Instalar i3 / I3Gaps
 
 ```
 cd ~
 ln -s ~/dotfiles/i3 .config/i3
-sudo apt-get install i3 python-psutil python-netifaces python-requests
-```
-
-Precisei instalar o `pyyaml` recentemente para funcionar, talvez seja uma dependencia nova:
-
-```
+sudo apt-get install i3 python-psutil python-netifaces python-requests python-pip
 pip install pyyaml
 ```
-
 
 # @TODO:
 

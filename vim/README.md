@@ -1,7 +1,5 @@
 # VIM FTW
 
-### Copy/Paste sh
-
 Plugins instalados utilizando o [vim-pathogen](https://github.com/tpope/vim-pathogen).
 
 ### Plugins
