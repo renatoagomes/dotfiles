@@ -1,13 +1,12 @@
 " -------------------------
 " .vimrc - @renatoagomes 
-" - [vimrc](http://github.com/renatoagomes/vimrc)
 " - [dotfiles](http://github.com/renatoagomes/dotfiles)
 " -------------------------
 
-" leader key
+" LEADER KEY
 let mapleader=","
 
-" === Facilitando alterar configurações (dotfiles, i3, zsh, vim, snippets)
+" === Facilitando alterar configurações comuns (dotfiles, i3, zsh, vim, snippets)
 nmap <leader>dot :e ~/dotfiles/README.md<cr>            
 nmap <leader>i3 :e ~/dotfiles/i3/config<cr>
 nmap <leader>zsh :e ~/dotfiles/.zshrc<cr>
@@ -15,9 +14,8 @@ nmap <leader>term :e ~/dotfiles/termite/config<cr>
 nmap <leader>ev :e ~/dotfiles/vim/vimrc<cr>
 nmap <leader>es :e ~/dotfiles/vim/UltiSnips/
 
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-
 " === Plugins pathogen ftw o/
+runtime bundle/vim-pathogen/autoload/pathogen.vim
 filetype off                                            " - fix pathogen em alguns sistemas (re-habilitando em seguida)
 call pathogen#infect()
 syntax on
@@ -98,7 +96,6 @@ let g:html_indent_inctags = "html,body,head,tbody"
 "Mapeando a troca de filetype para facilitar problemas com identacao de blade & html
 map <leader>cft :set ft=
 
-
 "seed file (para recarregar as confs do vim sem ter que dar restart)
 map <leader>s :source ~/.vimrc<CR>
 
@@ -121,7 +118,7 @@ nmap <C-s> :w<CR>
 vmap <C-s> <esc>:w<CR>gv
 imap <C-s> <esc>:w<CR>a
 
-"Split Management (assim consigo trocar entre splits com ctrl direcional)
+"Split Management (trocar entre splits com ctrl direcional)
 nmap <C-J> <C-W><C-J>
 nmap <C-H> <C-W><C-H>
 nmap <C-K> <C-W><C-K>
