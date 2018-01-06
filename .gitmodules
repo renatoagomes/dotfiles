@@ -4,9 +4,6 @@
 [submodule "i3lock-fancy-multimonitor"]
 	path = i3lock-fancy-multimonitor
 	url = https://github.com/renatoagomes/i3lock-fancy-multimonitor.git
-[submodule "vim"]
-	path = vim
-	url = https://github.com/renatoagomes/vimrc
 [submodule "zsh/zsh-autosuggestions"]
 	path = zsh/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions
