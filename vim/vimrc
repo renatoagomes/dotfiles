@@ -9,7 +9,7 @@ let mapleader=","
 " === Facilitando alterar configurações comuns (dotfiles, i3, zsh, vim, snippets)
 nmap <leader>dot :e ~/dotfiles/README.md<cr>            
 nmap <leader>i3 :e ~/dotfiles/i3/config<cr>
-nmap <leader>zsh :e ~/dotfiles/.zshrc<cr>
+nmap <leader>zsh :e ~/dotfiles/zsh/zshrc<cr>
 nmap <leader>term :e ~/dotfiles/termite/config<cr>
 nmap <leader>ev :e ~/dotfiles/vim/vimrc<cr>
 nmap <leader>es :e ~/dotfiles/vim/UltiSnips/
