@@ -234,4 +234,4 @@ bindsym $mod+Shift+t exec xrandr --output VGA-1 --auto --left-of LVDS-1
 bindsym $mod+g exec feh --randomize --bg-fill ~/wallpapers
 
 # Lock da tela 
-bindsym $mod+F12 exec ~/dotfiles/i3lock-fancy-multimonitor/lock
+bindsym $mod+F12 exec ~/dotfiles/i3/i3lock-fancy-multimonitor/lock
