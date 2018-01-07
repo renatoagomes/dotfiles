@@ -184,6 +184,21 @@ bar {
     tray_output primary
     position bottom
     font pango: FuraMono Nerd Font Medium 12
+
+
+    colors {
+        statusline         $white
+        background         #000
+        separator          $transparent
+
+#                          BORDER       BACKGROUND   TEXT
+#       focused_workspace  $transparent $black $white
+#       inactive_workspace $transparent $transparent $white
+#       active_workspace   $transparent $transparent $white
+#       urgent_workspace   $darkred     $darkred     $transparent
+#       binding_mode       $darkred     $darkred     $transparent
+    }
+
 }
 
 ## Start Up commands and applications
