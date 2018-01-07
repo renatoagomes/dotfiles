@@ -33,6 +33,7 @@ alias art="php artisan "
 # PATH'S
 
 alias ppath="cd ~/projetos/" 
+alias dotpath="cd ~/dotfiles/" 
 alias acordopath="cd ~/projetos/acordorapido2" 
 alias ticpath="cd ~/projetos/tic-solucoes" 
 alias boitatapath="cd ~/projetos/boitata" 

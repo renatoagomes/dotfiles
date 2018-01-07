@@ -240,8 +240,13 @@ let g:syntastic_aggregate_errors = 1
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['php'],'passive_filetypes': [] }
 nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
 
-" Especificando os checkers que rodaram em arquivos .php (acredito que seja necessario adiciona-los ao $PATH)
+" Especificando os checkers que rodaram em arquivos .php (é necessario ter os
+" checkers instalados)
 let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd', 'phplint']
+
+" === PHP CS Fixer por file e por diretorio
+nnoremap <silent><leader>fx :call PhpCsFixerFixFile()<CR>
+nnoremap <silent><leader>fX :call PhpCsFixerFixDirectory()<CR>
 
 " === PDV (https://github.com/tobyS/pdv)
 let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
@@ -250,6 +255,9 @@ nnoremap <leader>doc :call pdv#DocumentCurrentLine()<CR>
 " -------------------------
 " === vim-php-namespace (https://github.com/arnaud-lb/vim-php-namespace)
 " -------------------------
+
+"Apos inserir sort por tamanho
+let g:php_namespace_sort = "'{,'}-1!awk '{print length, $0}' | sort -n -s | cut -d' ' -f2-"
 function! IPhpInsertUse()
     call PhpInsertUse()
     call feedkeys('a',  'n')
