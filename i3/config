@@ -56,6 +56,8 @@ set $mod Mod4
 
 # start a terminal (xfce4-terminal)
 bindsym $mod+Return exec termite
+bindsym $mod+Shift+Return exec termite -d `xcwd`
+
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -161,7 +163,7 @@ bindsym $mod+Shift+0 move container to workspace $ws0
 # force a window on a named workspace
 #assign [class="Xfce4-terminal"]	$ws1
 #assign [class="Firefox"]	    $ws2
-assign [class="GVIM"]	    $ws3
+
 
 # enable floating mode for selected windows
 for_window [class="Lxappearance"] floating enable border pixel 2
@@ -170,8 +172,12 @@ for_window [class="Lxappearance"] floating enable border pixel 2
 # --no-startup-id = i don't need startup notifications
 # https://faq.i3wm.org/question/561/what-is-that-thing-called-no-startup-id
 bindsym $mod+F1 exec --no-startup-id firefox
-bindsym $mod+F2 exec --no-startup-id google-chrome-stable
+bindsym $mod+F2 exec --no-startup-id chromium-browser
 bindsym $mod+F3 exec --no-startup-id gvim
+
+bindsym $mod+Shift+F3 exec gvim `xcwd`
+
+
 
 #DEBUG
 bindsym $mod+Ctrl+n debuglog on
@@ -212,16 +218,16 @@ exec --no-startup-id nm-applet
 exec --no-startup-id feh --randomize --bg-fill ~/.wallpapers
 
 # PrintScreen Full
-bindsym --release Print exec scrot ~/Imagens/Captura_de_tela_%Y-%m-%d-%T.png
+bindsym --release Print exec scrot ~/Pictures/Captura_de_tela_%Y-%m-%d-%T.png
 
 # PrintScreen Com Seletor p/ Clipboard
-bindsym --release $mod+Print exec scrot ~/Imagens/temporario.png && xclip -selection clipboard -t image/png -i ~/Imagens/temporario.png && rm ~/Imagens/temporario.png
+bindsym --release $mod+Print exec scrot ~/Pictures/temporario.png && xclip -selection clipboard -t image/png -i ~/Pictures/temporario.png && rm ~/Pictures/temporario.png
 
 # PrintScreen Com Seletor
-bindsym --release Shift+Print exec scrot -s ~/Imagens/Captura_de_area_%Y-%m-%d-%T.png
+bindsym --release Shift+Print exec scrot -s ~/Pictures/Captura_de_area_%Y-%m-%d-%T.png
 
 # PrintScreen Com Seletor p/ Clipboard
-bindsym --release $mod+Shift+Print exec scrot -s ~/Imagens/temporario.png && xclip -selection clipboard -t image/png -i ~/Imagens/temporario.png && rm ~/Imagens/temporario.png
+bindsym --release $mod+Shift+Print exec scrot -s ~/Pictures/temporario.png && xclip -selection clipboard -t image/png -i ~/Pictures/temporario.png && rm ~/Pictures/temporario.png
 
 # Pulse Audio controls (+/- volume c/ i3blocks integrado)
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% 
