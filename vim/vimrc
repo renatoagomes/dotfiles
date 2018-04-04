@@ -14,6 +14,9 @@ nmap <leader>term :e ~/dotfiles/termite/config<cr>
 nmap <leader>ev :e ~/dotfiles/vim/vimrc<cr>
 nmap <leader>es :e ~/dotfiles/vim/UltiSnips/
 
+nmap <leader>dd v/\*\/<cr>:s/${.*://<cr>V?\*\*<cr>:s/} */ /<cr>V?\*\*<cr>:s/${.* //<cr>
+
+
 " === Plugins pathogen ftw o/
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 filetype off                                            " - fix pathogen em alguns sistemas (re-habilitando em seguida)
@@ -27,6 +30,10 @@ set autoread                                            " - Auto-recarregar arqu
 "encoding utf 8 pfv
 set encoding=utf8
 set fileencoding=utf8
+
+"Folding
+set foldlevelstart=1
+
 
 " by default, in insert mode backspace won't delete over line breaks, or.
 " automatically-inserted indentation, let's change that
@@ -112,6 +119,7 @@ nmap <Tab> :b#<CR>
 "Trocando de buffers prev / next com <leader> q||w
 noremap <leader>q :bp<CR>
 noremap <leader>w :bn<CR>
+noremap <leader>W :bn<CR>
 
 "Salvando arquivo com Ctrl s (bindando visual e insert mode tambem)
 nmap <C-s> :w<CR>
@@ -250,7 +258,7 @@ nnoremap <silent><leader>fX :call PhpCsFixerFixDirectory()<CR>
 
 " === PDV (https://github.com/tobyS/pdv)
 let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
-nnoremap <leader>doc :call pdv#DocumentCurrentLine()<CR>
+nnoremap <leader>doc :call pdv#DocumentCurrentLine()<CR>v/\*\/<cr>:s/${.*://<cr>V?\*\*<cr>:s/} */ /<cr>V?\*\*<cr>:s/${.* //<cr>
 
 " -------------------------
 " === vim-php-namespace (https://github.com/arnaud-lb/vim-php-namespace)

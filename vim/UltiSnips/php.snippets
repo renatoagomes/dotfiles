@@ -8,6 +8,16 @@ snippet acessor
  }
 endsnippet
 
+snippet scope
+/**
+ * Scope para aplicar na query filtrando por ${1}
+ */
+ public function scope${1}($query)
+ {
+    return $query->where('${3}', );
+ }
+endsnippet
+
 snippet $
 $this->${1}
 endsnippet
@@ -15,3 +25,16 @@ endsnippet
 snippet l//
 {{-- ${1} --}}
 endsnippet
+
+snippet //l
+{{-- ${1} --}}
+endsnippet
+
+snippet logs
+\Log::info("\n${1}");
+endsnippet
+
+snippet logv
+\Log::info(json_encode($${1}));
+endsnippet
+
