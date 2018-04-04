@@ -35,7 +35,7 @@ alias art="php artisan "
 alias ppath="cd ~/projetos/" 
 alias dotpath="cd ~/dotfiles/" 
 alias acordopath="cd ~/projetos/acordorapido2" 
-alias ticpath="cd ~/projetos/tic-solucoes" 
+alias ticsmspath="cd ~/projetos/tic-sms" 
 alias boitatapath="cd ~/projetos/boitata" 
 alias shantipath="cd ~/projetos/instituto-shanti" 
 
@@ -43,20 +43,20 @@ alias shantipath="cd ~/projetos/instituto-shanti"
 #####
 # DOCKER Aliases
 
-alias dworkspace="docker exec -it laradock_workspace_1 "
-alias dart="docker exec -it laradock_workspace_1 php artisan "
-alias dcomposer="docker exec -it laradock_workspace_1 composer "
+alias dwork="dce workspace "
+alias dart="dwork php artisan "
+alias dcomposer="dwork composer "
 
-alias dcreatedb='docker exec -it laradock_postgres_1 createdb  '
-alias ddropdb='docker exec -it laradock_postgres_1 dropdb  '
+alias dcreatedb='dce postgres createdb  '
+alias ddropdb='dce postgres dropdb  '
 
 #####
 # QUICK-START ALIASES
 ####
 
 #TIC
-alias tic-build='ticpath && cd laradock && docker-compose up -d --build php-fpm nginx mysql phpmyadmin '
-alias tic-start='ticpath && cd laradock && docker-compose up -d php-fpm nginx mysql phpmyadmin '
+alias ticsms-build='ticsmspath && docker-compose up -d --build'
+alias ticsms-start='ticsmspath && docker-compose up -d '
 
 #AcordoRapido
 alias acordo-build='acordopath && cd laradock && docker-compose up -d --build php-fpm postgres pgadmin '
