@@ -23,9 +23,10 @@ Depende do `curl`
 
 ```
 cd ~
-ln -s ~/dotfiles/zsh/zshrc .zshrc
 sudo apt-get install zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+rm ~/.zshrc
+ln -s ~/dotfiles/zsh/zshrc .zshrc
 ```
 
 # VIM
@@ -35,6 +36,20 @@ cd ~
 ln -s ~/dotfiles/vim .vim
 ln -s ~/dotfiles/vim/vimrc .vimrc
 ```
+
+# [NerdFonts](https://github.com/ryanoasis/nerd-fonts)
+
+Download das fontes e install:
+    - [Fura Mono Medium Nerd Font Complete](https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/FiraMono/Medium/complete/Fura%20Mono%20Medium%20Nerd%20Font%20Complete.otf)
+    - [Fura Mono Medium Nerd Font Complete Mono](https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/FiraMono/Medium/complete/Fura%20Mono%20Medium%20Nerd%20Font%20Complete%20Mono.otf)
+
+```
+cd ~/Downloads
+sudo mv Fura\ Mono\ Medium\ Nerd\ Font\ Complete.otf /usr/share/fonts/opentype/
+sudo mv Fura\ Mono\ Medium\ Nerd\ Font\ Complete\ Mono.otf /usr/share/fonts/opentype/
+sudo fc-cache -f -v
+```
+
 
 # Termite
 
