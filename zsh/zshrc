@@ -26,7 +26,7 @@ alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 
 # gerando ctags
-alias genctags="ctags -R --exclude='.git' --exclude='node_modules' --exclude='' --exclude='public' --exclude='laradock' --exclude='*.js'"
+alias genctags="ctags -R --exclude='.git' --exclude='node_modules' --exclude='vendor' --exclude='public' --exclude='laradock' --exclude='*.js'"
 alias art="php artisan "
 
 #####
@@ -34,13 +34,9 @@ alias art="php artisan "
 
 alias ppath="cd ~/projetos/" 
 alias dotpath="cd ~/dotfiles/" 
-alias acordopath="cd ~/projetos/acordorapido2" 
 alias ticsmspath="cd ~/projetos/tic-sms" 
-alias boitatapath="cd ~/projetos/boitata" 
-alias shantipath="cd ~/projetos/instituto-shanti" 
+alias ticcobpath="cd ~/projetos/Trinit-COB_1.0" 
 
-
-#####
 # DOCKER Aliases
 
 alias dwork="dce workspace "
@@ -58,18 +54,9 @@ alias ddropdb='dce postgres dropdb  '
 alias ticsms-build='ticsmspath && docker-compose up -d --build'
 alias ticsms-start='ticsmspath && docker-compose up -d '
 
-#AcordoRapido
-alias acordo-build='acordopath && cd laradock && docker-compose up -d --build php-fpm postgres pgadmin '
-alias acordo-start='acordopath && cd laradock && docker-compose up -d php-fpm nginx postgres pgadmin '
-
-#Boitata
-alias boitata-build='boitatapath && cd laradock && docker-compose up -d --build php-fpm postgres pgadmin; cd .. '
-alias boitata-start='boitatapath && cd laradock && docker-compose up -d php-fpm nginx postgres pgadmin '
-
-#shanti
-alias shanti-build='shantipath && cd laradock && docker-compose up -d --build php-fpm postgres pgadmin; cd .. '
-alias shanti-start='shantipath && cd laradock && docker-compose up -d php-fpm nginx postgres pgadmin '
-
+#TIC
+alias ticcob-build='ticcobpath && cd laradock && docker-compose up -d --build nginx php-fpm mysql phpmyadmin  '
+alias ticcob-start='ticcobpath && cd laradock && docker-compose up -d nginx php-fpm mysql phpmyadmin '
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

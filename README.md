@@ -7,6 +7,7 @@ Atualmente com:
 - vim
 - NerdFonts
 - ranger
+- scrot
 ...
 
 # Copy / Paste
@@ -53,7 +54,12 @@ sudo fc-cache -f -v
 
 ### Termite
 
+Script para quick install:
 - [termite-install](https://github.com/Corwind/termite-install)
+
+```
+ln -s ~/dotfiles/termite ~/.config/termite
+```
 
 ### i3
 
@@ -70,6 +76,12 @@ pip install pyyaml
 
 ```
 sudo apt-get install ranger
+```
+
+### Scrot (para prints)
+
+```
+sudo apt-get install scrot
 ```
 
 ## @TODO:
