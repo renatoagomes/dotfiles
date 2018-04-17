@@ -50,6 +50,9 @@ alias dcomposer="dwork composer "
 alias dcreatedb='dce postgres createdb  '
 alias ddropdb='dce postgres dropdb  '
 
+#pg_dump -h HOST --username XPTO DBNAME > OUTPUTFILE
+alias ddumpdb='dce postgres pg_dump '
+
 #####
 # QUICK-START ALIASES
 ####
