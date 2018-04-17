@@ -6,6 +6,8 @@ Atualmente com:
 - zsh & oh-my-zsh
 - vim
 - NerdFonts
+- ranger
+- scrot
 ...
 
 # Copy / Paste
@@ -23,12 +25,13 @@ Depende do `curl`
 
 ```
 cd ~
-ln -s ~/dotfiles/zsh/zshrc .zshrc
 sudo apt-get install zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+rm ~/.zshrc
+ln -s ~/dotfiles/zsh/zshrc .zshrc
 ```
 
-# VIM
+### VIM
 
 ```
 cd ~
@@ -36,11 +39,29 @@ ln -s ~/dotfiles/vim .vim
 ln -s ~/dotfiles/vim/vimrc .vimrc
 ```
 
-# Termite
+### [NerdFonts](https://github.com/ryanoasis/nerd-fonts)
 
+Download das fontes e install:
+    - [Fura Mono Medium Nerd Font Complete](https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/FiraMono/Medium/complete/Fura%20Mono%20Medium%20Nerd%20Font%20Complete.otf)
+    - [Fura Mono Medium Nerd Font Complete Mono](https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/FiraMono/Medium/complete/Fura%20Mono%20Medium%20Nerd%20Font%20Complete%20Mono.otf)
+
+```
+cd ~/Downloads
+sudo mv Fura\ Mono\ Medium\ Nerd\ Font\ Complete.otf /usr/share/fonts/opentype/
+sudo mv Fura\ Mono\ Medium\ Nerd\ Font\ Complete\ Mono.otf /usr/share/fonts/opentype/
+sudo fc-cache -f -v
+```
+
+### Termite
+
+Script para quick install:
 - [termite-install](https://github.com/Corwind/termite-install)
 
-# i3
+```
+ln -s ~/dotfiles/termite ~/.config/termite
+```
+
+### i3
 
 Instalar i3 / I3Gaps
 
@@ -51,7 +72,19 @@ sudo apt-get install i3 python-psutil python-netifaces python-requests python-pi
 pip install pyyaml
 ```
 
-# @TODO:
+### Ranger
+
+```
+sudo apt-get install ranger
+```
+
+### Scrot (para prints)
+
+```
+sudo apt-get install scrot
+```
+
+## @TODO:
 
 - Melhorar readme
 - i3
