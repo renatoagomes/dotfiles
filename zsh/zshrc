@@ -64,3 +64,7 @@ alias ticcob-start='ticcobpath && cd laradock && docker-compose up -d nginx php-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+#so as not to be disturbed by Ctrl-S ctrl-Q in terminals:
+stty -ixon

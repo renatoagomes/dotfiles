@@ -53,11 +53,15 @@ exe 'ino <script> <C-V>' paste#paste_cmd['i']
 set dir=$HOME/.vim_tmp/swap
 if !isdirectory(&dir) | call mkdir(&dir, 'p', 0700) | endif
 
+set t_Co=256
+
 " -------------------------
 " === VISUAL
 " -------------------------
 "colorscheme SerialExperimentsLain                           
-colorscheme atom-dark                                       "(https://github.com/gosukiwi/vim-atom-dark)
+"colorscheme atom-dark                                       "(https://github.com/gosukiwi/vim-atom-dark)
+colorscheme atom-dark-256                                       "(https://github.com/gosukiwi/vim-atom-dark)
+
 
 "trocando guifont ( :set guifont=* ) depois de escolher repeat s/ o '*'
 "set guifont=FuraMonoForPowerline\ Nerd\ Font\ Medium\ 12
@@ -100,7 +104,7 @@ set softtabstop=4   " in insert mode, tabs are 4 spaces
 "vim 7.4 the html tags html, head, body, and some others are not indented by default
 let g:html_indent_inctags = "html,body,head,tbody"
 
-"Mapeando a troca de filetype para facilitar problemas com identacao de blade & html
+"Mapeando a troca de filetype para facilitar problemad com identacao de blade & html
 map <leader>cft :set ft=
 
 "seed file (para recarregar as confs do vim sem ter que dar restart)
@@ -166,6 +170,19 @@ nmap <leader>nf :NERDTreeFind<CR>
 
 "Ignore algumas coisas
 let NERDTreeIgnore=['\.git', '\~$', '\.swp']
+
+"removendo espaco extra apos icone do filetype na nerdtree
+let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
+
+set conceallevel=0
+
+" after a re-source, fix syntax matching issues (concealing brackets):
+if exists('g:loaded_webdevicons')
+    call webdevicons#refresh()
+endif
+
+
+
 
 " -------------------------
 " SEARCH (https://github.com/Roshanjossey/dot-files/blob/master/.vimrc#L126):
