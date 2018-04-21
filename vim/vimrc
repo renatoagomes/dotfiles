@@ -17,6 +17,12 @@ nmap <leader>es :e ~/dotfiles/vim/UltiSnips/
 nmap <leader>dd v/\*\/<cr>:s/${.*://<cr>V?\*\*<cr>:s/} */ /<cr>V?\*\*<cr>:s/${.* //<cr>
 
 
+"Git vim Fugitive
+nmap <leader>gst :Gstatus<CR>
+nmap <leader>gad :Gwrite<CR>
+nmap <leader>gcom :Gcommit<CR>
+    
+
 " === Plugins pathogen ftw o/
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 filetype off                                            " - fix pathogen em alguns sistemas (re-habilitando em seguida)
@@ -53,13 +59,13 @@ exe 'ino <script> <C-V>' paste#paste_cmd['i']
 set dir=$HOME/.vim_tmp/swap
 if !isdirectory(&dir) | call mkdir(&dir, 'p', 0700) | endif
 
-set t_Co=256
 
 " -------------------------
 " === VISUAL
 " -------------------------
 "colorscheme SerialExperimentsLain                           
-"colorscheme atom-dark                                       "(https://github.com/gosukiwi/vim-atom-dark)
+
+set t_Co=256
 colorscheme atom-dark-256                                       "(https://github.com/gosukiwi/vim-atom-dark)
 
 
@@ -136,13 +142,13 @@ nmap <C-H> <C-W><C-H>
 nmap <C-K> <C-W><C-K>
 nmap <C-L> <C-W><C-L>
 
-" Carregando linha
-nnoremap <A-j> :m .+1<CR>==
-nnoremap <A-k> :m .-2<CR>==
-inoremap <A-j> <Esc>:m .+1<CR>==gi
-inoremap <A-k> <Esc>:m .-2<CR>==gi
-vnoremap <A-j> :m '>+1<CR>gv=gv
-vnoremap <A-k> :m '<-2<CR>gv=gv
+" Carregando linha com CTRL + J ou K
+nnoremap <C-J> :m .+1<CR>==
+nnoremap <C-K> :m .-2<CR>==
+inoremap <C-J> <Esc>:m .+1<CR>==gi
+inoremap <C-K> <Esc>:m .-2<CR>==gi
+vnoremap <C-J> :m '>+1<CR>gv=gv
+vnoremap <C-K> :m '<-2<CR>gv=gv
 
 "Binding Buffers com <leader>F<nº>
 map <leader><F1> :bfirst<CR>
@@ -165,8 +171,8 @@ let NERDTreeShowHidden=1
 
 nmap <leader>n :NERDTreeToggle<CR>
 
-"Find current file in NerdTree
-nmap <leader>nf :NERDTreeFind<CR>
+"Encontra o file na NerdTree e centraliza verticalmente
+nmap <leader>nf :NERDTreeFind<CR>zz
 
 "Ignore algumas coisas
 let NERDTreeIgnore=['\.git', '\~$', '\.swp']
@@ -181,7 +187,7 @@ if exists('g:loaded_webdevicons')
     call webdevicons#refresh()
 endif
 
-
+let NERDTreeHighlightCursorline = 0
 
 
 " -------------------------
