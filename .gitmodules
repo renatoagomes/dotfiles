@@ -73,3 +73,9 @@
 [submodule "vim/bundle/vim-php-cs-fixer"]
 	path = vim/bundle/vim-php-cs-fixer
 	url = https://github.com/stephpy/vim-php-cs-fixer.git
+[submodule "vim/bundle/vim-fugitive"]
+	path = vim/bundle/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive
+[submodule "vim/bundle/vim-sintax-highlight"]
+	path = vim/bundle/vim-sintax-highlight
+	url = https://github.com/tiagofumo/vim-nerdtree-syntax-highlight
