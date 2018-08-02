@@ -79,3 +79,9 @@
 [submodule "vim/bundle/vim-sintax-highlight"]
 	path = vim/bundle/vim-sintax-highlight
 	url = https://github.com/tiagofumo/vim-nerdtree-syntax-highlight
+[submodule "vim/bundle/vim-blade"]
+	path = vim/bundle/vim-blade
+	url = https://github.com/jwalton512/vim-blade.git
+[submodule "vim/bundle/php-vim"]
+	path = vim/bundle/php-vim
+	url = https://github.com/StanAngeloff/php.vim

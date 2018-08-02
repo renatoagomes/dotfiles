@@ -32,6 +32,7 @@ alias art="php artisan "
 #####
 # PATH'S
 
+alias screencastpath="cd ~/screencast/" 
 alias ppath="cd ~/projetos/" 
 alias dotpath="cd ~/dotfiles/" 
 alias ticsmspath="cd ~/projetos/tic-sms" 
@@ -39,7 +40,7 @@ alias ticcobpath="cd ~/projetos/Trinit-COB_1.0"
 
 # DOCKER Aliases
 
-alias dwork="dce workspace "
+alias dwork="dce --user=laradock workspace "
 alias dart="dwork php artisan "
 alias dcomposer="dwork composer "
 

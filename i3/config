@@ -1,6 +1,6 @@
 ########################################################
 # i3-config - @renatoagomes
-#
+
 # Dependencies: scrot, feh, compton, ranger, lxappearance bumblebee-status
 ########################################################
 
@@ -120,7 +120,7 @@ bindsym $mod+Shift+C reload
 bindsym $mod+Shift+R restart
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exit
 
 ## Workspaces
 # customize workspace name
@@ -146,6 +146,8 @@ bindsym $mod+7 workspace $ws7
 bindsym $mod+8 workspace $ws8
 bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws0
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1

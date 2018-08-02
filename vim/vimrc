@@ -63,10 +63,11 @@ if !isdirectory(&dir) | call mkdir(&dir, 'p', 0700) | endif
 " -------------------------
 " === VISUAL
 " -------------------------
-"colorscheme SerialExperimentsLain                           
-
 set t_Co=256
 colorscheme atom-dark-256                                       "(https://github.com/gosukiwi/vim-atom-dark)
+"colorscheme SerialExperimentsLain                           
+
+
 
 
 "trocando guifont ( :set guifont=* ) depois de escolher repeat s/ o '*'
@@ -327,4 +328,6 @@ nmap <leader>lev :e .env<cr>
 nmap <leader>lesp :e app/Providers/EventServiceProvider.php<cr>
 nmap <leader>lrw :e routes/web.php<cr>
 nmap <leader>lra :e routes/api.php<cr>
+
+
 
