@@ -10,25 +10,47 @@ let mapleader=","
 nmap <leader>dot :e ~/dotfiles/README.md<cr>            
 nmap <leader>i3 :e ~/dotfiles/i3/config<cr>
 nmap <leader>zsh :e ~/dotfiles/zsh/zshrc<cr>
-nmap <leader>term :e ~/dotfiles/termite/config<cr>
 nmap <leader>ev :e ~/dotfiles/vim/vimrc<cr>
 nmap <leader>es :e ~/dotfiles/vim/UltiSnips/
-
-nmap <leader>dd v/\*\/<cr>:s/${.*://<cr>V?\*\*<cr>:s/} */ /<cr>V?\*\*<cr>:s/${.* //<cr>
-
 
 "Git vim Fugitive
 nmap <leader>gst :Gstatus<CR>
 nmap <leader>gad :Gwrite<CR>
 nmap <leader>gcom :Gcommit<CR>
-    
 
-" === Plugins pathogen ftw o/
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-filetype off                                            " - fix pathogen em alguns sistemas (re-habilitando em seguida)
-call pathogen#infect()
+
+call plug#begin()
+
+Plug 'tobyS/vmustache'
+Plug 'tobyS/pdv'
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+Plug 'Raimondi/delimitMate'
+Plug 'junegunn/vim-easy-align'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'mattn/emmet-vim'
+Plug 'scrooloose/nerdtree'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'jwalton512/vim-blade'
+Plug 'ryanoasis/vim-devicons'
+Plug 'tpope/vim-fugitive'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'vim-syntastic/syntastic'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'stephpy/vim-php-cs-fixer'
+Plug 'arnaud-lb/vim-php-namespace'
+
+call plug#end()
+    
+" === Plugins pathogen ftw o/ (Testando vim-plug)
+"runtime bundle/vim-pathogen/autoload/pathogen.vim
+"call pathogen#infect()
+
 syntax on
-filetype plugin indent on
+filetype plugin on
 
 set nocompatible                                        " - Sem vi
 set autoread                                            " - Auto-recarregar arquivos se modificados externamente
@@ -120,12 +142,6 @@ map <leader>s :source ~/.vimrc<CR>
 "Fechando buffer atual com Ctrl q
 nmap <C-q> :bdelete<CR>
 
-"Tab se comportando como esperado no visual mode ( +/- identacao com shift)
-vmap <Tab> >gv
-vmap <S-Tab> <gv
-
-"Tab em normalmode troca para o buffer anterior
-nmap <Tab> :b#<CR>
 
 "Trocando de buffers prev / next com <leader> q||w
 noremap <leader>q :bp<CR>
@@ -151,13 +167,16 @@ inoremap <C-K> <Esc>:m .-2<CR>==gi
 vnoremap <C-J> :m '>+1<CR>gv=gv
 vnoremap <C-K> :m '<-2<CR>gv=gv
 
-"Binding Buffers com <leader>F<nº>
-map <leader><F1> :bfirst<CR>
-map <leader><F2> :bfirst<CR>:bnext<CR>
-map <leader><F3> :bfirst<CR>:bnext<CR>:bnext<CR>
-map <leader><F4> :bfirst<CR>:bnext<CR>:bnext<CR>:bnext<CR>
-map <leader><F5> :bfirst<CR>:bnext<CR>:bnext<CR>:bnext<CR>:bnext<CR>
-map <leader><F6> :bfirst<CR>:bnext<CR>:bnext<CR>:bnext<CR>:bnext<CR>:bnext<CR>
+"troca de buffer com tab
+nmap <S-TAB> gT
+nmap <TAB> gt
+nmap ga <Plug>(EasyAlign)
+nnoremap + <C-a>
+nnoremap - <C-x>
+nnoremap -a :exec ToggleAim()<CR>
+nnoremap -f :exec ToggleFolding()<CR>
+nnoremap -n :exec ToggleNumbers()<CR>
+
 
 "Resize VSP
 nmap <leader>b :vertical resize +10<cr>
@@ -254,6 +273,9 @@ let g:user_emmet_mode='i'  " Emmet vai funcionar em insert mode (opcoes: 'niv')
 "Remapeando Insert MODE CTRLE para dar CTRLY, (trigger padrao do emmet)
 imap <C-e> <C-y>,
 
+
+
+
 " -------------------------
 " === Syntastic especificos (https://github.com/vim-syntastic/syntastic)
 " -------------------------
@@ -272,17 +294,23 @@ let g:syntastic_aggregate_errors = 1
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['php'],'passive_filetypes': [] }
 nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
 
-" Especificando os checkers que rodaram em arquivos .php (é necessario ter os
-" checkers instalados)
+" Especificando os checkers que rodaram em arquivos .php (é necessario ter os checkers instalados)
 let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd', 'phplint']
 
-" === PHP CS Fixer por file e por diretorio
+"" === PHP CS Fixer por file e por diretorio
 nnoremap <silent><leader>fx :call PhpCsFixerFixFile()<CR>
 nnoremap <silent><leader>fX :call PhpCsFixerFixDirectory()<CR>
 
-" === PDV (https://github.com/tobyS/pdv)
+
+"" === PDV (https://github.com/tobyS/pdv)
 let g:pdv_template_dir = $HOME ."/.vim/bundle/pdv/templates_snip"
 nnoremap <leader>doc :call pdv#DocumentCurrentLine()<CR>v/\*\/<cr>:s/${.*://<cr>V?\*\*<cr>:s/} */ /<cr>V?\*\*<cr>:s/${.* //<cr>
+
+
+"" === indent-guides https://github.com/nathanaelkane/vim-indent-guides
+"let g:ident_guides_start_level = 2
+"let g:ident_guides_guide_size = 1
+
 
 " -------------------------
 " === vim-php-namespace (https://github.com/arnaud-lb/vim-php-namespace)
@@ -315,9 +343,46 @@ autocmd FileType php noremap <Leader>sr :call PhpSortUse()<CR>
 " Sort automatico apos insercao
 let g:php_namespace_sort_after_insert = 1
 
-" === indent-guides https://github.com/nathanaelkane/vim-indent-guides
-let g:ident_guides_start_level = 2
-let g:ident_guides_guide_size = 1
+
+nmap <S-TAB> gT
+nmap <TAB> gt
+nmap ga <Plug>(EasyAlign)
+nnoremap + <C-a>
+nnoremap - <C-x>
+nnoremap -g :GitGutterToggle<CR>
+nnoremap -a :exec ToggleAim()<CR>
+nnoremap -f :exec ToggleFolding()<CR>
+nnoremap -n :exec ToggleNumbers()<CR>
+
+
+function! ToggleAim()
+    :set cursorcolumn! cursorline!
+endfunction
+
+function! ToggleNumbers()
+    :set nu! relativenumber!
+endfunction
+
+function! ToggleFolding()
+    :if &foldcolumn ==# 0 | set foldcolumn=1 foldmethod=indent | else | set foldcolumn=0 foldmethod=manual | endif
+endfunction
+
+
+
+
+
+
+" use <tab> for trigger completion and navigate to the next complete item
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~ '\s'
+endfunction
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
 
 " -------------------------
 " Laravel Mappings
