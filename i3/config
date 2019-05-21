@@ -55,8 +55,8 @@ bindsym $mod+x mode "resize"
 set $mod Mod4
 
 # start a terminal (xfce4-terminal)
-bindsym $mod+Return exec termite
-bindsym $mod+Shift+Return exec termite -d `xcwd`
+bindsym $mod+Return exec urxvt
+bindsym $mod+Shift+Return exec urxvt -d `xcwd`
 
 
 # kill focused window
@@ -192,11 +192,12 @@ bar {
     tray_output primary
     position bottom
     font pango: FuraMono Nerd Font Medium 12
+    i3bar_command i3bar -t
 
 
     colors {
         statusline         $white
-        background         #000
+        background         #000000
         separator          $transparent
 
 #                          BORDER       BACKGROUND   TEXT
@@ -209,6 +210,7 @@ bar {
 
 }
 
+
 ## Start Up commands and applications
 # compton
 exec --no-startup-id /usr/bin/compton --config ~/.config/compton.conf
@@ -217,7 +219,7 @@ exec --no-startup-id /usr/bin/compton --config ~/.config/compton.conf
 exec --no-startup-id nm-applet
 
 # Randomizando wallpapers dentro do diretorio
-exec --no-startup-id feh --randomize --bg-fill ~/.wallpapers
+exec feh --randomize --bg-fill ~/.wallpapers
 
 # PrintScreen Full
 bindsym --release Print exec scrot ~/Pictures/Captura_de_tela_%Y-%m-%d-%T.png
@@ -245,7 +247,7 @@ bindsym $mod+t exec xrandr --output VGA-1 --auto --left-of eDP-1
 bindsym $mod+Shift+t exec xrandr --output VGA-1 --auto --left-of LVDS-1
 
 # Trocando wallpapers
-bindsym $mod+g exec feh --randomize --bg-fill ~/wallpapers
+bindsym $mod+g exec feh --randomize --bg-fill ~/.wallpapers
 
 # Lock da tela 
 bindsym $mod+F12 exec ~/dotfiles/i3/i3lock-fancy-multimonitor/lock

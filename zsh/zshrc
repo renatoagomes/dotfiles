@@ -26,7 +26,7 @@ alias zshconfig="vim ~/.zshrc"
 alias ohmyzsh="vim ~/.oh-my-zsh"
 
 # gerando ctags
-alias genctags="ctags -R --exclude='.git' --exclude='node_modules' --exclude='vendor' --exclude='public' --exclude='laradock' --exclude='*.js'"
+alias genctags="ctags -R --exclude='.git' --exclude='node_modules' --exclude='public' --exclude='laradock' --exclude='*.js'"
 alias art="php artisan "
 
 #####
@@ -50,22 +50,20 @@ alias ddropdb='dce postgres dropdb  '
 #pg_dump -h HOST --username XPTO DBNAME > OUTPUTFILE
 alias ddumpdb='dce postgres pg_dump '
 
+## VESSEL Aliases
+
+alias ves='./vessel '
+alias vstart='ves start'
+alias vstop='ves stop'
+alias vart='ves artisan '
+alias vcomp='ves composer '
+
 #####
 # QUICK-START ALIASES
 ####
 
-#TIC
-alias ticsms-build='ticsmspath && docker-compose up -d --build'
-alias ticsms-start='ticsmspath && docker-compose up -d '
 
-#TIC
-alias ticcob-build='ticcobpath && cd laradock && docker-compose up -d --build nginx php-fpm mysql phpmyadmin  '
-alias ticcob-start='ticcobpath && cd laradock && docker-compose up -d nginx php-fpm mysql phpmyadmin '
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
+[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh  # This loads NVM
 
 #so as not to be disturbed by Ctrl-S ctrl-Q in terminals:
 stty -ixon
