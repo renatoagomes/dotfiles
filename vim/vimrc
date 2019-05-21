@@ -18,9 +18,12 @@ nmap <leader>gst :Gstatus<CR>
 nmap <leader>gad :Gwrite<CR>
 nmap <leader>gcom :Gcommit<CR>
 
+nmap <leader><leader> :terminal<cr>
 
 call plug#begin()
 
+Plug 'vimwiki/vimwiki'
+Plug 'suan/vim-instant-markdown'
 Plug 'tobyS/vmustache'
 Plug 'tobyS/pdv'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
@@ -146,7 +149,8 @@ nmap <C-q> :bdelete<CR>
 "Trocando de buffers prev / next com <leader> q||w
 noremap <leader>q :bp<CR>
 noremap <leader>w :bn<CR>
-noremap <leader>W :bn<CR>
+noremap <F2> :bp<CR>
+noremap <F3> :bn<CR>
 
 "Salvando arquivo com Ctrl s (bindando visual e insert mode tambem)
 nmap <C-s> :w<CR>
@@ -167,9 +171,7 @@ inoremap <C-K> <Esc>:m .-2<CR>==gi
 vnoremap <C-J> :m '>+1<CR>gv=gv
 vnoremap <C-K> :m '<-2<CR>gv=gv
 
-"troca de buffer com tab
-nmap <S-TAB> gT
-nmap <TAB> gt
+
 nmap ga <Plug>(EasyAlign)
 nnoremap + <C-a>
 nnoremap - <C-x>
@@ -344,8 +346,9 @@ autocmd FileType php noremap <Leader>sr :call PhpSortUse()<CR>
 let g:php_namespace_sort_after_insert = 1
 
 
-nmap <S-TAB> gT
-nmap <TAB> gt
+nmap <S-TAB> :bprevious<cr>
+nmap <TAB> :bNext<cr>
+
 nmap ga <Plug>(EasyAlign)
 nnoremap + <C-a>
 nnoremap - <C-x>
@@ -382,6 +385,22 @@ inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
+
+
+
+" --- VIMWIKI - Listas listas listas..
+
+let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
+let g:instant_markdown_autostart = 0
+
+nmap <leader>td :e ~/vimwiki/TODO_DIARIO.md<CR>
+
+
+
+
+
+
+
 
 
 " -------------------------
