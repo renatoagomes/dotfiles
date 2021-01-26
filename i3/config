@@ -1,11 +1,48 @@
 ########################################################
-# i3-config - @renatoagomes
+# i3-config - @renatoagomes - ~motivating quote~
+####################################################
 
-# Dependencies: scrot, feh, compton, ranger, lxappearance bumblebee-status
-########################################################
-
-#Escodendo Title?
+#Escodendo Title
 #for_window [class="^.*"] border pixel 0
+
+# Set inner/outer gaps
+gaps inner 0
+gaps outer 0
+
+smart_borders on
+
+# gaps: $mod+Shift+g + a||o --> +||- . Shift global, 0  reset.
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+
+bindsym $mod+Shift+g mode "$mode_gaps"
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
 
 ## Colors
 # class                  border  backgr  text     indicator child_border
@@ -16,7 +53,7 @@ client.urgent            #5294e2 #5294e2 #ffffff  #5294e2   #5294e2
 
 ## Windows style
 # font for window titles. ISO 10646 = Unicode
-font pango: FuraMonoForPowerline Nerd Font Medium 12
+font pango: MesloLGS NF Regular 8
 
 # Back and forth workplace switching
 workspace_auto_back_and_forth yes
@@ -56,14 +93,12 @@ set $mod Mod4
 
 # start a terminal (xfce4-terminal)
 bindsym $mod+Return exec urxvt
-bindsym $mod+Shift+Return exec urxvt -d `xcwd`
-
+bindsym $mod+Shift+Return exec urxvt -cd "`xcwd`"
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# start rofi (a program launcher)
-#bindsym $mod+d exec rofi -show run -font "terminus 12"
+# dmenu
 bindsym $mod+d exec dmenu_run
 
 # change focus
@@ -99,7 +134,7 @@ bindsym $mod+v split v
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
-# change container layout (stacked, tabbed, default)
+# chanre container layout (stacked, tabbed, default)
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout default
@@ -127,13 +162,13 @@ bindsym $mod+Shift+e exit
 set $ws1  1 - 
 set $ws2  2 - 
 set $ws3  3 - 
-set $ws4  4 -
-set $ws5  5
+set $ws4  4 
+set $ws5  5 - 
 set $ws6  6
-set $ws7  7
-set $ws8  8
-set $ws9  9 - 
-set $ws0  10 - 
+set $ws7  7 - ♬ 
+set $ws8  8 - 
+set $ws9  9 - 
+set $ws0  10 - 
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -165,6 +200,9 @@ bindsym $mod+Shift+0 move container to workspace $ws0
 # force a window on a named workspace
 #assign [class="Xfce4-terminal"]	$ws1
 #assign [class="Firefox"]	    $ws2
+assign [class="Telegram"]	    $ws8
+assign [class="discord"]	    $ws9
+assign [class="Slack"]	            $ws0
 
 
 # enable floating mode for selected windows
@@ -174,43 +212,25 @@ for_window [class="Lxappearance"] floating enable border pixel 2
 # --no-startup-id = i don't need startup notifications
 # https://faq.i3wm.org/question/561/what-is-that-thing-called-no-startup-id
 bindsym $mod+F1 exec --no-startup-id firefox
-bindsym $mod+F2 exec --no-startup-id chromium-browser
-bindsym $mod+F3 exec --no-startup-id gvim
+bindsym $mod+F2 exec --no-startup-id google-chrome
 
-bindsym $mod+Shift+F3 exec gvim `xcwd`
+#bindsym $mod+F3 exec urxvt -e sh -c "pydoro"
 
+# file manager
+bindsym $mod+F5 exec --no-startup-id pcmanfm
 
+bindsym $mod+F8 exec --no-startup-id Telegram
+bindsym $mod+F9 exec --no-startup-id discord
+bindsym $mod+F10 exec --no-startup-id slack
+bindsym $mod+F11 exec urxvt -e sh -c "mpv ~/Music/acordar"
+
+# lock do monitor com print + blur via ffmpeg
+bindsym $mod+F12 exec ~/dotfiles/i3/i3lock-fancy-multimonitor/lock
 
 #DEBUG
 bindsym $mod+Ctrl+n debuglog on
 # screenlock
 bindsym $mod+Ctrl+l exec ~/.config/i3/lock.sh
-
-## i3bar with i3blocks
-bar {
-    status_command ~/dotfiles/i3/bumblebee-status/bumblebee-status -m  pasink pasource  disk cpu memory datetime battery -p time.format="%H:%M" date.format="%a, %d %b %Y" memory.format='{percent:05.02f}%' disk.format="{percent:05.02f}%" -t gruvbox-powerline
-    tray_output primary
-    position bottom
-    font pango: FuraMono Nerd Font Medium 12
-    i3bar_command i3bar -t
-
-
-    colors {
-        statusline         $white
-        background         #000000
-        separator          $transparent
-
-#                          BORDER       BACKGROUND   TEXT
-#       focused_workspace  $transparent $black $white
-#       inactive_workspace $transparent $transparent $white
-#       active_workspace   $transparent $transparent $white
-#       urgent_workspace   $darkred     $darkred     $transparent
-#       binding_mode       $darkred     $darkred     $transparent
-    }
-
-}
-
-
 ## Start Up commands and applications
 # compton
 exec --no-startup-id /usr/bin/compton --config ~/.config/compton.conf
@@ -242,12 +262,27 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
 
-# Lidando com multiplas screens (joga sempre pra esquerda)
-bindsym $mod+t exec xrandr --output VGA-1 --auto --left-of eDP-1
+# Lidando com multiplas screens 
+bindsym $mod+t exec xrandr --output VGA-1 --auto --right-of eDP-1
 bindsym $mod+Shift+t exec xrandr --output VGA-1 --auto --left-of LVDS-1
 
 # Trocando wallpapers
 bindsym $mod+g exec feh --randomize --bg-fill ~/.wallpapers
 
-# Lock da tela 
-bindsym $mod+F12 exec ~/dotfiles/i3/i3lock-fancy-multimonitor/lock
+
+
+## i3bar with bumblebee-status
+bar {
+    status_command ~/dotfiles/i3/bumblebee-status/bumblebee-status -m pasink pasource disk cpu memory datetime battery -p disk.format="{percent:01.01f}%" memory.format="{percent:05.02f}%" -t gruvbox-powerline
+    tray_output primary
+    position bottom
+    font pango: FuraMono Nerd Font Medium 9
+    i3bar_command i3bar -t
+
+    colors {
+        statusline         $white
+        background         #000000
+        separator          $transparent
+    }
+
+}
