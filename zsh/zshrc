@@ -1,13 +1,25 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh  # This loads NVM
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=/home/zord/.oh-my-zsh
+export PATH="$(yarn global bin):$PATH"
+export PATH="/home/zord/.local/bin/:$PATH"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
+#ZSH_THEME="agnoster"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -50,20 +62,55 @@ alias ddropdb='dce postgres dropdb  '
 #pg_dump -h HOST --username XPTO DBNAME > OUTPUTFILE
 alias ddumpdb='dce postgres pg_dump '
 
-## VESSEL Aliases
-
-alias ves='./vessel '
-alias vstart='ves start'
-alias vstop='ves stop'
-alias vart='ves artisan '
-alias vcomp='ves composer '
+####
+## VESSEL ALIASES
+alias v='./vessel '
+alias vstart='v start'
+alias vstop='v stop'
+alias vart='v artisan '
+alias vcomp='v composer '
+alias vtest="./vessel exec app vendor/bin/phpunit tests"
 
 #####
-# QUICK-START ALIASES
-####
+## 'QUICK-START' ALIASES
+
+#wifi
+alias ndw='nmcli device wifi '
+alias ndwl='ndw list '
+alias ndwc='ndw connect '
+
+#dns
+alias fixDNS='sudo sed -e "s/127.0.0.53/8.8.8.8/" -i /etc/resolv.conf'
+alias fixDNSTIC='sudo sed -e "s/127.0.0.53/10.10.10.1/" -i /etc/resolv.conf'
+
+#brightness
+alias maisbrilho='echo 15 | sudo tee /sys/class/backlight/acpi_video0/brightness'
+alias menosbrilho='echo 5 | sudo tee /sys/class/backlight/acpi_video0/brightness'
+
+# todas as alavancas juntas
+alias play="maisbrilho && fixDNS && sudo setxkbmap -model pc105 -layout br -variant abnt2"
+
+#### Scaffold alias
+alias scaffe="scaff exec "
+alias scaffa="scaff exec php artisan "
+alias scaffc="scaff exec composer "
+alias scaffn="scaff exec npm "
+
+## php check
+alias scaffpc="scaff exec vendor/bin/phpcs --error-severity=1 --warning-severity=8"
+## php fix
+alias scaffpf="scaff exec vendor/bin/phpcbf"
 
 
-[[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh  # This loads NVM
+# --files: List files that would be searched but do not search
+# --no-ignore: Do not respect .gitignore, etc...
+# --hidden: Search hidden files and folders
+# --follow: Follow symlinks
+# --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
 #so as not to be disturbed by Ctrl-S ctrl-Q in terminals:
 stty -ixon
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
