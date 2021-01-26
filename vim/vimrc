@@ -1,62 +1,76 @@
 " -------------------------
-" .vimrc - @renatoagomes 
-" - [dotfiles](http://github.com/renatoagomes/dotfiles)
+"
+" VIM FTW o/
+"
+" - @renatoagomes 
+" - [vimrc](https://github.com/renatoagomes/dotfiles/blob/master/vim/vimrc)
+"
 " -------------------------
 
-" LEADER KEY
+" leader key
 let mapleader=","
+let localmapleader = "\<Space>"
 
-" === Facilitando alterar configurações comuns (dotfiles, i3, zsh, vim, snippets)
-nmap <leader>dot :e ~/dotfiles/README.md<cr>            
-nmap <leader>i3 :e ~/dotfiles/i3/config<cr>
-nmap <leader>zsh :e ~/dotfiles/zsh/zshrc<cr>
-nmap <leader>ev :e ~/dotfiles/vim/vimrc<cr>
-nmap <leader>es :e ~/dotfiles/vim/UltiSnips/
+" wildmenu completion - https://stackoverflow.com/questions/9511253/how-to-effectively-use-vim-wildmenu
+set wildmenu
+set wildmode=longest:full,full
 
-"Git vim Fugitive
-nmap <leader>gst :Gstatus<CR>
-nmap <leader>gad :Gwrite<CR>
-nmap <leader>gcom :Gcommit<CR>
+" sessions workflow (<F4> when finishing, <F5> when restarting)
+let g:session_dir = '~/dotfiles/vim/vim-sessions'
+exec 'nnoremap <F4> :mks! ' . g:session_dir . '/'
+exec 'nnoremap <F5> :so ' . g:session_dir . '/'
 
-nmap <leader><leader> :terminal<cr>
+" mouse support _[ò|ó]_?
+set mouse=a
 
+
+" Plugins plugins 
 call plug#begin()
-
-Plug 'vimwiki/vimwiki'
-Plug 'suan/vim-instant-markdown'
-Plug 'tobyS/vmustache'
-Plug 'tobyS/pdv'
-Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
-Plug 'Raimondi/delimitMate'
-Plug 'junegunn/vim-easy-align'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'mattn/emmet-vim'
-Plug 'scrooloose/nerdtree'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'jwalton512/vim-blade'
-Plug 'ryanoasis/vim-devicons'
-Plug 'tpope/vim-fugitive'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'airblade/vim-gitgutter'
-Plug 'vim-syntastic/syntastic'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'stephpy/vim-php-cs-fixer'
-Plug 'arnaud-lb/vim-php-namespace'
-
+  Plug 'vimwiki/vimwiki'
+  Plug 'suan/vim-instant-markdown'
+  Plug 'tobyS/vmustache'
+  Plug 'tobyS/pdv'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'Raimondi/delimitMate'
+  Plug 'junegunn/vim-easy-align'
+  "Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'mattn/emmet-vim'
+  Plug 'scrooloose/nerdtree'
+  Plug 'SirVer/ultisnips'
+  Plug 'honza/vim-snippets'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+  Plug 'jwalton512/vim-blade'
+  Plug 'ryanoasis/vim-devicons'
+  Plug 'tpope/vim-fugitive'
+  Plug 'editorconfig/editorconfig-vim'
+  Plug 'airblade/vim-gitgutter'
+  Plug 'vim-syntastic/syntastic'
+  Plug 'terryma/vim-multiple-cursors'
+  Plug 'stephpy/vim-php-cs-fixer'
+  Plug 'arnaud-lb/vim-php-namespace'
+  Plug 'posva/vim-vue'
+  Plug 'isruslan/vim-es6'
+  Plug 'tpope/vim-commentary'
+  Plug 'epilande/vim-react-snippets'
+  Plug 'wadackel/vim-dogrun'
+  Plug 'niklas-8/vim-darkspace'
+  Plug 'moll/vim-node'
+  Plug 'maxmellon/vim-jsx-pretty'
+  Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+  Plug 'junegunn/fzf.vim'
+  Plug 'posva/vim-vue'
+  Plug 'adoy/vim-php-refactoring-toolbox'
+  Plug 'voldikss/vim-floaterm'
+  Plug 'arcticicestudio/nord-vim'
 call plug#end()
     
-" === Plugins pathogen ftw o/ (Testando vim-plug)
-"runtime bundle/vim-pathogen/autoload/pathogen.vim
-"call pathogen#infect()
-
 syntax on
-filetype plugin on
+filetype plugin indent on
 
-set nocompatible                                        " - Sem vi
-set autoread                                            " - Auto-recarregar arquivos se modificados externamente
+set nocompatible                                        
+set autoread                                            
 
 "encoding utf 8 pfv
 set encoding=utf8
@@ -64,7 +78,7 @@ set fileencoding=utf8
 
 "Folding
 set foldlevelstart=1
-
+map <leader>cff :set foldmethod=
 
 " by default, in insert mode backspace won't delete over line breaks, or.
 " automatically-inserted indentation, let's change that
@@ -91,16 +105,17 @@ if !isdirectory(&dir) | call mkdir(&dir, 'p', 0700) | endif
 set t_Co=256
 colorscheme atom-dark-256                                       "(https://github.com/gosukiwi/vim-atom-dark)
 "colorscheme SerialExperimentsLain                           
+"colorscheme dogrun                          
 
-
-
+"colorscheme nord                         
 
 "trocando guifont ( :set guifont=* ) depois de escolher repeat s/ o '*'
 "set guifont=FuraMonoForPowerline\ Nerd\ Font\ Medium\ 12
 set guifont=FuraMono\ Nerd\ Font\ Medium\ 12
 
-"mostrando numero da linha á esquerda
 set relativenumber
+"mostrando numero da linha á esquerda
+set nu
 
 "Espaco dos numeros das linhas á esquerda
 set numberwidth=2
@@ -130,8 +145,15 @@ hi vertsplit guifg=bg
 set expandtab       " use spaces instead of tabs
 set autoindent      " autoindent based on line above, works most of the time
 set smartindent     " smarter indent for C-like languages
-set shiftwidth=4    " when reading, tabs are 4 spaces
-set softtabstop=4   " in insert mode, tabs are 4 spaces
+
+autocmd FileType python setlocal shiftwidth=2 softtabstop=2 
+autocmd FileType html setlocal shiftwidth=2 tabstop=2
+autocmd FileType css setlocal shiftwidth=2 tabstop=2
+autocmd FileType scss setlocal shiftwidth=2 tabstop=2
+autocmd FileType javascript setlocal shiftwidth=2 tabstop=2
+autocmd FileType vue setlocal shiftwidth=2 tabstop=2
+autocmd FileType php setlocal shiftwidth=4 tabstop=4
+autocmd FileType markdown setlocal shiftwidth=2 tabstop=2
 
 "vim 7.4 the html tags html, head, body, and some others are not indented by default
 let g:html_indent_inctags = "html,body,head,tbody"
@@ -140,15 +162,16 @@ let g:html_indent_inctags = "html,body,head,tbody"
 map <leader>cft :set ft=
 
 "seed file (para recarregar as confs do vim sem ter que dar restart)
-map <leader>s :source ~/.vimrc<CR>
+map <leader>ss :source ~/.vimrc<CR>
 
 "Fechando buffer atual com Ctrl q
 nmap <C-q> :bdelete<CR>
 
-
 "Trocando de buffers prev / next com <leader> q||w
 noremap <leader>q :bp<CR>
+noremap <leader>Q :bp<CR>
 noremap <leader>w :bn<CR>
+noremap <leader>W :bn<CR>
 noremap <F2> :bp<CR>
 noremap <F3> :bn<CR>
 
@@ -178,31 +201,60 @@ nnoremap - <C-x>
 nnoremap -a :exec ToggleAim()<CR>
 nnoremap -f :exec ToggleFolding()<CR>
 nnoremap -n :exec ToggleNumbers()<CR>
+nnoremap -- :exec ToggleAll()<CR>
 
 
 "Resize VSP
 nmap <leader>b :vertical resize +10<cr>
 nmap <leader>v :vertical resize -10<cr>
 
+" files i want a quick way to edit (dotfiles, i3, zsh, vim, snippets)
+nmap <leader>dot :e ~/dotfiles/README.md<cr>            
+nmap <leader>i3 :e ~/dotfiles/i3/config<cr>
+nmap <leader>zsh :e ~/dotfiles/zsh/zshrc<cr>
+nmap <leader>ev :e ~/dotfiles/vim/vimrc<cr>
+nmap <leader>es :e ~/dotfiles/vim/UltiSnips/
+
+" git mappings - 'vim-fugitive'
+nmap <leader>gst :Gstatus<CR>
+nmap <leader>gm :Gmerge<CR>
+nmap <leader>gad :Gwrite<CR>
+nmap <leader>gcm :Gcommit<CR>
+nmap <leader>gbl :Gblame<CR>
+nmap <F11> :Gdiff<CR>
+nmap <F12> :Gblame<CR>
+
+" terminal / floaterm mappings & settings
+let g:floaterm_autoinsert = v:true
+let g:floaterm_title = '$ $1/$2'
+
+hi Floaterm guibg=black
+hi FloatermBorder guibg=orange guifg=cyan
+
+nmap <leader><leader> :FloatermToggle<cr>
+nmap <leader>< :FloatermNew<cr>
+nmap <leader>> :FloatermNext<cr>
+tnoremap <ESC><ESC> <C-\><C-n>
+
+nnoremap   <silent>   <F6>    :FloatermNew<CR>
+tnoremap   <silent>   <F6>    <C-\><C-n>:FloatermNew<CR>
+nnoremap   <silent>   <F7>    :FloatermPrev<CR>
+tnoremap   <silent>   <F7>    <C-\><C-n>:FloatermPrev<CR>
+nnoremap   <silent>   <F8>    :FloatermNext<CR>
+tnoremap   <silent>   <F8>    <C-\><C-n>:FloatermNext<CR>
+
 " -------------------------
 " === NERDTree especificos
 " -------------------------
 
-"sim, mostrar arquivos ocultos também
 let NERDTreeShowHidden=1
-
-nmap <leader>n :NERDTreeToggle<CR>
-
-"Encontra o file na NerdTree e centraliza verticalmente
-nmap <leader>nf :NERDTreeFind<CR>zz
-
-"Ignore algumas coisas
 let NERDTreeIgnore=['\.git', '\~$', '\.swp']
 
-"removendo espaco extra apos icone do filetype na nerdtree
-let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
+" Padding between icon and file/folder name
+let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
 
-set conceallevel=0
+nmap <leader>n :NERDTreeToggle<CR>
+nmap <leader>nf :NERDTreeFind<CR>zz
 
 " after a re-source, fix syntax matching issues (concealing brackets):
 if exists('g:loaded_webdevicons')
@@ -233,10 +285,22 @@ nnoremap <leader><space> :noh<return><esc>
 " -------------------------
 
 "Diretorios que serao ignorados pelo CtrlP (performace)
-set wildignore+=*/vendor/*,*/public/*,*/node_modules/*,*.swp,*.zip
+set wildignore+=*/vendor/*,*/node_modules/*,*.swp,*.zip
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore+=*/public/*
 
-"Buscar por metodos com <leader> R
-nmap <leader>r :CtrlPBufTag<cr>
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn|public)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ }
+
+nmap <C-P> :Files<cr>
+nmap <leader>p :Files<cr>
+nmap <leader>P :Rg<cr>
+
+"Reload no arquivo com ,r
+nmap <leader>r :e!<cr>
 
 "Arrumando sugestoes do CtrlP
 let g:ctrlp_match_window = 'top,order,ttb,min:1,max:20,results:20'
@@ -254,15 +318,14 @@ if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 let g:airline_symbols.space = "\ua0"
-let g:airline_theme='powerlineish'
+"let g:airline_theme='nord'
+let g:airline_theme='minimalist'
 
 " -------------------------
 " === Ultisnips especificos
 " -------------------------
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
@@ -290,11 +353,14 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_aggregate_errors = 1
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_eslint_exe = 'npm run lint --'
+
 
 "Desativndo sintax checker para rodar somente quando precisar
 let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['php'],'passive_filetypes': [] }
 nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
+nnoremap <leader>sc  :SyntasticCheck<CR>
 
 " Especificando os checkers que rodaram em arquivos .php (é necessario ter os checkers instalados)
 let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd', 'phplint']
@@ -345,9 +411,7 @@ autocmd FileType php noremap <Leader>sr :call PhpSortUse()<CR>
 " Sort automatico apos insercao
 let g:php_namespace_sort_after_insert = 1
 
-
-nmap <S-TAB> :bprevious<cr>
-nmap <TAB> :bNext<cr>
+nmap <TAB> :b#<cr>
 
 nmap ga <Plug>(EasyAlign)
 nnoremap + <C-a>
@@ -370,23 +434,10 @@ function! ToggleFolding()
     :if &foldcolumn ==# 0 | set foldcolumn=1 foldmethod=indent | else | set foldcolumn=0 foldmethod=manual | endif
 endfunction
 
-
-
-
-
-
-" use <tab> for trigger completion and navigate to the next complete item
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~ '\s'
+function! ToggleAll()
+    :call ToggleNumbers()
+    :GitGutterBufferToggle
 endfunction
-
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
-
 
 " --- VIMWIKI - Listas listas listas..
 
@@ -394,13 +445,15 @@ let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}
 let g:instant_markdown_autostart = 0
 
 nmap <leader>td :e ~/vimwiki/TODO_DIARIO.md<CR>
+nmap <F1> :VimwikiIndex<cr>
 
-
-
-
-
-
-
+" " Prettier JS / JSX / SCSS / CSS / HTML
+" au FileType javascript setlocal formatprg=prettier
+" au FileType javascript.jsx setlocal formatprg=prettier
+" au FileType typescript setlocal formatprg=prettier\ --parser\ typescript
+" au FileType html setlocal formatprg=js-beautify\ --type\ html
+" au FileType scss setlocal formatprg=prettier\ --parser\ css
+" au FileType css setlocal formatprg=prettier\ --parser\ css
 
 
 " -------------------------
@@ -409,9 +462,35 @@ nmap <leader>td :e ~/vimwiki/TODO_DIARIO.md<CR>
 
 " .env do projeto atual
 nmap <leader>lev :e .env<cr>
-nmap <leader>lesp :e app/Providers/EventServiceProvider.php<cr>
 nmap <leader>lrw :e routes/web.php<cr>
 nmap <leader>lra :e routes/api.php<cr>
 
+nmap <leader>tb <S-v>:s/true/false/ <cr>
+nmap <leader>ttb <S-v>:s/false/true <cr>
 
+nmap <leader>f zfi{ <cr>
+
+
+let g:EditorConfig_exclude_patterns = ['fugitive://.\*']
+
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+"" Float terminal configs
+let g:floaterm_width=0.8
+let g:floaterm_height=0.8
+
+"" Disable coc warning
+let g:coc_disable_startup_warning = 1
+
+" --column: Show column number
+" --line-number: Show line number
+" --no-heading: Do not show file headings in results
+" --fixed-strings: Search term as a literal string
+" --ignore-case: Case insensitive search
+" --no-ignore: Do not respect .gitignore, etc...
+" --hidden: Search hidden files and folders
+" --follow: Follow symlinks
+" --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
+" --color: Search color options
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
 

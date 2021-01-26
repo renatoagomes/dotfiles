@@ -38,3 +38,42 @@ snippet logv
 \Log::info(json_encode($${1}));
 endsnippet
 
+snippet relbto
+/**
+ * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+ **/
+public function ${1}()
+{
+    return $this->belongsTo(::class, '_id');
+}
+endsnippet
+
+snippet relbtom
+/**
+ * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+ **/
+public function ${1}()
+{
+    return $this->belongsToMany(::class, '_id');
+}
+endsnippet
+
+snippet relhm
+/**
+ * @return \Illuminate\Database\Eloquent\Relations\HasMany
+ **/
+public function ${1}()
+{
+    return $this->hasMany(::class);
+}
+endsnippet
+
+snippet relh
+/**
+ * @return \Illuminate\Database\Eloquent\Relations\HasOne
+ **/
+public function ${1}()
+{
+    return $this->hasOne(::class);
+}
+endsnippet
