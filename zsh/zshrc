@@ -93,6 +93,7 @@ alias play="maisbrilho && fixDNS && sudo setxkbmap -model pc105 -layout br -vari
 #### Scaffold alias
 alias scaffe="scaff exec "
 alias scaffa="scaff exec php artisan "
+alias scaffat="scaff exec php artisan tinker"
 alias scaffc="scaff exec composer "
 alias scaffn="scaff exec npm "
 
@@ -114,3 +115,5 @@ stty -ixon
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+export BAT_THEME="Nord"

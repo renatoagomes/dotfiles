@@ -23,7 +23,6 @@ exec 'nnoremap <F5> :so ' . g:session_dir . '/'
 " mouse support _[ò|ó]_?
 set mouse=a
 
-
 " Plugins plugins 
 call plug#begin()
   Plug 'vimwiki/vimwiki'
@@ -296,7 +295,8 @@ let g:ctrlp_custom_ignore = {
   \ }
 
 nmap <C-P> :Files<cr>
-nmap <leader>p :Files<cr>
+nmap <C-P> :Files<cr>
+nmap <leader>p :Buffers<cr>
 nmap <leader>P :Rg<cr>
 
 "Reload no arquivo com ,r
@@ -493,4 +493,7 @@ let g:coc_disable_startup_warning = 1
 " --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
 " --color: Search color options
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
+
+let g:fzf_layout = { 'window': { 'width': 0.95, 'height': 0.9 } }
+let $FZF_DEFAULT_OPTS="--ansi --preview-window 'right:55%' --layout reverse --margin=1,4 --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
 

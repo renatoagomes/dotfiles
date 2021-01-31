@@ -212,7 +212,8 @@ for_window [class="Lxappearance"] floating enable border pixel 2
 # --no-startup-id = i don't need startup notifications
 # https://faq.i3wm.org/question/561/what-is-that-thing-called-no-startup-id
 bindsym $mod+F1 exec --no-startup-id firefox
-bindsym $mod+F2 exec --no-startup-id google-chrome
+bindsym $mod+F2 exec --no-startup-id brave-browser
+bindsym $mod+Shift+F2 exec --no-startup-id google-chrome
 
 #bindsym $mod+F3 exec urxvt -e sh -c "pydoro"
 
@@ -226,6 +227,9 @@ bindsym $mod+F11 exec urxvt -e sh -c "mpv ~/Music/acordar"
 
 # lock do monitor com print + blur via ffmpeg
 bindsym $mod+F12 exec ~/dotfiles/i3/i3lock-fancy-multimonitor/lock
+#bindsym $mod+Shift+F12 exec urxvt -e sh -c "cmatrix"
+
+bindsym $mod+shift+F12 exec --no-startup-id urxvt -geometry 80x26 -name "floating_urxvt" for_window [class="URxvt" instance="floating_urxvt"] floating toggle
 
 #DEBUG
 bindsym $mod+Ctrl+n debuglog on
