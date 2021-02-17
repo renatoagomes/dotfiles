@@ -1,13 +1,14 @@
 # DOTFILES FTW :1st_place_medal: 
 
-Atualmente com:
+- arch
 - i3wm
 - urxvt
-- zsh & oh-my-zsh
-- vim
-- NerdFonts
+- zsh & oh-my-zsh & powerlevel10k
+- vim & nvim
+- NerdFonts 
 - ranger
-- scrot
+- scrot & feh
+ 
 ...
 
 # Copy / Paste
@@ -24,7 +25,7 @@ Depende do `curl`
 
 ```
 cd ~
-sudo apt-get install zsh
+sudo pacman -S zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 rm ~/.zshrc
 ln -s ~/dotfiles/zsh/zshrc .zshrc

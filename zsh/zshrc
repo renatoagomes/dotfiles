@@ -1,9 +1,9 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+#if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+#fi
 
 [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh  # This loads NVM
 
@@ -107,7 +107,7 @@ alias scaffpf="scaff exec vendor/bin/phpcbf"
 # --no-ignore: Do not respect .gitignore, etc...
 # --hidden: Search hidden files and folders
 # --follow: Follow symlinks
-# --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
+# --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)t
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
 #so as not to be disturbed by Ctrl-S ctrl-Q in terminals:
@@ -117,3 +117,18 @@ stty -ixon
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 export BAT_THEME="Nord"
+
+alias protocolo='curl -s https://cidadao.riopreto.sp.gov.br/empro_cidadao/sjriopreto/semfaz/empro_consulta_protocolo.php/api/ImprimirRelatorio\?nro_protocolo\=-%2CC%60R%2C3%60P%2C%23%60P-CDR.%60%60%60%0A%60%0A\&data_protocolo\=%2A%2C%23%40O%2C%23%24O%2CC%60R%2C0%60%60%0A%60%0A --output protocolo.pdf && pdftotext -layout protocolo.pdf protocolo.txt && echo "\n ##Ultimas atualizações: \n\n" && cat protocolo.txt | grep -B 6 "ASSINATURAS"' 
+
+
+
+
+
+
+
+
+
+
+
+
+

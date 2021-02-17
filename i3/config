@@ -11,6 +11,14 @@ gaps outer 0
 
 smart_borders on
 
+bindsym $mod+shift+plus gaps inner current plus 5
+bindsym $mod+shift+minus gaps inner current minus 5
+bindsym $mod+shift+equal gaps inner all set 0
+
+bindsym $mod+ctrl+plus gaps outer current plus 5
+bindsym $mod+ctrl+minus gaps outer current minus 5
+bindsym $mod+ctrl+equal gaps outer all set 0
+
 # gaps: $mod+Shift+g + a||o --> +||- . Shift global, 0  reset.
 set $mode_gaps Gaps: (o) outer, (i) inner
 set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
@@ -212,18 +220,18 @@ for_window [class="Lxappearance"] floating enable border pixel 2
 # --no-startup-id = i don't need startup notifications
 # https://faq.i3wm.org/question/561/what-is-that-thing-called-no-startup-id
 bindsym $mod+F1 exec --no-startup-id firefox
-bindsym $mod+F2 exec --no-startup-id brave-browser
-bindsym $mod+Shift+F2 exec --no-startup-id google-chrome
+bindsym $mod+F2 exec --no-startup-id brave
+bindsym $mod+Shift+F2 exec --no-startup-id google-chrome-stable
 
 #bindsym $mod+F3 exec urxvt -e sh -c "pydoro"
 
 # file manager
 bindsym $mod+F5 exec --no-startup-id pcmanfm
 
-bindsym $mod+F8 exec --no-startup-id Telegram
+bindsym $mod+F8 exec --no-startup-id telegram-desktop
 bindsym $mod+F9 exec --no-startup-id discord
 bindsym $mod+F10 exec --no-startup-id slack
-bindsym $mod+F11 exec urxvt -e sh -c "mpv ~/Music/acordar"
+bindsym $mod+F11 exec urxvt -e sh -c "mpv ~/Music"
 
 # lock do monitor com print + blur via ffmpeg
 bindsym $mod+F12 exec ~/dotfiles/i3/i3lock-fancy-multimonitor/lock
@@ -240,7 +248,7 @@ bindsym $mod+Ctrl+l exec ~/.config/i3/lock.sh
 exec --no-startup-id /usr/bin/compton --config ~/.config/compton.conf
 
 # network-manager applet
-exec --no-startup-id nm-applet
+#exec --no-startup-id nm-applet
 
 # Randomizando wallpapers dentro do diretorio
 exec feh --randomize --bg-fill ~/.wallpapers
