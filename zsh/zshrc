@@ -117,3 +117,5 @@ stty -ixon
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 export BAT_THEME="Nord"
+
+alias protocolo='curl -s https://cidadao.riopreto.sp.gov.br/empro_cidadao/sjriopreto/semfaz/empro_consulta_protocolo.php/api/ImprimirRelatorio\?nro_protocolo\=-%2CC%60R%2C3%60P%2C%23%60P-CDR.%60%60%60%0A%60%0A\&data_protocolo\=%2A%2C%23%40O%2C%23%24O%2CC%60R%2C0%60%60%0A%60%0A --output protocolo.pdf && pdftotext -layout protocolo.pdf protocolo.txt && echo "\n ##Ultimas atualizações: \n\n" && cat protocolo.txt | grep -6 "ASSINATURAS"'

@@ -217,6 +217,9 @@ bindsym $mod+Shift+F2 exec --no-startup-id google-chrome
 
 #bindsym $mod+F3 exec urxvt -e sh -c "pydoro"
 
+#dbeaver
+bindsym $mod+F4 exec --no-startup-id dbeaver
+
 # file manager
 bindsym $mod+F5 exec --no-startup-id pcmanfm
 

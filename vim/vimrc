@@ -295,7 +295,6 @@ let g:ctrlp_custom_ignore = {
   \ }
 
 nmap <C-P> :Files<cr>
-nmap <C-P> :Files<cr>
 nmap <leader>p :Buffers<cr>
 nmap <leader>P :Rg<cr>
 
@@ -354,7 +353,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exe = 'npm run lint --'
+let g:syntastic_javascript_eslint_exe = 'npx eslint '
 
 
 "Desativndo sintax checker para rodar somente quando precisar
@@ -446,6 +445,8 @@ let g:instant_markdown_autostart = 0
 
 nmap <leader>td :e ~/vimwiki/TODO_DIARIO.md<CR>
 nmap <F1> :VimwikiIndex<cr>
+nmap <F2> :!npx eslint %<cr>
+nmap <F3> :!npx eslint % --fix<cr>
 
 " " Prettier JS / JSX / SCSS / CSS / HTML
 " au FileType javascript setlocal formatprg=prettier
