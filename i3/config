@@ -226,7 +226,7 @@ bindsym $mod+F5 exec --no-startup-id pcmanfm
 bindsym $mod+F8 exec --no-startup-id Telegram
 bindsym $mod+F9 exec --no-startup-id discord
 bindsym $mod+F10 exec --no-startup-id slack
-bindsym $mod+F11 exec urxvt -e sh -c "mpv ~/Music/acordar"
+bindsym $mod+F11 exec urxvt -e sh -c "mpv ~/Music"
 
 # lock do monitor com print + blur via ffmpeg
 bindsym $mod+F12 exec ~/dotfiles/i3/i3lock-fancy-multimonitor/lock
@@ -280,7 +280,8 @@ bindsym $mod+g exec feh --randomize --bg-fill ~/.wallpapers
 
 ## i3bar with bumblebee-status
 bar {
-    status_command ~/dotfiles/i3/bumblebee-status/bumblebee-status -m pasink pasource disk cpu memory datetime battery -p disk.format="{percent:01.01f}%" memory.format="{percent:05.02f}%" -t gruvbox-powerline
+    status_command ~/dotfiles/i3/bumblebee-status/bumblebee-status -m pasink pasource disk cpu memory battery date time -p disk.format="{percent:01.0f}%" memory.format="{percent:01.0f}%" cpu.format="{:01.0f}%" date.format="%d/%m" time.format="%H:%M" -t firefox-dark-powerline
+
     tray_output primary
     position bottom
     font pango: FuraMono Nerd Font Medium 9
@@ -288,8 +289,13 @@ bar {
 
     colors {
         statusline         $white
-        background         #000000
+        background         #2F2F2F
         separator          $transparent
-    }
 
+        focused_workspace  #585858 #585858 #FFFFFF
+        active_workspace   #333333 #2F2F2F #FFFFFF
+        inactive_workspace #333333 #2F2F2F #888888
+        urgent_workspace   #2F343A #900000 #FFFFFF
+        binding_mode       #2F343A #900000 #FFFFFF
+    }
 }
