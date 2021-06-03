@@ -25,16 +25,17 @@ set mouse=a
 
 " Plugins plugins 
 call plug#begin()
+  Plug 'mhinz/vim-startify'
   Plug 'vimwiki/vimwiki'
-  Plug 'suan/vim-instant-markdown'
-  Plug 'tobyS/vmustache'
-  Plug 'tobyS/pdv'
+  "Plug 'tobyS/vmustache'
+  "Plug 'tobyS/pdv'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'Raimondi/delimitMate'
   Plug 'junegunn/vim-easy-align'
   "Plug 'ctrlpvim/ctrlp.vim'
   Plug 'mattn/emmet-vim'
-  Plug 'scrooloose/nerdtree'
+  Plug 'preservim/nerdtree'
+  Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
   Plug 'vim-airline/vim-airline'
@@ -51,18 +52,16 @@ call plug#begin()
   Plug 'posva/vim-vue'
   Plug 'isruslan/vim-es6'
   Plug 'tpope/vim-commentary'
-  Plug 'epilande/vim-react-snippets'
-  Plug 'wadackel/vim-dogrun'
-  Plug 'niklas-8/vim-darkspace'
   Plug 'moll/vim-node'
-  Plug 'maxmellon/vim-jsx-pretty'
+  "Plug 'epilande/vim-react-snippets'
+  "Plug 'maxmellon/vim-jsx-pretty'
   Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
   Plug 'posva/vim-vue'
   Plug 'adoy/vim-php-refactoring-toolbox'
   Plug 'voldikss/vim-floaterm'
-  Plug 'arcticicestudio/nord-vim'
+  "Plug 'arcticicestudio/nord-vim'
 call plug#end()
     
 syntax on
@@ -105,7 +104,6 @@ set t_Co=256
 colorscheme atom-dark-256                                       "(https://github.com/gosukiwi/vim-atom-dark)
 "colorscheme SerialExperimentsLain                           
 "colorscheme dogrun                          
-
 "colorscheme nord                         
 
 "trocando guifont ( :set guifont=* ) depois de escolher repeat s/ o '*'
@@ -248,6 +246,19 @@ tnoremap   <silent>   <F8>    <C-\><C-n>:FloatermNext<CR>
 
 let NERDTreeShowHidden=1
 let NERDTreeIgnore=['\.git', '\~$', '\.swp']
+
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+                \ 'Modified'  :'✹',
+                \ 'Staged'    :'✚',
+                \ 'Untracked' :'✭',
+                \ 'Renamed'   :'➜',
+                \ 'Unmerged'  :'═',
+                \ 'Deleted'   :'✖',
+                \ 'Dirty'     :'✗',
+                \ 'Ignored'   :'☒',
+                \ 'Clean'     :'✔︎',
+                \ 'Unknown'   :'?',
+                \ }
 
 " Padding between icon and file/folder name
 let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
