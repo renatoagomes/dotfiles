@@ -3,7 +3,7 @@
 ####################################################
 
 #Escodendo Title
-#for_window [class="^.*"] border pixel 0
+#for_window [class="^.*"] border pixel 1
 
 # Set inner/outer gaps
 gaps inner 0
@@ -71,8 +71,6 @@ floating_modifier Ctrl
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
         # Pressing left will shrink the window’s width.
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
@@ -212,7 +210,6 @@ assign [class="Telegram"]	    $ws8
 assign [class="discord"]	    $ws9
 assign [class="Slack"]	            $ws0
 
-
 # enable floating mode for selected windows
 for_window [class="Lxappearance"] floating enable border pixel 2
 
@@ -221,51 +218,37 @@ for_window [class="Lxappearance"] floating enable border pixel 2
 # https://faq.i3wm.org/question/561/what-is-that-thing-called-no-startup-id
 bindsym $mod+F1 exec --no-startup-id firefox
 bindsym $mod+F2 exec --no-startup-id brave
-bindsym $mod+Shift+F2 exec --no-startup-id google-chrome-stable
-
-#bindsym $mod+F3 exec urxvt -e sh -c "pydoro"
+bindsym $mod+F3 exec --no-startup-id google-chrome-stable
 
 # file manager
 bindsym $mod+F5 exec --no-startup-id pcmanfm
-
 bindsym $mod+F8 exec --no-startup-id telegram-desktop
 bindsym $mod+F9 exec --no-startup-id discord-canary
 bindsym $mod+F10 exec --no-startup-id slack
 bindsym $mod+F11 exec urxvt -e sh -c "mpv ~/Music"
 
-# lock do monitor com print + blur via ffmpeg
+# screenlock with blur using ffmpeg
 bindsym $mod+F12 exec ~/dotfiles/i3/i3lock-fancy-multimonitor/lock
-#bindsym $mod+Shift+F12 exec urxvt -e sh -c "cmatrix"
 
 bindsym $mod+shift+F12 exec --no-startup-id urxvt -geometry 80x26 -name "floating_urxvt" for_window [class="URxvt" instance="floating_urxvt"] floating toggle
 
 #DEBUG
 bindsym $mod+Ctrl+n debuglog on
-# screenlock
-bindsym $mod+Ctrl+l exec ~/.config/i3/lock.sh
-## Start Up commands and applications
-# compton
-exec --no-startup-id /usr/bin/compton --config ~/.config/compton.conf
 
-# network-manager applet
-#exec --no-startup-id nm-applet
 
 # Randomizando wallpapers dentro do diretorio
 exec feh --randomize --bg-fill ~/.wallpapers
 
-# PrintScreen Full
-bindsym --release Print exec scrot ~/Pictures/Captura_de_tela_%Y-%m-%d-%T.png
+# PrintScreen Full, resulto to  ~/Pictures/..
+bindsym --release Print exec scrot ~/Pictures/printscreen_%Y-%m-%d-%T.png
 
-# PrintScreen Com Seletor p/ Clipboard
-bindsym --release $mod+Print exec scrot ~/Pictures/temporario.png && xclip -selection clipboard -t image/png -i ~/Pictures/temporario.png && rm ~/Pictures/temporario.png
+# PrintScreen w/ mouse seletor, resulto to  ~/Pictures/..
+bindsym --release Shift+Print exec scrot -s ~/Pictures/printscreen_%Y-%m-%d-%T.png
 
-# PrintScreen Com Seletor
-bindsym --release Shift+Print exec scrot -s ~/Pictures/Captura_de_area_%Y-%m-%d-%T.png
+# PrintScreen w/ mouse seletor and result to Clipboard
+bindsym --release $mod+Shift+Print exec scrot -s /tmp/tmp_pic.png && xclip -selection clipboard -t image/png -i /tmp/tmp_pic.png && rm /tmp/tmp_pic.png
 
-# PrintScreen Com Seletor p/ Clipboard
-bindsym --release $mod+Shift+Print exec scrot -s ~/Pictures/temporario.png && xclip -selection clipboard -t image/png -i ~/Pictures/temporario.png && rm ~/Pictures/temporario.png
-
-# Pulse Audio controls (+/- volume c/ i3blocks integrado)
+# Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% 
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
@@ -281,26 +264,32 @@ bindsym $mod+Shift+t exec xrandr --output VGA-1 --auto --left-of LVDS-1
 # Trocando wallpapers
 bindsym $mod+g exec feh --randomize --bg-fill ~/.wallpapers
 
-
-
 ## i3bar with bumblebee-status
 bar {
-    status_command ~/dotfiles/i3/bumblebee-status/bumblebee-status -m pomodoro pasink pasource disk cpu memory battery date time -p disk.format="{percent:01.0f}%" memory.format="{percent:01.0f}%" cpu.format="{:01.0f}%" date.format="%d/%m" time.format="%H:%M" -t firefox-dark-powerline
+    status_command ~/dotfiles/i3/bumblebee-status/bumblebee-status -m \
+            pomodoro pasink pasource disk cpu memory battery date time \
+            -p disk.format="{percent:01.0f}%" \
+            memory.format="{percent:01.0f}%" \
+            cpu.format="{:01.0f}%" \
+            date.format="%d/%m" \
+            time.format="%H:%M" \
+            -t firefox-dark-powerline
 
     tray_output primary
     position bottom
     font pango: FuraMono Nerd Font Medium 9
-    i3bar_command i3bar -t
 
+    #https://thomashunter.name/i3-configurator/
     colors {
         statusline         $white
         background         #2F2F2F
         separator          $transparent
 
-        focused_workspace  #585858 #585858 #FFFFFF
-        active_workspace   #333333 #2F2F2F #FFFFFF
-        inactive_workspace #333333 #2F2F2F #888888
-        urgent_workspace   #2F343A #900000 #FFFFFF
-        binding_mode       #2F343A #900000 #FFFFFF
+                           #Borders   #BG        #Text
+        focused_workspace  #585858    #585858    #FFFFFF
+        active_workspace   #333333    #2F2F2F    #FFFFFF
+        inactive_workspace #333333    #2F2F2F    #888888
+        urgent_workspace   #2F343A    #900000    #FFFFFF
+        binding_mode       #2F343A    #900000    #FFFFFF
     }
 }
