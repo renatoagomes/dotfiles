@@ -216,7 +216,7 @@ bindsym --release Print exec i3-scrot ~/Pictures/printscreen_%Y-%m-%d-%T.png
 bindsym --release Shift+Print exec i3-scrot -s ~/Pictures/printscreen_%Y-%m-%d-%T.png
 
 # PrintScreen w/ mouse seletor and result to Clipboard
-bindsym --release $mod+Shift+Print exec i3-scrot -s /tmp/tmp_pic.png && xclip -selection clipboard -t image/png -i /tmp/tmp_pic.png && rm /tmp/tmp_pic.png
+bindsym --release $mod+Shift+Print exec scrot -s /tmp/tmp_pic.png && xclip -selection clipboard -t image/png -i /tmp/tmp_pic.png && rm /tmp/tmp_pic.png
 
 ################################################################################################
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
