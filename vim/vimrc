@@ -27,8 +27,8 @@ set mouse=a
 call plug#begin()
   Plug 'mhinz/vim-startify'
   Plug 'vimwiki/vimwiki'
-  "Plug 'tobyS/vmustache'
-  "Plug 'tobyS/pdv'
+  Plug 'tobyS/vmustache'
+  Plug 'tobyS/pdv'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'Raimondi/delimitMate'
   Plug 'junegunn/vim-easy-align'
@@ -61,6 +61,7 @@ call plug#begin()
   Plug 'posva/vim-vue'
   Plug 'adoy/vim-php-refactoring-toolbox'
   Plug 'voldikss/vim-floaterm'
+  Plug 'mtdl9/vim-log-highlighting'
   "Plug 'arcticicestudio/nord-vim'
 call plug#end()
     
@@ -504,6 +505,7 @@ let g:coc_disable_startup_warning = 1
 " --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
 " --color: Search color options
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*,!docker/*,!storage/*,!vendor/*,!node_modules/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
+
 
 let g:fzf_layout = { 'window': { 'width': 0.95, 'height': 0.9 } }
 let $FZF_DEFAULT_OPTS="--ansi --preview-window 'right:55%' --layout reverse --margin=1,4 --preview 'bat --color=always --style=header,grid --line-range :300 {}'"

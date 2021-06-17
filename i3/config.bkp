@@ -1,14 +1,13 @@
-#######################################################
+########################################################
 # i3-config - @renatoagomes - ~motivating quote~
 ####################################################
 
 #####
-# Styles
-####
-#fontt:URWGothic-Book 11
-font pango: MesloLGS NF Regular 12
+## Styles
+# font for window titles. ISO 10646 = Unicode
+font pango: MesloLGS NF Regular 8
 
-# border style <normal|1pixel|pixel xx|none|pixel>
+# Configure border style <normal|1pixel|pixel xx|none|pixel>
 default_border pixel 1
 default_floating_border normal
 
@@ -39,17 +38,15 @@ set $mod Mod4
 # Back and forth workplace switching
 workspace_auto_back_and_forth yes
 
-# start a terminal
-bindsym $mod+Return exec terminal
-
-# start a terminal at current dir do x
+# start a terminal (xfce4-terminal)
+bindsym $mod+Return exec urxvt
 bindsym $mod+Shift+Return exec urxvt -cd "`xcwd`"
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # dmenu
-bindsym $mod+d exec --no-startup-id dmenu_recency
+bindsym $mod+d exec dmenu_run
 
 # toggle sticky
 bindsym $mod+Shift+s sticky toggle
@@ -106,16 +103,16 @@ bindsym $mod+Shift+e exit
 
 ## Workspaces
 # customize workspace name
-set $ws1  " 1  "
-set $ws2  " 2  "
-set $ws3  " 3 "
-set $ws4  " 4 "
-set $ws5  " 5  "
-set $ws6  " 6 "
-set $ws7  " 7 ♬ "
-set $ws8  " 8  "
-set $ws9  " 9  "
-set $ws0  " 10  "
+set $ws1  1 - 
+set $ws2  2 - 
+set $ws3  3 - 
+set $ws4  4 
+set $ws5  5 - 
+set $ws6  6
+set $ws7  7 - ♬ 
+set $ws8  8 - 
+set $ws9  9 - 
+set $ws0  10 - 
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -218,16 +215,7 @@ bindsym --release Shift+Print exec i3-scrot -s ~/Pictures/printscreen_%Y-%m-%d-%
 # PrintScreen w/ mouse seletor and result to Clipboard
 bindsym --release $mod+Shift+Print exec i3-scrot -s /tmp/tmp_pic.png && xclip -selection clipboard -t image/png -i /tmp/tmp_pic.png && rm /tmp/tmp_pic.png
 
-################################################################################################
-## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
-################################################################################################
-
-#exec --no-startup-id volumeicon
-#bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
-#exec --no-startup-id start-pulseaudio-x11
-#exec --no-startup-id pa-applet
-bindsym $mod+Ctrl+m exec pavucontrol
-
+# Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% 
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
@@ -245,75 +233,20 @@ bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 # Trocando wallpapers
 bindsym $mod+g exec feh --randomize --bg-fill ~/.wallpapers
 
-
-# Autostart applications
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id nitrogen --restore; sleep 1; picom -b
-exec --no-startup-id manjaro-hello
-exec --no-startup-id nm-applet
-exec --no-startup-id xfce4-power-manager
-exec --no-startup-id pamac-tray
-exec --no-startup-id clipit
-# exec --no-startup-id blueman-applet
-# exec_always --no-startup-id sbxkb
-exec --no-startup-id start_conky_maia
-# exec --no-startup-id start_conky_green
-exec --no-startup-id xautolock -time 10 -locker blurlock
-exec_always --no-startup-id ff-theme-util
-exec_always --no-startup-id fix_xcursor
-
-# Color palette used for the terminal ( ~/.Xresources file )
-# Colors are gathered based on the documentation:
-# https://i3wm.org/docs/userguide.html#xresources
-# Change the variable name at the place you want to match the color
-# of your terminal like this:
-# [example]
-# If you want your bar to have the same background color as your 
-# terminal background change the line 362 from:
-# background #14191D
-# to:
-# background $term_background
-# Same logic applied to everything else.
-set_from_resource $term_background background
-set_from_resource $term_foreground foreground
-set_from_resource $term_color0     color0
-set_from_resource $term_color1     color1
-set_from_resource $term_color2     color2
-set_from_resource $term_color3     color3
-set_from_resource $term_color4     color4
-set_from_resource $term_color5     color5
-set_from_resource $term_color6     color6
-set_from_resource $term_color7     color7
-set_from_resource $term_color8     color8
-set_from_resource $term_color9     color9
-set_from_resource $term_color10    color10
-set_from_resource $term_color11    color11
-set_from_resource $term_color12    color12
-set_from_resource $term_color13    color13
-set_from_resource $term_color14    color14
-set_from_resource $term_color15    color15
-
-
-#############################
-### bumblebee-status# bar ###
-#############################
-
+## i3bar with bumblebee-status
 bar {
-    strip_workspace_numbers yes
     status_command ~/dotfiles/i3/bumblebee-status/bumblebee-status -m \
-            pasink pasource disk cpu memory battery date time \
-            -p disk.format="{percent:01.1f}%" \
-            memory.format="{percent:01.1f}%" \
-            cpu.format="{:01.1f}%" \
+            pomodoro pasink pasource disk cpu memory battery date time \
+            -p disk.format="{percent:01.0f}%" \
+            memory.format="{percent:01.0f}%" \
+            cpu.format="{:01.0f}%" \
             date.format="%d/%m" \
             time.format="%H:%M" \
             -t firefox-dark-powerline
 
     tray_output primary
     position bottom
-
-    #font xft:URWGothic-Book 11
-    font pango: FuraMono Nerd Font Medium 11
+    font pango: FuraMono Nerd Font Medium 9
 
     #https://thomashunter.name/i3-configurator/
     colors {
