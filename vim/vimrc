@@ -7,13 +7,8 @@
 "
 " -------------------------
 
-" leader key
 let mapleader=","
 let localmapleader = "\<Space>"
-
-" wildmenu completion - https://stackoverflow.com/questions/9511253/how-to-effectively-use-vim-wildmenu
-set wildmenu
-set wildmode=longest:full,full
 
 " sessions workflow (<F4> when finishing, <F5> when restarting)
 let g:session_dir = '~/dotfiles/vim/vim-sessions'
@@ -25,23 +20,31 @@ set mouse=a
 
 " Plugins plugins 
 call plug#begin()
+  " Plug 'vim-autoformat/vim-autoformat'
+  
   Plug 'mhinz/vim-startify'
   Plug 'vimwiki/vimwiki'
   Plug 'tobyS/vmustache'
   Plug 'tobyS/pdv'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'Raimondi/delimitMate'
-  Plug 'junegunn/vim-easy-align'
-  "Plug 'ctrlpvim/ctrlp.vim'
   Plug 'mattn/emmet-vim'
+
   Plug 'preservim/nerdtree'
   Plug 'Xuyuanp/nerdtree-git-plugin'
+
   Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
+
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
+
   Plug 'jwalton512/vim-blade'
   Plug 'ryanoasis/vim-devicons'
+  Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+
+  Plug 'zivyangll/git-blame.vim'
+
   Plug 'tpope/vim-fugitive'
   Plug 'editorconfig/editorconfig-vim'
   Plug 'airblade/vim-gitgutter'
@@ -49,12 +52,16 @@ call plug#begin()
   Plug 'terryma/vim-multiple-cursors'
   Plug 'stephpy/vim-php-cs-fixer'
   Plug 'arnaud-lb/vim-php-namespace'
-  Plug 'posva/vim-vue'
   Plug 'isruslan/vim-es6'
   Plug 'tpope/vim-commentary'
   Plug 'moll/vim-node'
   "Plug 'epilande/vim-react-snippets'
   "Plug 'maxmellon/vim-jsx-pretty'
+  
+  " Plug 'mxw/vim-jsx'
+  " Plug 'maxmellon/vim-jsx-pretty'
+  Plug 'pangloss/vim-javascript'
+
   Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
@@ -62,9 +69,25 @@ call plug#begin()
   Plug 'adoy/vim-php-refactoring-toolbox'
   Plug 'voldikss/vim-floaterm'
   Plug 'mtdl9/vim-log-highlighting'
+
   "Plug 'arcticicestudio/nord-vim'
+  "Plug 'srcery-colors/srcery-vim' 
+  
+  Plug 'w0ng/vim-hybrid' 
+  Plug 'francoiscabrol/ranger.vim'
+  Plug 'rbgrouleff/bclose.vim'
+  " Plug 'github/copilot.vim'
+  " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on upd:te
+  Plug 'preservim/tagbar'
+
+  Plug 'gelguy/wilder.nvim'
+  Plug 'akinsho/toggleterm.nvim'
+
 call plug#end()
-    
+
+call wilder#setup({'modes': [':', '/', '?']})
+
+
 syntax on
 filetype plugin indent on
 
@@ -101,11 +124,12 @@ if !isdirectory(&dir) | call mkdir(&dir, 'p', 0700) | endif
 " -------------------------
 " === VISUAL
 " -------------------------
-set t_Co=256
-colorscheme atom-dark-256                                       "(https://github.com/gosukiwi/vim-atom-dark)
-"colorscheme SerialExperimentsLain                           
-"colorscheme dogrun                          
-"colorscheme nord                         
+"set t_Co=256
+"colorscheme atom-dark-256                                       "(https://github.com/gosukiwi/vim-atom-dark)
+"colorscheme srcery                                               "(https://github.com/gosukiwi/vim-atom-dark)
+
+"set background=dark
+colorscheme hybrid
 
 "trocando guifont ( :set guifont=* ) depois de escolher repeat s/ o '*'
 "set guifont=FuraMonoForPowerline\ Nerd\ Font\ Medium\ 12
@@ -119,7 +143,7 @@ set nu
 set numberwidth=2
 
 "aumentando espacamento entre as linhas
-set linespace=9
+"set linespace=0
 
 "se estiver executando com GUI (gvim), remover a barra superior/scrolls 
 if has("gui_running")
@@ -135,6 +159,17 @@ end
 " Settando cor dos LineNumbers e do split vertical
 hi LineNr guibg=bg
 hi vertsplit guifg=bg
+
+hi Folded ctermfg=DarkGrey
+hi Folded ctermbg=bg
+
+hi CocUnusedHighlight ctermbg=bg
+hi CocUnusedHighlight ctermfg=LightGray
+
+let g:terminal_color_4 = '#ff0000'
+let g:terminal_color_5 = 'green'
+
+
 
 " -------------------------
 " === IDENTAÇÃO
@@ -185,6 +220,7 @@ nmap <C-K> <C-W><C-K>
 nmap <C-L> <C-W><C-L>
 
 " Carregando linha com CTRL + J ou K
+" 
 nnoremap <C-J> :m .+1<CR>==
 nnoremap <C-K> :m .-2<CR>==
 inoremap <C-J> <Esc>:m .+1<CR>==gi
@@ -193,14 +229,13 @@ vnoremap <C-J> :m '>+1<CR>gv=gv
 vnoremap <C-K> :m '<-2<CR>gv=gv
 
 
-nmap ga <Plug>(EasyAlign)
-nnoremap + <C-a>
-nnoremap - <C-x>
+" nmap ga <Plug>(EasyAlign)
+" nnoremap + <C-a>
+" nnoremap - <C-x>
 nnoremap -a :exec ToggleAim()<CR>
 nnoremap -f :exec ToggleFolding()<CR>
 nnoremap -n :exec ToggleNumbers()<CR>
 nnoremap -- :exec ToggleAll()<CR>
-
 
 "Resize VSP
 nmap <leader>b :vertical resize +10<cr>
@@ -214,13 +249,13 @@ nmap <leader>ev :e ~/dotfiles/vim/vimrc<cr>
 nmap <leader>es :e ~/dotfiles/vim/UltiSnips/
 
 " git mappings - 'vim-fugitive'
-nmap <leader>gst :Gstatus<CR>
+nmap <leader>gst :Git<CR>
 nmap <leader>gm :Git mergetool<CR>
 nmap <leader>gad :Gwrite<CR>
-nmap <leader>gcm :Gcommit<CR>
+nmap <leader>gcm :Git commit<CR>
 nmap <leader>gbl :Gblame<CR>
-nmap <F11> :Gdiff<CR>
-nmap <F12> :Gblame<CR>
+nmap <F11> :Git diff<CR>
+nmap <F12> :Git blame<CR>
 
 " terminal / floaterm mappings & settings
 let g:floaterm_autoinsert = v:true
@@ -230,7 +265,7 @@ hi Floaterm guibg=black
 hi FloatermBorder guibg=orange guifg=cyan
 
 nmap <leader><leader> :FloatermToggle<cr>
-nmap <leader>< :FloatermNew<cr>
+nmap <leader>< :ToggleTerm<cr>
 nmap <leader>> :FloatermNext<cr>
 tnoremap <ESC><ESC> <C-\><C-n>
 
@@ -285,19 +320,15 @@ set incsearch " live incremental searching
 set showmatch " live match highlighting
 set hlsearch " highlight matches
 set gdefault " use the `g` flag by default.
-set smartcase "CtrlP case sensitive se houver :D
 
 "Limpando highlights
 nnoremap <leader><space> :noh<return><esc>                           
 
-
-" -------------------------
-" === CtrlP especificos
-" -------------------------
-
-"Diretorios que serao ignorados pelo CtrlP (performace)
+" wildmenu completion - https://stackoverflow.com/questions/9511253/how-to-effectively-use-vim-wildmenu
+set wildmenu
+set wildmode=longest:full,full
 set wildignore+=*/vendor/*,*/node_modules/*,*.swp,*.zip
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip
 set wildignore+=*/public/*
 
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
@@ -317,108 +348,102 @@ nmap <leader>r :e!<cr>
 "Arrumando sugestoes do CtrlP
 let g:ctrlp_match_window = 'top,order,ttb,min:1,max:20,results:20'
 
+
 " -------------------------
 " === Airline especificos
 " -------------------------
+        let g:airline_powerline_fonts = 1 	"autorizando powerlinefonts
+        let g:airline#extensions#tabline#enabled = 1 "Criando lista de buffers no topo
 
-let g:airline_powerline_fonts = 1 	"autorizando powerlinefonts
-let g:airline#extensions#tabline#enabled = 1 "Criando lista de buffers no topo
-
-" Mostrar só o nome do arquivo
-let g:airline#extensions#tabline#fnamemod = ':t'
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-let g:airline_symbols.space = "\ua0"
-"let g:airline_theme='nord'
-let g:airline_theme='minimalist'
+        " Mostrar só o nome do arquivo
+        let g:airline#extensions#tabline#fnamemod = ':t'
+        if !exists('g:airline_symbols')
+          let g:airline_symbols = {}
+        endif
+        let g:airline_symbols.space = "\ua0"
+        "let g:airline_theme='nord'
+        let g:airline_theme='minimalist'
 
 " -------------------------
 " === Ultisnips especificos
 " -------------------------
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<tab>"
+        " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+        let g:UltiSnipsExpandTrigger="<tab>"
 
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+        " If you want :UltiSnipsEdit to split your window.
+        let g:UltiSnipsEditSplit="vertical"
 
 " -------------------------
 " === Emmet especificos
 " -------------------------
-let g:user_emmet_mode='i'  " Emmet vai funcionar em insert mode (opcoes: 'niv')
+        let g:user_emmet_mode='i'  " Emmet vai funcionar em insert mode (opcoes: 'niv')
 
-"Remapeando Insert MODE CTRLE para dar CTRLY, (trigger padrao do emmet)
-imap <C-e> <C-y>,
-
-
+        "Remapeando Insert MODE CTRLE para dar CTRLY, (trigger padrao do emmet)
+        imap <C-e> <C-y>,
 
 
 " -------------------------
 " === Syntastic especificos (https://github.com/vim-syntastic/syntastic)
 " -------------------------
+        set statusline+=%#warningmsg#
+        set statusline+=%{SyntasticStatuslineFlag()}
+        set statusline+=%*
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_javascript_eslint_exe = 'npm run lint --'
-
-
-"Desativndo sintax checker para rodar somente quando precisar
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['php'],'passive_filetypes': [] }
-nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
-nnoremap <leader>sc  :SyntasticCheck<CR>
-
-" Especificando os checkers que rodaram em arquivos .php (é necessario ter os checkers instalados)
-let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd', 'phplint']
-
-"" === PHP CS Fixer por file e por diretorio
-nnoremap <silent><leader>fx :call PhpCsFixerFixFile()<CR>
-nnoremap <silent><leader>fX :call PhpCsFixerFixDirectory()<CR>
+        let g:syntastic_always_populate_loc_list = 1
+        let g:syntastic_auto_loc_list = 1
+        let g:syntastic_check_on_open = 1
+        let g:syntastic_check_on_wq = 0
+        let g:syntastic_javascript_checkers = ['eslint']
+        let gsyntastic_javascript_eslint_exe = 'npx eslint %'
 
 
+        "Desativndo sintax checker para rodar somente quando precisar
+        let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': ['php'],'passive_filetypes': [] }
+        nnoremap <C-w>E :SyntasticCheck<CR> :SyntasticToggleMode<CR>
+        nnoremap <leader>sc  :SyntasticCheck<CR>
+
+        " Especificando os checkers que rodaram em arquivos .php (é necessario ter os checkers instalados)
+        let g:syntastic_php_checkers = ['php', 'phpcs', 'phpmd', 'phplint']
+
+" -------------------------
+" === Tagbar (https://github.com/preservim/tagbar)
+" -------------------------
+        nmap <leader>tb :TagbarToggle<CR>
+
+
+" -------------------------
 "" === PDV (https://github.com/tobyS/pdv)
-let g:pdv_template_dir = $HOME . "/.vim/plugged/pdv/templates_snip"
-nnoremap <leader>doc :call pdv#DocumentCurrentLine()<CR>v/\*\/<cr>:s/${.*://<cr>V?\*\*<cr>:s/} */ /<cr>V?\*\*<cr>:s/${.* //<cr>
-
-
-"" === indent-guides https://github.com/nathanaelkane/vim-indent-guides
-"let g:ident_guides_start_level = 2
-"let g:ident_guides_guide_size = 1
-
+" -------------------------
+        let g:pdv_template_dir = $HOME . "/.vim/plugged/pdv/templates_snip"
+        nnoremap <leader>doc :call pdv#DocumentCurrentLine()<CR>v/\*\/<cr>:s/${.*://<cr>V?\*\*<cr>:s/} */ /<cr>V?\*\*<cr>:s/${.* //<cr>
 
 " -------------------------
 " === vim-php-namespace (https://github.com/arnaud-lb/vim-php-namespace)
 " -------------------------
 
-"Apos inserir sort por tamanho
-let g:php_namespace_sort = "'{,'}-1!awk '{print length, $0}' | sort -n -s | cut -d' ' -f2-"
-function! IPhpInsertUse()
-    call PhpInsertUse()
-    call feedkeys('a',  'n')
-endfunction
+        "Apos inserir sort por tamanho
+        let g:php_namespace_sort = "'{,'}-1!awk '{print length, $0}' | sort -n -s | cut -d' ' -f2-"
+        function! IPhpInsertUse()
+            call PhpInsertUse()
+            call feedkeys('a',  'n')
+        endfunction
 
-" Inserindo use statements das classes com <leader>use
-autocmd FileType php inoremap <Leader>use <Esc>:call IPhpInsertUse()<CR>
-autocmd FileType php noremap <Leader>use :call PhpInsertUse()<CR>
+        function! IPhpExpandClass()
+            call PhpExpandClass()
+            call feedkeys('a', 'n')
+        endfunction
 
-function! IPhpExpandClass()
-    call PhpExpandClass()
-    call feedkeys('a', 'n')
-endfunction
+        " Inserindo use statements das classes com <leader>use
+        autocmd FileType php inoremap <Leader>use <Esc>:call IPhpInsertUse()<CR>
+        autocmd FileType php noremap <Leader>use :call PhpInsertUse()<CR>
 
-" Expandindo class name com <leader>exp
-autocmd FileType php inoremap <Leader>exp <Esc>:call IPhpExpandClass()<CR>
-autocmd FileType php noremap <Leader>exp :call PhpExpandClass()<CR>
+        " Expandindo class name com <leader>exp
+        autocmd FileType php inoremap <Leader>exp <Esc>:call IPhpExpandClass()<CR>
+        autocmd FileType php noremap <Leader>exp :call PhpExpandClass()<CR>
 
-" Arrumando use statements por tamanho com <leader>sr
-autocmd FileType php inoremap <Leader>sr <Esc>:call PhpSortUse()<CR>
-autocmd FileType php noremap <Leader>sr :call PhpSortUse()<CR>
+        " Arrumando use statements por tamanho com <leader>sr
+        autocmd FileType php inoremap <Leader>sr <Esc>:call PhpSortUse()<CR>
+        autocmd FileType php noremap <Leader>sr :call PhpSortUse()<CR>
 
 " Sort automatico apos insercao
 let g:php_namespace_sort_after_insert = 1
@@ -432,7 +457,11 @@ nnoremap -g :GitGutterToggle<CR>
 nnoremap -a :exec ToggleAim()<CR>
 nnoremap -f :exec ToggleFolding()<CR>
 nnoremap -n :exec ToggleNumbers()<CR>
+nnoremap -l :exec ToggleLineAim()<CR>
 
+function! ToggleLineAim()
+    :set cursorline!
+endfunction
 
 function! ToggleAim()
     :set cursorcolumn! cursorline!
@@ -453,10 +482,20 @@ endfunction
 
 " --- VIMWIKI - Listas listas listas..
 
+" let wiki_1 = {}
+" let wiki_1.path = '~/vimwiki/'
+
+" let wiki_2 = {}
+" let wiki_2.path = '~/vimwiki_scaffold/'
+
+" let g:vimwiki_list = [wiki_1, wiki_2]
+
 let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]
 let g:instant_markdown_autostart = 0
 
 nmap <leader>td :e ~/vimwiki/TODO_DIARIO.md<CR>
+nmap <leader>tw :e ~/vimwiki/TODO_SEMANAL.md<CR>
+nmap <leader>t :e ~/vimwiki/TODO_SEMANAL.md<CR>
 nmap <F1> :VimwikiIndex<cr>
 
 " " Prettier JS / JSX / SCSS / CSS / HTML
@@ -476,11 +515,7 @@ nmap <F1> :VimwikiIndex<cr>
 nmap <leader>lev :e .env<cr>
 nmap <leader>lrw :e routes/web.php<cr>
 nmap <leader>lra :e routes/api.php<cr>
-
-nmap <leader>tb <S-v>:s/true/false/ <cr>
-nmap <leader>ttb <S-v>:s/false/true <cr>
-
-nmap <leader>f zfi{ <cr>
+nmap <leader>F :BTags<cr>
 
 
 let g:EditorConfig_exclude_patterns = ['fugitive://.\*']
@@ -510,3 +545,62 @@ command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-h
 let g:fzf_layout = { 'window': { 'width': 0.95, 'height': 0.9 } }
 let $FZF_DEFAULT_OPTS="--ansi --preview-window 'right:55%' --layout reverse --margin=1,4 --preview 'bat --color=always --style=header,grid --line-range :300 {}'"
 
+
+let g:python3_host_prog="/usr/bin/python3"
+
+
+
+
+
+" Make Arrowkey do something usefull, resize the viewports accordingly and
+" it also forces us to use the default Vim movement keys HJKL
+nnoremap <Left> :vertical resize +5<CR>
+nnoremap <Right> :vertical resize -5<CR>
+nnoremap <Up> :resize +5<CR>
+nnoremap <Down> :resize -5<CR>
+
+
+if executable('intelephense')
+  augroup LspPHPIntelephense
+    au!
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'intelephense',
+        \ 'cmd': {server_info->[&shell, &shellcmdflag, 'intelephense --stdio']},
+        \ 'whitelist': ['php'],
+        \ 'initialization_options': {'storagePath': '/tmp/intelephense'},
+        \ 'workspace_config': {
+        \   'intelephense': {
+        \     'files': {
+        \       'maxSize': 1000000,
+        \       'associations': ['*.php', '*.phtml'],
+        \       'exclude': [],
+        \     },
+        \     'completion': {
+        \       'insertUseDeclaration': v:true,
+        \       'fullyQualifyGlobalConstantsAndFunctions': v:false,
+        \       'triggerParameterHints': v:true,
+        \       'maxItems': 100,
+        \     },
+        \     'format': {
+        \       'enable': v:true
+        \     },
+        \   },
+        \ }
+        \})
+  augroup END
+endif
+
+
+nnoremap <C-l> :call CocActionAsync('jumpDefinition')<CR>
+
+nnoremap <Leader>s :<C-u>call gitblame#echo()<CR>
+
+" Copilot
+"
+let g:copilot_filetypes = {
+ \ '*': v:false,
+ \ 'php': v:true,
+ \ 'javascript': v:true,
+ \ 'vue': v:true,
+ \ 'blade': v:true,
+\ }
