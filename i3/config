@@ -22,10 +22,12 @@ bindsym $mod+n border normal
 
 ## Workspace colors
 # class                  border  backgr  text     indicator child_border
-client.focused		 #383c4a #383c4a #d3dae3  #eceff1   #869BAB
+client.focused		 #383c4a #45474d #d3dae3  #eceff1   #869BAB
+#client.focused          #859900 #859900 #fdf6e3 #859900
 client.focused_inactive  #383c4a #383c4a #d3dae3  #383c4a   #383c4a
 client.unfocused         #353945 #353945 #7c818c  #353945   #353945
-client.urgent            #5294e2 #5294e2 #ffffff  #5294e2   #5294e2
+client.urgent            #5294e2 #5294e2 #ffffff  #909090   #5294e2
+
 
 # split orientation
 bindsym $mod+h split h;exec notify-send 'tile horizontally'
@@ -48,8 +50,13 @@ bindsym $mod+Shift+Return exec urxvt -cd "`xcwd`"
 # kill focused window
 bindsym $mod+Shift+q kill
 
+bindsym $mod+r exec ranger 
+
 # dmenu
 bindsym $mod+d exec --no-startup-id dmenu_recency
+
+
+bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
 
 # toggle sticky
 bindsym $mod+Shift+s sticky toggle
@@ -191,7 +198,7 @@ bindsym $mod+F3 exec --no-startup-id google-chrome-stable
 # file manager
 bindsym $mod+F5 exec --no-startup-id pcmanfm
 bindsym $mod+F8 exec --no-startup-id telegram-desktop
-bindsym $mod+F9 exec --no-startup-id discord-canary
+bindsym $mod+F9 exec --no-startup-id discord
 bindsym $mod+F10 exec --no-startup-id slack
 bindsym $mod+F11 exec urxvt -e sh -c "mpv ~/Music"
 
@@ -232,15 +239,14 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 
-
-
 # Screen brightness controls
-#bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-#bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+# bindsym XF86MonBrightnessUp exec xrandr --current --brightness :q20 
+# bindsym XF86MonBrightnessDown exec xbacklight -dec 20 
 
 # Lidando com multiplas screens 
 #bindsym $mod+t exec xrandr --output VGA-1 --auto --right-of eDP-1
 #bindsym $mod+Shift+t exec xrandr --output VGA-1 --auto --left-of LVDS-1
+bindsym $mod+Shift+t exec xrandr --output eDP-1 --auto --output HDMI-1-0 --auto --right-of eDP-1
 
 # Trocando wallpapers
 bindsym $mod+g exec feh --randomize --bg-fill ~/.wallpapers
@@ -258,7 +264,7 @@ exec --no-startup-id clipit
 # exec_always --no-startup-id sbxkb
 exec --no-startup-id start_conky_maia
 # exec --no-startup-id start_conky_green
-exec --no-startup-id xautolock -time 10 -locker blurlock
+# exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 
