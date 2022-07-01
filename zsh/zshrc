@@ -1,15 +1,12 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-#if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-#fi
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 [[ -s $HOME/.nvm/nvm.sh ]] && . $HOME/.nvm/nvm.sh  # This loads NVM
 source /usr/share/nvm/init-nvm.sh
-
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH=/home/zord/.oh-my-zsh
@@ -19,27 +16,24 @@ export PATH="/home/zord/.local/bin/:$PATH"
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#ZSH_THEME="agnoster"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker docker-compose vi-mode)
+plugins=(git docker docker-compose vi-mode zsh-z)
 
 source $ZSH/oh-my-zsh.sh
 source ~/dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 #####
 # CUSTOM ALIASES
-
-#conf zsh / oh-my-sh
-alias zshconfig="vim ~/.zshrc"
-alias ohmyzsh="vim ~/.oh-my-zsh"
+# ####
 
 # gerando ctags
-alias genctags="ctags -R --exclude='.git' --exclude='node_modules' --exclude='public' --exclude='laradock' --exclude='*.js' --exclude='*.css' --exclude='*.scss'"
+alias genctags="ctags -R --php-kinds=cfit"
+#alias genctags="ctags -R --exclude='.git' --exclude='node_modules' --exclude='public' --exclude='laradock' --exclude='*.js' --exclude='*.css' --exclude='*.scss'"
 
 #####
 # PATH'S
@@ -79,6 +73,7 @@ alias play="maisbrilho && fixDNS && sudo setxkbmap -model pc105 -layout br -vari
 alias scaffe="scaff exec "
 alias scaffa="scaff exec php artisan "
 alias scaffat="scaff exec php artisan tinker"
+alias scaffamst="scaff exec php artisan migrate:status"
 alias scaffc="scaff exec composer "
 alias scaffn="scaff exec npm "
 
@@ -90,6 +85,11 @@ alias scaffpf="scaff exec vendor/bin/phpcbf"
 
 alias gitw="git whatchanged "
 
+alias ytdl="youtube-dl \"ytsearch:"
+
+alias l="exa --icons -lah"
+
+alias dpsa="docker ps -a --format='''table {{.ID}}	{{.Names}}	{{.Image}}	{{.Status}}'''"
 
 # --files: List files that would be searched but do not search
 # --no-ignore: Do not respect .gitignore, etc...
@@ -106,4 +106,10 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.g
 
 export BAT_THEME="Nord"
 
-alias protocolo='curl -s https://cidadao.riopreto.sp.gov.br/empro_cidadao/sjriopreto/semfaz/empro_consulta_protocolo.php/api/ImprimirRelatorio\?nro_protocolo\=-%2CC%60R%2C3%60P%2C%23%60P-CDR.%60%60%60%0A%60%0A\&data_protocolo\=%2A%2C%23%40O%2C%23%24O%2CC%60R%2C0%60%60%0A%60%0A --output protocolo.pdf && pdftotext -layout protocolo.pdf protocolo.txt && echo "\n ##Ultimas atualizações: \n\n" && cat protocolo.txt' 
+# vi'g?
+alias protocolo='phey -f uggcf://pvqnqnb.evbcergb.fc.tbi.oe/rzceb_pvqnqnb/fwevbcergb/frzsnm/rzceb_pbafhygn_cebgbpbyb.cuc/ncv/VzcevzveEryngbevb\?aeb_cebgbpbyb\=-%2PP%60E%2P3%60C%2P%23%60C-PQE.%60%60%60%0N%60%0N\&qngn_cebgbpbyb\=%2N%2P%23%40B%2P%23%24B%2PP%60E%2P0%60%60%0N%60%0N --bhgchg cebgbpbyb.cqs && cqsgbgrkg -ynlbhg cebgbpbyb.cqs cebgbpbyb.gkg && rpub "\a ##Hygvznf nghnyvmnçõrf: \a\a" && png cebgbpbyb.gkg' 
+
+#118M p/ 5mb com resolução ruinzinha
+alias videoMenor='ffmpeg -i input.mkv -vf "scale=trunc(iw/4)*2:trunc(ih/4)*2" -c:v libx265 -crf 28 '
+alias gravarV='ffmpeg -f alsa -ac 1 -i pulse -f x11grab -r 30 -s 1920x1080  -i :0.0 -acodec aac -vcodec mpeg4 -preset medium -qscale:v 5 '
+
