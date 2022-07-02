@@ -1,10 +1,10 @@
-# DOTFILES FTW :1st_place_medal: 
+# DOTFILES 
 
-- arch
+- manjaro-i3
 - i3wm
 - urxvt
 - zsh & oh-my-zsh & powerlevel10k
-- vim & nvim
+- nvim
 - NerdFonts 
 - ranger
 - scrot & feh
@@ -19,9 +19,7 @@ git clone https://github.com/renatoagomes/dotfiles.git --recursive
 cd dotfiles
 ```
 
-# zsh && [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
-
-Depende do `curl`
+# zsh && [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) && powerlevel10k
 
 ```
 cd ~
@@ -43,21 +41,3 @@ ln -s ~/dotfiles/vim/vimrc .vimrc
 
 ...
 
-
-### i3-gaps
-
-```
-sudo pacman -S install i3-gaps 
-```
-
-### Ranger & ranger dev-icons
-
-```
-sudo pacman -S install ranger
-```
-
-### Scrot (para prints)
-
-```
-sudo pacman -S install scrot
-```
