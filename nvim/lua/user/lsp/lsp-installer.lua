@@ -8,10 +8,11 @@ local servers = {
   "cssls",
   "html",
   "tsserver",
-  "pyright",
-  "bashls",
+  -- "pyright",
+  -- "bashls",
   "jsonls",
   "yamlls",
+  "intelephense"
 }
 
 lsp_installer.setup()
@@ -37,6 +38,11 @@ for _, server in pairs(servers) do
   if server == "pyright" then
     local pyright_opts = require "user.lsp.settings.pyright"
     opts = vim.tbl_deep_extend("force", pyright_opts, opts)
+  end
+
+  if server == "intelephense" then
+    local intelephense_opts = require "user.lsp.settings.intelephense"
+    opts = vim.tbl_deep_extend("force", intelephense_opts, opts)
   end
 
   lspconfig[server].setup(opts)

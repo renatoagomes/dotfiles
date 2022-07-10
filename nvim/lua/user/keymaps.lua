@@ -43,19 +43,19 @@ keymap("", "<leader>fm", ":set foldmethod=", opts)
 keymap("", "<leader>ty", ":set ft=", opts)
 
 -- Quick edit files (dotfiles, i3, zsh, vim, snippets)
-keymap("n", "<leader>dot", ":e ~/dotfiles/README.md<cr>", opts)
-keymap('n', '<leader>i3', ':e ~/dotfiles/i3/config<cr>', opts)
-keymap('n', '<leader>zsh', ':e ~/dotfiles/zsh/zshrc<cr>', opts)
+keymap("n", "<leader>dot", ":e ~/dotfiles/README.md<CR>", opts)
+keymap('n', '<leader>i3', ':e ~/dotfiles/i3/config<CR>', opts)
+keymap('n', '<leader>zsh', ':e ~/dotfiles/zsh/zshrc<CR>', opts)
 -- keymap('n', '<leader>es', ':e ~/dotfiles/vim/UltiSnips/', opts)
-keymap('n', '<leader>ev', ':e ~/dotfiles/nvim/init.lua<cr>', opts)
--- keymap('n', '<leader>evp', ':e ~/dotfiles/vim/plugins.vimrc<cr>', opts)
+keymap('n', '<leader>ev', ':e ~/dotfiles/nvim/init.lua<CR>', opts)
+keymap('n', '<leader>evp', ':e ~/dotfiles/nvim/lua/user/plugins.lua<CR>', opts)
+keymap('n', '<leader>evm', ':e ~/dotfiles/nvim/lua/user/keymaps.lua<CR>', opts)
 -- keymap('n', '<leader>evs', ':e ~/dotfiles/vim/settings.vimrc<cr>', opts)
 -- keymap('n', '<leader>evv', ':e ~/dotfiles/vim/visual.vimrc<cr>', opts)
--- keymap('n', '<leader>evm', ':e ~/dotfiles/vim/mappings.vimrc<cr>', opts)
 -- keymap('n', '<leader>evw', ':e ~/dotfiles/vim/workflow.vimrc<cr>', opts)
 
 -- seed file (para recarregar as confs do vim sem ter que dar restart)
--- keymay("n", "<leader>ss, ":source ~/dotfiles/nvim/init.lua<CR>", opts)
+-- keymay("n", "<leader>S", ":source ~/dotfiles/nvim/init.lua<CR>", opts)
 
 
 -- Normal --
@@ -92,9 +92,8 @@ keymap("n", "<Tab>", ":b#<CR>", opts)
 -- Better paste
 keymap("v", "p", '"_dP', opts)
 
--- Changing foldmethod 
-keymap("n", "<leader>cff", ":set foldmethod=", opts)
-
+-- Reload file com <leader>r
+keymap("n", "<leader>r", ":e!<cr>", opts)
 
 
 -- Insert --
@@ -118,6 +117,8 @@ keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
 keymap("n", "<leader>ft", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
+keymap("n", "<leader>fo", ":Telescope oldfiles<CR>", opts)
+
 
 -- Git
 --keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
@@ -187,7 +188,6 @@ vim.cmd("vnoremap <C-J> :m '>+1<CR>gv=gv")
 vim.cmd("vnoremap <C-K> :m '<-2<CR>gv=gv")
 
 
-
 -- " -------------------------
 -- " Laravel Mappings
 -- " -------------------------
@@ -196,10 +196,13 @@ vim.cmd("nmap <leader>lev :e .env<cr>")
 vim.cmd("nmap <leader>lrw :e routes/web.php<cr>")
 vim.cmd("nmap <leader>lra :e routes/api.php<cr>")
 
-
 -- Wildmenu completion
 vim.cmd("call wilder#setup({'modes': [':', '/', '?']})")
 
+-- COC goto definition
+-- vim.cmd("nnoremap <C-l> :call CocActionAsync('jumpDefinition')<CR>")
 
+-- Tagbar 
+vim.cmd("nnoremap <leader>tb :TagbarToggle<CR>")
 
 

@@ -106,6 +106,11 @@ return packer.startup(function(use)
   -- Better wildmenu completion
   use 'gelguy/wilder.nvim'
 
+  -- COC autocomplete, gotodefinition, syntax..
+  -- use { 'neoclide/coc.nvim', branch = 'release' }
+
+  -- Tagbar (show buffer tags to navigate) 
+  use 'preservim/tagbar'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
