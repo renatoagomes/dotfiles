@@ -27,7 +27,6 @@ vim.cmd('vm <c-c> "+y')
 vim.cmd('cno <c-v> <c-r>+')
 vim.cmd("exe 'ino <script> <C-V>' paste#paste_cmd['i']")
 
-
 -- " git mappings - 'vim-fugitive'
 vim.cmd("nmap <leader>gst :Git<CR>")
 vim.cmd("nmap <leader>gm :Git mergetool<CR>")
@@ -37,14 +36,18 @@ vim.cmd("nmap <leader>gbl :Gblame<CR>")
 vim.cmd("nmap <F11> :Git diff<CR>")
 vim.cmd("nmap <F12> :Git blame<CR>")
 
+-- Changing foldmethod..
+keymap("", "<leader>fm", ":set foldmethod=", opts)
 
+-- Changing filetype..
+keymap("", "<leader>ty", ":set ft=", opts)
 
 -- Quick edit files (dotfiles, i3, zsh, vim, snippets)
 keymap("n", "<leader>dot", ":e ~/dotfiles/README.md<cr>", opts)
 keymap('n', '<leader>i3', ':e ~/dotfiles/i3/config<cr>', opts)
 keymap('n', '<leader>zsh', ':e ~/dotfiles/zsh/zshrc<cr>', opts)
 -- keymap('n', '<leader>es', ':e ~/dotfiles/vim/UltiSnips/', opts)
--- keymap('n', '<leader>ev', ':e ~/dotfiles/vim/vimrc<cr>', opts)
+keymap('n', '<leader>ev', ':e ~/dotfiles/nvim/init.lua<cr>', opts)
 -- keymap('n', '<leader>evp', ':e ~/dotfiles/vim/plugins.vimrc<cr>', opts)
 -- keymap('n', '<leader>evs', ':e ~/dotfiles/vim/settings.vimrc<cr>', opts)
 -- keymap('n', '<leader>evv', ':e ~/dotfiles/vim/visual.vimrc<cr>', opts)
@@ -194,6 +197,8 @@ vim.cmd("nmap <leader>lrw :e routes/web.php<cr>")
 vim.cmd("nmap <leader>lra :e routes/api.php<cr>")
 
 
+-- Wildmenu completion
+vim.cmd("call wilder#setup({'modes': [':', '/', '?']})")
 
 
 

@@ -100,6 +100,11 @@ return packer.startup(function(use)
   -- Vim wiki
   use 'vimwiki/vimwiki'
 
+  -- Multicursor
+  use 'mg979/vim-visual-multi'
+
+  -- Better wildmenu completion
+  use 'gelguy/wilder.nvim'
 
 
   -- Automatically set up your configuration after cloning packer.nvim
