@@ -17,6 +17,7 @@ export PATH="/home/zord/.local/bin/:$PATH"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
+TERMINAL="alacritty"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -45,8 +46,11 @@ alias dotpath="cd ~/dotfiles/"
 ## VESSEL ALIASES
 alias v='./vessel '
 alias vstart='v start'
+alias vsta='v start'
 alias vstop='v stop'
+alias vsto='v stop'
 alias vart='v artisan '
+alias vartt='v artisan tinker'
 alias vcomp='v composer '
 alias vtest="./vessel exec app vendor/bin/phpunit tests"
 
@@ -58,17 +62,6 @@ alias ndw='nmcli device wifi '
 alias ndwl='ndw list '
 alias ndwc='ndw connect '
 
-#dns
-alias fixDNS='sudo sed -e "s/127.0.0.53/8.8.8.8/" -i /etc/resolv.conf'
-alias fixDNSTIC='sudo sed -e "s/127.0.0.53/10.10.10.1/" -i /etc/resolv.conf'
-
-#brightness
-alias maisbrilho='echo 15 | sudo tee /sys/class/backlight/acpi_video0/brightness'
-alias menosbrilho='echo 5 | sudo tee /sys/class/backlight/acpi_video0/brightness'
-
-# todas as alavancas juntas
-alias play="maisbrilho && fixDNS && sudo setxkbmap -model pc105 -layout br -variant abnt2"
-
 #### Scaffold alias
 alias scaffe="scaff exec "
 alias scaffa="scaff exec php artisan "
@@ -76,6 +69,10 @@ alias scaffat="scaff exec php artisan tinker"
 alias scaffamst="scaff exec php artisan migrate:status"
 alias scaffc="scaff exec composer "
 alias scaffn="scaff exec npm "
+
+# symphony aliases
+alias scasym='scaff exec bin/console '
+alias scaffsym='scaff exec bin/console '
 
 ## php check
 alias scaffpc="scaff exec vendor/bin/phpcs --error-severity=1 --warning-severity=8"
@@ -89,7 +86,6 @@ alias ytdl="youtube-dl \"ytsearch:"
 
 alias l="exa --icons -lah"
 
-alias dpsa="docker ps -a --format='''table {{.ID}}	{{.Names}}	{{.Image}}	{{.Status}}'''"
 
 # --files: List files that would be searched but do not search
 # --no-ignore: Do not respect .gitignore, etc...
@@ -107,8 +103,34 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.g
 export BAT_THEME="Nord"
 
 # vi'g?
-alias protocolo='phey -f uggcf://pvqnqnb.evbcergb.fc.tbi.oe/rzceb_pvqnqnb/fwevbcergb/frzsnm/rzceb_pbafhygn_cebgbpbyb.cuc/ncv/VzcevzveEryngbevb\?aeb_cebgbpbyb\=-%2PP%60E%2P3%60C%2P%23%60C-PQE.%60%60%60%0N%60%0N\&qngn_cebgbpbyb\=%2N%2P%23%40B%2P%23%24B%2PP%60E%2P0%60%60%0N%60%0N --bhgchg cebgbpbyb.cqs && cqsgbgrkg -ynlbhg cebgbpbyb.cqs cebgbpbyb.gkg && rpub "\a ##Hygvznf nghnyvmnçõrf: \a\a" && png cebgbpbyb.gkg' 
+# alias protocolo='phey -f uggcf://pvqnqnb.evbcergb.fc.tbi.oe/rzceb_pvqnqnb/fwevbcergb/frzsnm/rzceb_pbafhygn_cebgbpbyb.cuc/ncv/VzcevzveEryngbevb\?aeb_cebgbpbyb\=-%2PP%60E%2P3%60C%2P%23%60C-PQE.%60%60%60%0N%60%0N\&qngn_cebgbpbyb\=%2N%2P%23%40B%2P%23%24B%2PP%60E%2P0%60%60%0N%60%0N --bhgchg cebgbpbyb.cqs && cqsgbgrkg -ynlbhg cebgbpbyb.cqs cebgbpbyb.gkg && rpub "\a ##Hygvznf nghnyvmnçõrf: \a\a" && png cebgbpbyb.gkg' 
 
 #118M p/ 5mb com resolução ruinzinha
 alias videoMenor='ffmpeg -i input.mkv -vf "scale=trunc(iw/4)*2:trunc(ih/4)*2" -c:v libx265 -crf 28 '
 alias gravarV='ffmpeg -f alsa -ac 1 -i pulse -f x11grab -r 30 -s 1920x1080  -i :0.0 -acodec aac -vcodec mpeg4 -preset medium -qscale:v 5 '
+alias gravarVH='ffmpeg -f alsa -ac 1 -i pulse -f x11grab -r 30 -s 2560x1080  -i :0.0+1920,0 -acodec aac -vcodec mpeg4 -preset medium -qscale:v 5 '
+
+alias scaffl="scaff logs"
+
+alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
+alias sa='sail artisan '
+alias sat='sail artisan tinker'
+
+LS_COLORS='rs=0:di=01;36:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=36;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'
+export LS_COLORS
+
+EXA_COLORS="da=0"
+export EXA_COLORS
+
+
+# nyvnf obyrgbPCSY="~/qbgsvyrf/fpevcgf/obyrgb_pcsy.fu 20719647 05655482800"
+
+source /home/zord/dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+
+alias i3p="i3rename platform"
+alias i3a="i3rename api"
+alias i3n="i3rename notifications"
+
+export DOCKER_BUILDKIT=0
+export BUILDKIT_PROGRESS='auto'

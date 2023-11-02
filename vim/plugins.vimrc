@@ -60,7 +60,7 @@ call plug#begin()
   Plug 'francoiscabrol/ranger.vim'
   Plug 'rbgrouleff/bclose.vim'
   " Plug 'github/copilot.vim'
-  " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on upd:te
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'preservim/tagbar'
 
   Plug 'gelguy/wilder.nvim'
@@ -96,7 +96,7 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
                 \ }
 
 " Padding between icon and file/folder name
-let g:WebDevIconsNerdTreeAfterGlyphPadding = ''
+let g:WebDevIconsNerdTreeAfterGlyphPadding = ' '
 
 nmap <leader>n :NERDTreeToggle<CR>
 nmap <leader>nf :NERDTreeFind<CR>zz
@@ -217,3 +217,43 @@ let NERDTreeHighlightCursorline = 0
         " Arrumando use statements por tamanho com <leader>sr
         autocmd FileType php inoremap <Leader>sr <Esc>:call PhpSortUse()<CR>
         autocmd FileType php noremap <Leader>sr :call PhpSortUse()<CR>
+
+
+" -------------------------
+" === treesitter 
+" -------------------------
+
+:lua << EOF
+require'nvim-treesitter.configs'.setup {
+  -- A list of parser names, or "all"
+  ensure_installed = "all",
+
+  -- Install parsers synchronously (only applied to `ensure_installed`)
+  sync_install = false,
+
+  -- List of parsers to ignore installing (for "all")
+  ignore_install = "",
+
+  highlight = {
+    -- `false` will disable the whole extension
+    enable = true,
+
+    -- NOTE: these are the names of the parsers and not the filetype. (for example if you want to
+    -- disable highlighting for the `tex` filetype, you need to include `latex` in this list as this is
+    -- the name of the parser)
+    -- list of language that will be disabled
+    disable = { "c", "rust" },
+
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+  rainbow = {
+        enable=true,
+        extended_mode=true
+  },
+}
+EOF
+

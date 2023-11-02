@@ -18,6 +18,25 @@ dap_install.setup {}
 dap_install.config("python", {})
 -- add other configs here
 
+dap.adapters.php = {
+  type = "executable",
+  command = "node",
+  args = { "/home/zord/dotfiles/xdebug/vscode-php-debug/out/phpDebug.js" }
+}
+
+dap.configurations.php = {
+  {
+    type = "php",
+    request = "launch",
+    name = "Listen for Xdebug",
+    port = 9003,
+    pathMappings = {
+      ["/var/www/html"] = "${workspaceFolder}"
+    }
+  }
+}
+
+
 dapui.setup {
   sidebar = {
     elements = {
@@ -34,6 +53,7 @@ dapui.setup {
     elements = {},
   },
 }
+
 
 vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DiagnosticSignError", linehl = "", numhl = "" })
 

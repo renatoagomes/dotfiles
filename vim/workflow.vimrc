@@ -22,8 +22,17 @@ exe 'ino <script> <C-V>' paste#paste_cmd['i']
 nmap <leader>dot :e ~/dotfiles/README.md<cr>            
 nmap <leader>i3 :e ~/dotfiles/i3/config<cr>
 nmap <leader>zsh :e ~/dotfiles/zsh/zshrc<cr>
-nmap <leader>ev :e ~/dotfiles/vim/vimrc<cr>
 nmap <leader>es :e ~/dotfiles/vim/UltiSnips/
+
+nmap <leader>ev :e ~/dotfiles/vim/vimrc<cr>
+nmap <leader>evp :e ~/dotfiles/vim/plugins.vimrc<cr>
+nmap <leader>evs :e ~/dotfiles/vim/settings.vimrc<cr>
+nmap <leader>evv :e ~/dotfiles/vim/visual.vimrc<cr>
+nmap <leader>evm :e ~/dotfiles/vim/mappings.vimrc<cr>
+nmap <leader>evw :e ~/dotfiles/vim/workflow.vimrc<cr>
+
+"seed file (para recarregar as confs do vim sem ter que dar restart)
+map <leader>ss :source ~/.vimrc<CR>
 
 " git mappings - 'vim-fugitive'
 nmap <leader>gst :Git<CR>

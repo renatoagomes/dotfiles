@@ -7,9 +7,6 @@ map <leader>cff :set foldmethod=
 "Mapeando a troca de filetype para facilitar problemad com identacao de blade & html
 map <leader>cft :set ft=
 
-"seed file (para recarregar as confs do vim sem ter que dar restart)
-map <leader>ss :source ~/.vimrc<CR>
-
 "Fechando buffer atual com Ctrl q
 nmap <C-q> :bdelete<CR>
 
@@ -25,6 +22,9 @@ noremap <F3> :bn<CR>
 nmap <C-s> :w<CR>
 vmap <C-s> <esc>:w<CR>gv
 imap <C-s> <esc>:w<CR>a
+
+vmap > >gv
+vmap < <gv
 
 "Split Management (trocar entre splits com ctrl HJKL)
 nmap <C-J> <C-W><C-J>

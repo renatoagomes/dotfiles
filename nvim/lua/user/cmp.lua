@@ -9,6 +9,13 @@ if not snip_status_ok then
 end
 
 require("luasnip/loaders/from_vscode").lazy_load()
+-- require("luasnip/loaders/from_lua").lazy_load({
+--   paths = '~/dotfiles/nvim/snippets/lua'
+-- })
+
+require("luasnip/loaders/from_snipmate").lazy_load({
+  paths = '~/dotfiles/nvim/snippets/snipmate'
+})
 
 local check_backspace = function()
 	local col = vim.fn.col(".") - 1
@@ -49,7 +56,6 @@ cmp.setup({
 			luasnip.lsp_expand(args.body) -- For `luasnip` users.
 		end,
 	},
-
 	mapping = cmp.mapping.preset.insert({
 		["<C-k>"] = cmp.mapping.select_prev_item(),
 		["<C-j>"] = cmp.mapping.select_next_item(),

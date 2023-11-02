@@ -60,6 +60,8 @@ return packer.startup(function(use)
   -- Colorschemes
   use { "folke/tokyonight.nvim", commit = "8223c970677e4d88c9b6b6d81bda23daf11062bb" }
   use { "lunarvim/darkplus.nvim", commit = "2584cdeefc078351a79073322eb7f14d7fbb1835" }
+  use 'w0ng/vim-hybrid'
+  use 'nanotech/jellybeans.vim'
 
   -- cmp plugins
   use { "hrsh7th/nvim-cmp", commit = "df6734aa018d6feb4d76ba6bda94b1aeac2b378a" } -- The completion plugin
@@ -70,14 +72,38 @@ return packer.startup(function(use)
   use { "hrsh7th/cmp-nvim-lua", commit = "d276254e7198ab7d00f117e88e223b4bd8c02d21" }
 
   -- snippets
+  -- use { 'mattn/emmet-vim' }
+--
   use { "L3MON4D3/LuaSnip", commit = "79b2019c68a2ff5ae4d732d50746c901dd45603a" } --snippet engine
-  use { "rafamadriz/friendly-snippets", commit = "d27a83a363e61009278b6598703a763ce9c8e617" } -- a bunch of snippets to use
+  -- use { "rafamadriz/friendly-snippets", commit = "d27a83a363e61009278b6598703a763ce9c8e617" } -- a bunch of snippets to use
+
+  use { 'mattn/emmet-vim' }
+
+  use 'SirVer/ultisnips'
+  -- Php docblock generation
+  use 'tobyS/vmustache'
+  -- Php docblock generation
+  use 'tobyS/pdv'
+
+  use 'jwalton512/vim-blade'
+
+  -- use 'prabirshrestha/async.vim'
+  -- use 'prabirshrestha/vim-lsp'
+  -- use 'thomasfaingnaert/vim-lsp-snippets'
+  -- use 'thomasfaingnaert/vim-lsp-ultisnips'
 
   -- LSP
   use { "neovim/nvim-lspconfig", commit = "148c99bd09b44cf3605151a06869f6b4d4c24455" } -- enable LSP
   use { "williamboman/nvim-lsp-installer", commit = "e9f13d7acaa60aff91c58b923002228668c8c9e6" } -- simple to use language server installer
   use { "jose-elias-alvarez/null-ls.nvim", commit = "ff40739e5be6581899b43385997e39eecdbf9465" } -- for formatters and linters
-  use { "RRethy/vim-illuminate", commit = "c82e6d04f27a41d7fdcad9be0bce5bb59fcb78e5" }
+  -- use { "RRethy/vim-illuminate", commit = "c82e6d04f27a41d7fdcad9be0bce5bb59fcb78e5" }
+
+
+  -- Copilot
+  use { "github/copilot.vim" }
+
+
+
 
   -- Telescope
   use { "nvim-telescope/telescope.nvim", commit = "d96eaa914aab6cfc4adccb34af421bdd496468b0" }
@@ -93,6 +119,7 @@ return packer.startup(function(use)
   use { "mfussenegger/nvim-dap", commit = "014ebd53612cfd42ac8c131e6cec7c194572f21d" }
   use { "rcarriga/nvim-dap-ui", commit = "d76d6594374fb54abf2d94d6a320f3fd6e9bb2f7" }
   use { "ravenxrz/DAPInstall.nvim", commit = "8798b4c36d33723e7bba6ed6e2c202f84bb300de" }
+  use "nvim-telescope/telescope-dap.nvim"
 
   -- Floating terminal
   use 'voldikss/vim-floaterm'
@@ -111,6 +138,12 @@ return packer.startup(function(use)
 
   -- Tagbar (show buffer tags to navigate) 
   use 'preservim/tagbar'
+
+  -- Editorconfig to respect project identation settings
+  use 'editorconfig/editorconfig-vim'
+
+  -- Log syntax highlight
+  use 'mtdl9/vim-log-highlighting'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

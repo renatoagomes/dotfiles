@@ -26,6 +26,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   callback = function()
     vim.opt_local.wrap = true
     vim.opt_local.spell = false 
+    require('cmp').setup.buffer { enabled = false }
   end,
 })
 
@@ -44,3 +45,20 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
     vim.highlight.on_yank { higroup = "Visual", timeout = 200 }
   end,
 })
+
+
+
+
+--- Terminal test autocmd
+
+
+-- Customize terminal
+vim.api.nvim_create_autocmd('TermOpen', {
+  command = 'setlocal listchars= nonumber norelativenumber nocursorline'
+})
+
+-- vim.api.nvim_create_autocmd('TermLeave', {
+--   command = 'setlocal listchars= nonumber norelativenumber nocursorline'
+-- })
+
+

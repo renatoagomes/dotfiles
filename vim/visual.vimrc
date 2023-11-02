@@ -20,8 +20,8 @@ hi Folded ctermbg=bg
 hi CocUnusedHighlight ctermbg=bg
 hi CocUnusedHighlight ctermfg=LightGray
 
-let g:terminal_color_4 = '#ff0000'
-let g:terminal_color_5 = 'green'
+" let g:terminal_color_4 = '#ff0000'
+" let g:terminal_color_5 = 'green'
 
 
 " terminal / floaterm mappings & settings

@@ -1,17 +1,10 @@
 # DOTFILES 
 
-- manjaro-i3
+Currently using:
+- manjaro
 - i3wm
-- urxvt
-- zsh & oh-my-zsh & powerlevel10k
-- nvim
-- NerdFonts 
-- ranger
-- scrot & feh
- 
-...
+- neovim
 
-# Copy / Paste
 
 ```
 cd ~
@@ -29,15 +22,9 @@ rm ~/.zshrc
 ln -s ~/dotfiles/zsh/zshrc .zshrc
 ```
 
-### VIM
+### NEOVIM
 
 ```
-cd ~
-ln -s ~/dotfiles/vim .vim
-ln -s ~/dotfiles/vim/vimrc .vimrc
+cd ~/.config
+ln -s ~/dotfiles/nvim ./
 ```
-
-### [NerdFonts](https://github.com/ryanoasis/nerd-fonts)
-
-...
-

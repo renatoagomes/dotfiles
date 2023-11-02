@@ -23,9 +23,9 @@ local diff = {
   cond = hide_in_width,
 }
 
-local filetype = {
-  "filetype",
-  icons_enabled = false,
+local filename = {
+  "filename",
+  icons_enabled = true,
 }
 
 local location = {
@@ -37,11 +37,22 @@ local spaces = function()
   return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
 end
 
+local bname = function()
+  return vim.api.nvim_buf_get_name(0)
+end
+
+local custom_auto = require'lualine.themes.auto'
+
+-- Change the background of lualine_c section for normal mode
+-- custom_auto.normal.a.bg = '#555'
+-- custom_auto.normal.b.bg = '#555'
+-- custom_auto.normal.c.bg = '#555'
+
 lualine.setup {
   options = {
     globalstatus = true,
     icons_enabled = true,
-    theme = "auto",
+    theme = custom_auto,
     component_separators = { left = "", right = "" },
     section_separators = { left = "", right = "" },
     disabled_filetypes = { "alpha", "dashboard" },
@@ -50,8 +61,8 @@ lualine.setup {
   sections = {
     lualine_a = { "mode" },
     lualine_b = {"branch"},
-    lualine_c = { diagnostics },
-    lualine_x = { diff, spaces, "encoding", filetype },
+    lualine_c = { diagnostics, filename },
+    lualine_x = { bname, spaces },
     lualine_y = { location },
     lualine_z = { "progress" },
   },

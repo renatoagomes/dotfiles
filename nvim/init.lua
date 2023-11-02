@@ -1,14 +1,8 @@
--- " -------------------------
--- "
--- " VIM FTW o/
--- "
--- " - @renatoagomes 
--- " - [old-vimrc](https://github.com/renatoagomes/dotfiles/blob/master/vim/vimrc)
--- " - [new-lua](https://github.com/renatoagomes/dotfiles/blob/master/nvim/init.lua)
--- "
--- " -------------------------
+
+-- navigate with gd
 
 require "user.options"
+require "user.functions"
 require "user.keymaps"
 require "user.plugins"
 require "user.autocommands"
