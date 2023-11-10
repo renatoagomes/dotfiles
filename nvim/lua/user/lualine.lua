@@ -33,12 +33,13 @@ local location = {
   padding = 0,
 }
 
-local spaces = function()
-  return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
-end
-
 local bname = function()
   return vim.api.nvim_buf_get_name(0)
+end
+
+local lines = function ()
+  local buf = vim.api.nvim_get_current_buf()
+  return vim.api.nvim_buf_line_count(buf)
 end
 
 local custom_auto = require'lualine.themes.auto'
@@ -62,8 +63,8 @@ lualine.setup {
     lualine_a = { "mode" },
     lualine_b = {"branch"},
     lualine_c = { diagnostics, filename },
-    lualine_x = { bname, spaces },
+    lualine_x = { bname },
     lualine_y = { location },
-    lualine_z = { "progress" },
+    lualine_z = { lines },
   },
 }

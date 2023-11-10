@@ -24,3 +24,5 @@ require "user.indentline"
 require "user.alpha"
 require "user.lsp"
 require "user.dap"
+
+require("statuscol").setup()

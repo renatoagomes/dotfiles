@@ -12,3 +12,4 @@ vim.cmd("hi VertSplit guifg=DarkGray guibg=bg")
 -- vim.cmd("let g:terminal_color_4 = '#ff0000'")
 -- vim.cmd("let g:terminal_color_5 = 'green'")
 
+-- vim.cmd("hi WhichKeyFloat guifg=DarkGray guibg=bg")

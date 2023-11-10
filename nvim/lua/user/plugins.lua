@@ -57,6 +57,21 @@ return packer.startup(function(use)
   use { "lukas-reineke/indent-blankline.nvim", commit = "6177a59552e35dfb69e1493fd68194e673dc3ee2" }
   use { "goolord/alpha-nvim", commit = "ef27a59e5b4d7b1c2fe1950da3fe5b1c5f3b4c94" }
 
+  --  which key
+  use {
+    "folke/which-key.nvim",
+    config = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+      require("which-key").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
+
+
   -- Colorschemes
   use { "folke/tokyonight.nvim", commit = "8223c970677e4d88c9b6b6d81bda23daf11062bb" }
   use { "lunarvim/darkplus.nvim", commit = "2584cdeefc078351a79073322eb7f14d7fbb1835" }
@@ -109,10 +124,10 @@ return packer.startup(function(use)
   use { "nvim-telescope/telescope.nvim", commit = "d96eaa914aab6cfc4adccb34af421bdd496468b0" }
 
   -- Treesitter
-  use { "nvim-treesitter/nvim-treesitter", commit = "518e27589c0463af15463c9d675c65e464efc2fe", }
+  use { "nvim-treesitter/nvim-treesitter", commit = "518e27589c0463af15463c9d675c65e464efc2fe" }
 
   -- Git
-  use { "lewis6991/gitsigns.nvim", commit = "c18e016864c92ecf9775abea1baaa161c28082c3" }
+  use { "lewis6991/gitsigns.nvim",  }
   use { 'tpope/vim-fugitive' }
 
   -- DAP
@@ -136,6 +151,8 @@ return packer.startup(function(use)
   -- COC autocomplete, gotodefinition, syntax..
   -- use { 'neoclide/coc.nvim', branch = 'release' }
 
+  use 'folke/flash.nvim'
+
   -- Tagbar (show buffer tags to navigate) 
   use 'preservim/tagbar'
 
@@ -144,6 +161,31 @@ return packer.startup(function(use)
 
   -- Log syntax highlight
   use 'mtdl9/vim-log-highlighting'
+
+  -- better folding
+  use {
+    "kevinhwang91/nvim-ufo",
+    requires = {
+      "kevinhwang91/promise-async",
+      {
+        "luukvbaal/statuscol.nvim",
+        config = function()
+          local builtin = require("statuscol.builtin")
+          require("statuscol").setup(
+            {
+              relculright = true,
+              segments = {
+                {text = {builtin.foldfunc}, click = "v:lua.ScFa"},
+                {text = {"%s"}, click = "v:lua.ScSa"},
+                {text = {builtin.lnumfunc, " "}, click = "v:lua.ScLa"}
+              }
+            }
+          )
+        end
+
+      }
+    }
+  }
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

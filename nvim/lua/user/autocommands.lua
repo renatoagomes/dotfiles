@@ -61,4 +61,10 @@ vim.api.nvim_create_autocmd('TermOpen', {
 --   command = 'setlocal listchars= nonumber norelativenumber nocursorline'
 -- })
 
+-- vim.api.nvim_create_autocmd('ColorScheme', {
+--   command = 'highlight NormalFloat ctermbg=NONE ctermfg=NONE'
+-- })
+-- vim.api.nvim_create_autocmd('ColorScheme', {
+--   command = 'highlight WhichKeyFloat ctermbg=NONE guibg=#002222 ctermfg=NONE'
+-- })
 
