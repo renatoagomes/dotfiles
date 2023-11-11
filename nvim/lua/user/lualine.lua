@@ -65,6 +65,6 @@ lualine.setup {
     lualine_c = { diagnostics, filename },
     lualine_x = { bname },
     lualine_y = { location },
-    lualine_z = { lines },
+    lualine_z = { lines, progress },
   },
 }

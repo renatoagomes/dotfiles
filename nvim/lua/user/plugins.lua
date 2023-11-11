@@ -40,7 +40,6 @@ packer.init {
 
 -- Install your plugins here
 return packer.startup(function(use)
-
   -- My plugins here
   use { "wbthomason/packer.nvim" }
   use { "nvim-lua/plenary.nvim" } -- Useful lua functions used by lots of plugins
@@ -78,59 +77,55 @@ return packer.startup(function(use)
 
   -- Colorschemes
   use { "folke/tokyonight.nvim" }
+  use { "olimorris/onedarkpro.nvim" }
   use { "lunarvim/darkplus.nvim", commit = "2584cdeefc078351a79073322eb7f14d7fbb1835" }
   use 'w0ng/vim-hybrid'
   use 'nanotech/jellybeans.vim'
 
   -- cmp plugins
-  use { "hrsh7th/nvim-cmp" } -- The completion plugin
-  use { "hrsh7th/cmp-buffer" } -- buffer completions
-  use { "hrsh7th/cmp-path" } -- path completions
+  use { "hrsh7th/nvim-cmp" }         -- The completion plugin
+  use { "hrsh7th/cmp-buffer" }       -- buffer completions
+  use { "hrsh7th/cmp-path" }         -- path completions
   use { "saadparwaiz1/cmp_luasnip" } -- snippet completions
   use { "hrsh7th/cmp-nvim-lsp" }
   use { "hrsh7th/cmp-nvim-lua" }
 
-  -- snippets
-  -- use { 'mattn/emmet-vim' }
---
+  use 'tpope/vim-fugitive'
+
+  -- Snippets snippets
   use { "L3MON4D3/LuaSnip" } --snippet engine
-  -- use { "rafamadriz/friendly-snippets", commit = "d27a83a363e61009278b6598703a763ce9c8e617" } -- a bunch of snippets to use
-
   use { 'mattn/emmet-vim' }
-
   use 'SirVer/ultisnips'
+
   -- Php docblock generation
   use 'tobyS/vmustache'
-  -- Php docblock generation
   use 'tobyS/pdv'
 
+  -- blade support
   use 'jwalton512/vim-blade'
 
-  -- use 'prabirshrestha/async.vim'
-  -- use 'prabirshrestha/vim-lsp'
-  -- use 'thomasfaingnaert/vim-lsp-snippets'
-  -- use 'thomasfaingnaert/vim-lsp-ultisnips'
+  -- Mason and LSP
+  use {
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
+  }
 
-  -- LSP
-  use { "neovim/nvim-lspconfig" } -- enable LSP
-  use { "williamboman/nvim-lsp-installer" } -- simple to use language server installer
+  --[[ use { "williamboman/nvim-lsp-installer" } -- simple to use language server installer ]]
+
+
   use { "jose-elias-alvarez/null-ls.nvim" } -- for formatters and linters
-  -- use { "RRethy/vim-illuminate", commit = "c82e6d04f27a41d7fdcad9be0bce5bb59fcb78e5" }
-
 
   -- Copilot
   use { "github/copilot.vim" }
 
-
-
-
   -- Telescope
-  use { "nvim-telescope/telescope.nvim"}
+  use { "nvim-telescope/telescope.nvim" }
 
   -- Treesitter
-  use { "nvim-treesitter/nvim-treesitter"}
+  use { "nvim-treesitter/nvim-treesitter" }
 
-  -- DAP
+  -- DAP debug
   -- use { "mfussenegger/nvim-dap", commit = "014ebd53612cfd42ac8c131e6cec7c194572f21d" }
   -- use { "rcarriga/nvim-dap-ui", commit = "d76d6594374fb54abf2d94d6a320f3fd6e9bb2f7" }
   -- use { "ravenxrz/DAPInstall.nvim", commit = "8798b4c36d33723e7bba6ed6e2c202f84bb300de" }
@@ -148,15 +143,10 @@ return packer.startup(function(use)
   -- Better wildmenu completion
   use 'gelguy/wilder.nvim'
 
-  -- COC autocomplete, gotodefinition, syntax..
-  -- use { 'neoclide/coc.nvim', branch = 'release' }
+  -- Tagbar (show buffer tags to navigate) <leader>tb
+  --[[ use 'preservim/tagbar' ]]
 
-  use 'folke/flash.nvim'
-
-  -- Tagbar (show buffer tags to navigate) 
-  use 'preservim/tagbar'
-
-  -- Editorconfig to respect project identation settings
+  -- Editorconfig
   use 'editorconfig/editorconfig-vim'
 
   -- Log syntax highlight
@@ -175,17 +165,35 @@ return packer.startup(function(use)
             {
               relculright = true,
               segments = {
-                {text = {builtin.foldfunc}, click = "v:lua.ScFa"},
-                {text = {"%s"}, click = "v:lua.ScSa"},
-                {text = {builtin.lnumfunc, " "}, click = "v:lua.ScLa"}
+                { text = { " %s ", " " },           click = "v:lua.ScSa" },
+                { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa" },
+                { text = { builtin.foldfunc, " " }, click = "v:lua.ScFa" }
               }
             }
           )
         end
-
       }
     }
   }
+
+  -- GitSigns
+  use 'lewis6991/gitsigns.nvim'
+
+
+  --[[ ChatGPT ]]
+  --[[ use({ ]]
+  --[[   "jackMort/ChatGPT.nvim", ]]
+  --[[   config = function() ]]
+  --[[     require("chatgpt").setup({ ]]
+  --[[       api_key_cmd = 'secret-tool lookup openai neovim', ]]
+  --[[     }) ]]
+  --[[   end, ]]
+  --[[   requires = { ]]
+  --[[     "MunifTanjim/nui.nvim", ]]
+  --[[     "nvim-lua/plenary.nvim", ]]
+  --[[     "nvim-telescope/telescope.nvim" ]]
+  --[[   } ]]
+  --[[ }) ]]
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
@@ -193,4 +201,3 @@ return packer.startup(function(use)
     require("packer").sync()
   end
 end)
-

@@ -22,6 +22,9 @@ require "user.impatient"
 require "user.illuminate"
 require "user.indentline"
 require "user.alpha"
+require "user.mason"
 require "user.lsp"
+require "user.folding"
+
 --[[ require "user.dap" ]]
 
