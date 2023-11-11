@@ -1,10 +1,9 @@
 -- Shorten function name 
 local keymap = vim.keymap.set
+
 -- Silent keymap option
 local opts = { silent = true }
 
---Remap space as leader key
--- keymap("", ",", "<Nop>", opts)
 vim.g.mapleader = ","
 
 -- Sessions Workflow (<F4> when finishing, <F5> when restarting)

@@ -46,12 +46,6 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
   end,
 })
 
-
-
-
---- Terminal test autocmd
-
-
 -- Customize terminal
 vim.api.nvim_create_autocmd('TermOpen', {
   command = 'setlocal listchars= nonumber norelativenumber nocursorline'
