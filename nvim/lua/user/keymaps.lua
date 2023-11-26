@@ -11,13 +11,6 @@ vim.cmd("let g:session_dir = '~/dotfiles/vim/vim-sessions'")
 vim.cmd("exec 'nnoremap <F4> :mks! ' . g:session_dir . '/'")
 vim.cmd("exec 'nnoremap <F5> :so ' . g:session_dir . '/'")
 
--- CTRLC / CTRLV
-vim.cmd("let &clipboard = has('unnamedplus') ? 'unnamedplus' : 'unnamed'")
-vim.cmd('vm <c-x> "+x')
-vim.cmd('vm <c-c> "+y')
-vim.cmd('cno <c-v> <c-r>+')
-vim.cmd("exe 'ino <script> <C-V>' paste#paste_cmd['i']")
-
 -- " git mappings - 'vim-fugitive'
 vim.cmd("nmap <leader>gst :Git<CR>")
 vim.cmd("nmap <leader>gm :Git mergetool<CR>")
@@ -33,33 +26,24 @@ keymap("", "<leader>fm", ":set foldmethod=", opts)
 -- Changing filetype..
 keymap("", "<leader>ty", ":set ft=", opts)
 
--- Quick edit files (dotfiles, i3, zsh, vim, snippets)
+-- Quick edit files (dotfiles, i3, zsh, nvim, snippets)
 keymap("n", "<leader>dot", ":e ~/dotfiles/README.md<CR>", opts)
 keymap('n', '<leader>i3', ':e ~/dotfiles/i3/config<CR>', opts)
 keymap('n', '<leader>zsh', ':e ~/dotfiles/zsh/zshrc<CR>', opts)
 keymap('n', '<leader>av', ':e ~/dotfiles/alacritty/alacritty.yml<CR>', opts)
--- keymap('n', '<leader>es', ':e ~/dotfiles/vim/UltiSnips/', opts)
 keymap('n', '<leader>ev', ':e ~/dotfiles/nvim/init.lua<CR>', opts)
 keymap('n', '<leader>evp', ':e ~/dotfiles/nvim/lua/user/plugins.lua<CR>', opts)
-keymap('n', '<leader>evm', ':e ~/dotfiles/nvim/lua/user/keymaps.lua<CR>', opts)
+keymap('n', '<leader>evm', ':e ~/dotfiles/nvim/lua/user/mason.lua<CR>', opts)
 keymap('n', '<leader>evk', ':e ~/dotfiles/nvim/lua/user/keymaps.lua<CR>', opts)
 keymap('n', '<leader>ee', ':e ~/dotfiles/nvim/snippets/snipmate/', opts)
-keymap('n', '<leader>ll', ':e ./storage/logs/laravel.log<CR>', opts)
 
--- keymap('n', '<leader>evs', ':e ~/dotfiles/vim/settings.vimrc<cr>', opts)
--- keymap('n', '<leader>evv', ':e ~/dotfiles/vim/visual.vimrc<cr>', opts)
--- keymap('n', '<leader>evw', ':e ~/dotfiles/vim/workflow.vimrc<cr>', opts)
-
--- seed file (para recarregar as confs do vim sem ter que dar restart)
--- keymay("n", "<leader>S", ":source ~/dotfiles/nvim/init.lua<CR>", opts)
-
-
--- Normal --
 -- Better window navigation
--- keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
--- keymap("n", "<C-l>", "<C-w>l", opts)
+
+-- navigate buffers with L || H
+keymap("n", "<S-l>", ":bnext<CR>", opts)
+keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize +2<CR>", opts)
@@ -67,12 +51,8 @@ keymap("n", "<C-Down>", ":resize -2<CR>", opts)
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
--- Navigate buffers
-keymap("n", "<S-l>", ":bnext<CR>", opts)
-keymap("n", "<S-h>", ":bprevious<CR>", opts)
-
 -- Clear highlights
-keymap("n", "<Space>", "<cmd>nohlsearch<CR>", opts)
+keymap("n", "<Space><Space>", "<cmd>nohlsearch<CR>", opts)
 
 -- Close buffers
 keymap("n", "<C-q>", "<cmd>Bdelete!<CR>", opts)
@@ -84,17 +64,12 @@ keymap("i", "<C-s>", "<ESC>:w<CR>a", opts)
 -- Toggle to previous buffer 
 keymap("n", "<Tab>", ":b#<CR>", opts)
 
--- Better paste
--- keymap("v", "p", '"_dP', opts)
-
 -- Reload file com <leader>r
 keymap("n", "<leader>r", ":e!<cr>", opts)
 
--- Insert --
--- Press jk fast to enter
-keymap("i", "jk", "<ESC>", opts)
-keymap("i", "!!!", "<ESC>:.!sh<CR>", opts)
-keymap("i", ",,,,", "<ESC>:.!sh<CR>", { silent = true})
+-- 
+keymap("i", "g!", "<ESC>:.!sh<CR>", opts)
+keymap("n", "g!", "<ESC>:.!sh<CR>", opts)
 
 -- Visual --
 -- Stay in indent mode
@@ -159,30 +134,6 @@ vim.cmd("let g:instant_markdown_autostart = 0")
 vim.cmd("nmap <F1> :VimwikiIndex<cr>")
 vim.cmd("let g:user_emmet_leader_key='<C-e>'")
 
--- Float terminal 
-vim.cmd("tnoremap <Esc><Esc> <C-\\><C-n>")
-vim.cmd("nnoremap   <silent>   <F6>    :FloatermNew<CR>")
-vim.cmd("tnoremap   <silent>   <F6>    <C-\\><C-n>:FloatermNew<CR>")
-vim.cmd("nnoremap   <silent>   <F7>    :FloatermPrev<CR>")
-vim.cmd("tnoremap   <silent>   <F7>    <C-\\><C-n>:FloatermPrev<CR>")
-vim.cmd("nnoremap   <silent>   <F8>    :FloatermNext<CR>")
-vim.cmd("tnoremap   <silent>   <F8>    <C-\\><C-n>:FloatermNext<CR>")
-vim.cmd("nnoremap   <silent>   <F9>    :FloatermToggle<CR>")
-vim.cmd("tnoremap   <silent>   <F9>    <C-\\><C-n>:FloatermToggle<CR>")
-vim.cmd("nnoremap   <silent>   <leader><leader>    :FloatermToggle<CR>")
-keymap("n", "<F9>", ":FloatermToggle<cr>", opts)
-
--- " Float terminal config
-vim.cmd("let g:floaterm_wintype='split'")
-vim.cmd("let g:floaterm_width=0.9")
-vim.cmd("let g:floaterm_height=0.4")
-vim.cmd("let g:terminal_color_4 = '#ff0000'")
-vim.cmd("let g:terminal_color_5 = 'green'")
-vim.cmd("let g:floaterm_autoinsert = v:true")
-vim.cmd("let g:floaterm_title = '$ $1/$2'")
-vim.cmd("hi Floaterm guibg=black")
-vim.cmd("hi FloatermBorder guibg=orange guifg=cyan")
-
 
 -- " Carregando linha com CTRL + J ou K
 vim.cmd("nnoremap <C-J> :m .+1<CR>==")
@@ -197,9 +148,10 @@ vim.cmd("vnoremap <C-K> :m '<-2<CR>gv=gv")
 -- " Laravel Mappings
 -- " -------------------------
 -- " .env do projeto atual
-vim.cmd("nmap <leader>lev :e .env<cr>")
-vim.cmd("nmap <leader>lrw :e routes/web.php<cr>")
-vim.cmd("nmap <leader>lra :e routes/api.php<cr>")
+keymap("n", "<leader>lev", ":e .env<CR>", opts)
+keymap("n", "<leader>lrw", ":e routes/web.php<CR>", opts)
+keymap("n", "<leader>lra", ":e routes/api.php<CR>", opts)
+keymap('n', '<leader>ll', ':e ./storage/logs/laravel.log<CR>', opts)
 
 -- Wildmenu completion
 vim.cmd("call wilder#setup({'modes': [':', '/', '?']})")
@@ -207,88 +159,14 @@ vim.cmd("call wilder#setup({'modes': [':', '/', '?']})")
 -- COC goto definition
 -- vim.cmd("nnoremap <C-l> :call CocActionAsync('jumpDefinition')<CR>")
 
--- Tagbar 
-vim.cmd("nnoremap <leader>tb :TagbarToggle<CR>")
-
 -- PDV 
 vim.cmd('let g:pdv_template_dir = $HOME . "/.vim/plugged/pdv/templates_snip"')
 vim.cmd("nnoremap <leader>doc :call pdv#DocumentWithSnip()<CR>")
 
-
-
-
 keymap("v", "<C-Space>", ">gv", opts)
 
+-- gx open link in browser
+keymap("n", "gx", [[:silent execute '!$BROWSER ' . shellescape(expand('<cfile>'), 1)<CR>]], opts)
 
 
--- Function calls 
-keymap("n", "-c", ":lua ToggleColors()<cr>", opts)
-keymap("n", "<leader><leader>", ":FloatermToggle<cr>", opts)
-keymap("n", "-n", ":lua ToggleNumbers()<cr>", opts)
-keymap("n", "-a", ":lua ToggleAim()<cr>", opts)
-keymap("n", "-l", ":lua ToggleLineAim()<cr>", opts)
 
-
--- vim.keymap.set('i', '<M-.>', '<Plug>(copilot-next)')
--- vim.keymap.set('i', '<M-,>', '<Plug>(copilot-previous)')
--- vim.cmd("let g:copilot_assume_mapped = v:true")
-
--- vim.g.copilot_no_tab_map = true
-vim.api.nvim_set_keymap("i", "<C-m>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
-
--- -- Harpoon Which-key mappings
--- local wk = require("which-key")
---
--- -- flash
--- wk.register({
---     -- flash search
---     l = {
---         name = "flash",
---         s = { function() require("flash").jump() end, "Flash Jump" },
---         t = { function() require("flash").treesitter() end, "Flash Treesitter" },
---         r = { function() require("flash").treesitter_search() end, "Flash Treesitter Search" },
---     },
--- }, { prefix = "<leader>" })
---
-
--- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
-vim.keymap.set('n', 'zR', require('ufo').openAllFolds)
-vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
-
-vim.keymap.set('n', 'K', function()
-    local winid = require('ufo').peekFoldedLinesUnderCursor()
-    if not winid then
-        -- choose one of coc.nvim and nvim lsp
-        -- vim.fn.CocActionAsync('definitionHover') -- coc.nvim
-        vim.lsp.buf.hover()
-    end
-end)
-
-
-vim.g.copilot_filetypes = {
-  ["*"] = false,
-  ["javascript"] = true,
-  ["typescript"] = true,
-  ["python"] = true,
-  ["lua"] = false,
-  ['php'] = true,
-  ['html'] = true,
-  ['css'] = true,
-  ['scss'] = true,
-  ['javascriptreact'] = true,
-  ['typescriptreact'] = true,
-  ['json'] = true,
-  ['yaml'] = true,
-  ['toml'] = true,
-  ['vim'] = true,
-  ['sh'] = true,
-  ['zsh'] = true,
-  ['bash'] = true,
-  ['fish'] = true,
-  ['c'] = true,
-  ['cpp'] = true,
-  ['go'] = true,
-  ['rust'] = true,
-  ['java'] = true,
-  ['ruby'] = true,
-}

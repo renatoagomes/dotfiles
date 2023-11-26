@@ -20,7 +20,7 @@ vim.opt.smartindent = true                      -- make indenting smarter again
 vim.opt.splitbelow = true                       -- force all horizontal splits to go below current window
 vim.opt.splitright = true                       -- force all vertical splits to go to the right of current window
 vim.opt.swapfile = false                        -- creates a swapfile
-vim.opt.termguicolors = false                    -- set term gui colors (most terminals support this)
+vim.opt.termguicolors = true                   -- set term gui colors (most terminals support this)
 vim.opt.timeoutlen = 1000                       -- time to wait for a mapped sequence to complete (in milliseconds)
 vim.opt.undofile = true                         -- enable persistent undo
 vim.opt.updatetime = 300                        -- faster completion (4000ms default)
@@ -57,4 +57,10 @@ vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 vim.o.fillchars = [[eob: ,fold: ,foldopen:,foldsep: ,foldclose:]]
 
+-- CTRLC / CTRLV
+vim.cmd("let &clipboard = has('unnamedplus') ? 'unnamedplus' : 'unnamed'")
+vim.cmd('vm <c-x> "+x')
+vim.cmd('vm <c-c> "+y')
+vim.cmd('cno <c-v> <c-r>+')
+vim.cmd("exe 'ino <script> <C-V>' paste#paste_cmd['i']")
 

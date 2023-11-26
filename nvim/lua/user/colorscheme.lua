@@ -1,4 +1,4 @@
-local colorscheme = "darkplus"
+local colorscheme = "onedark"
 
 local status_ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 if not status_ok then
@@ -6,9 +6,16 @@ if not status_ok then
 end
 
 -- Sets bg fg colors between windows
-vim.cmd("hi VertSplit guifg=DarkGray guibg=bg")
--- vim.cmd("hi  guifg=DarkGray guibg=bg")
+--[[ vim.cmd("hi VertSplit guifg=DarkGray guibg=bg") ]]
+--[[ vim.cmd("hi Type guifg=#40AAF0 guibg=bg") ]]
 
+require('colorizer').setup({
+  user_default_options = {
+    tailwind = true,
+  }
+})
+
+-- vim.cmd("hi  guifg=DarkGray guibg=bg")
 -- vim.cmd("let g:terminal_color_4 = '#ff0000'")
 -- vim.cmd("let g:terminal_color_5 = 'green'")
 

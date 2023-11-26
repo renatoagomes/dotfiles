@@ -89,6 +89,7 @@ return packer.startup(function(use)
   use { "saadparwaiz1/cmp_luasnip" } -- snippet completions
   use { "hrsh7th/cmp-nvim-lsp" }
   use { "hrsh7th/cmp-nvim-lua" }
+  use { "roobert/tailwindcss-colorizer-cmp.nvim" }
 
   use 'tpope/vim-fugitive'
 
@@ -194,6 +195,10 @@ return packer.startup(function(use)
   --[[     "nvim-telescope/telescope.nvim" ]]
   --[[   } ]]
   --[[ }) ]]
+
+
+  use 'NvChad/nvim-colorizer.lua'
+
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

@@ -48,7 +48,19 @@ vim.api.nvim_create_autocmd({ "TextYankPost" }, {
 
 -- Customize terminal
 vim.api.nvim_create_autocmd('TermOpen', {
-  command = 'setlocal listchars= nonumber norelativenumber nocursorline'
+  callback = function(ev)
+    vim.cmd('setlocal listchars= nonumber norelativenumber nocursorline')
+    --[[ vim.cmd('colorscheme onedark') ]]
+  end
+
+})
+
+-- Use 'q' to quit from common plugins
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  pattern = { "php" },
+  callback = function()
+    vim.cmd('set iskeyword+=$')
+  end,
 })
 
 -- vim.api.nvim_create_autocmd('TermLeave', {

@@ -1,5 +1,4 @@
-require("mason").setup({
-  ui = {
+require("mason").setup({ ui = {
     icons = {
       package_installed = "✓",
       package_pending = "➜",
@@ -31,6 +30,19 @@ require("mason-lspconfig").setup_handlers {
       }
     }
   end,
+
+  ["eslint"] = function()
+    local lspconfig = require("lspconfig")
+    lspconfig.eslint.setup {
+      default_config = {
+        cmd = { 'eslint' },
+        filetypes = { 'js' },
+        root_dir = function(fname)
+          return vim.loop.cwd()
+        end,
+      },
+    }
+  end,
   
   ["intelephense"] = function()
     local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -38,6 +50,15 @@ require("mason-lspconfig").setup_handlers {
 
     local lspconfig = require("lspconfig")
     lspconfig.intelephense.setup({
+
+      --[[ handlers = { ]]
+      --[[   ["textDocument/publishDiagnostics"] = vim.lsp.with( ]]
+      --[[     vim.lsp.diagnostic.on_publish_diagnostics, { ]]
+      --[[       -- Disable virtual_text ]]
+      --[[       virtual_text = false ]]
+      --[[     } ]]
+      --[[   ), ]]
+      --[[ }, ]]
       default_config = {
         cmd = { 'intelephense', '--stdio' },
         filetypes = { 'php' },
@@ -110,5 +131,6 @@ require("mason-lspconfig").setup_handlers {
       capabilities = capabilities,
     });
   end
+
 }
 

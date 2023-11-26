@@ -1,12 +1,11 @@
-
--- navigate with gd
+-- navigate with g
 
 require "user.options"
 require "user.functions"
 require "user.keymaps"
 require "user.plugins"
-require "user.autocommands"
 require "user.colorscheme"
+require "user.autocommands"
 require "user.cmp"
 require "user.telescope"
 require "user.treesitter"
@@ -24,7 +23,9 @@ require "user.indentline"
 require "user.alpha"
 require "user.mason"
 require "user.lsp"
+require "user.copilot"
 require "user.folding"
+require "user.terminal"
 
 --[[ require "user.dap" ]]
 
