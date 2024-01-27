@@ -13,6 +13,7 @@ vim.cmd("exec 'nnoremap <F5> :so ' . g:session_dir . '/'")
 
 -- " git mappings - 'vim-fugitive'
 vim.cmd("nmap <leader>gst :Git<CR>")
+vim.cmd("nmap <F2> :Git<CR><C-w><S-h>")
 vim.cmd("nmap <leader>gm :Git mergetool<CR>")
 vim.cmd("nmap <leader>gad :Gwrite<CR>")
 vim.cmd("nmap <leader>gcm :Git commit<CR>")
@@ -68,8 +69,8 @@ keymap("n", "<Tab>", ":b#<CR>", opts)
 keymap("n", "<leader>r", ":e!<cr>", opts)
 
 -- 
-keymap("i", "g!", "<ESC>:.!sh<CR>", opts)
-keymap("n", "g!", "<ESC>:.!sh<CR>", opts)
+keymap("i", "<F3>", "<ESC>:.!sh<CR>", opts)
+keymap("n", "<F3>", "<ESC>:.!sh<CR>", opts)
 
 -- Visual --
 -- Stay in indent mode
@@ -100,7 +101,7 @@ keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
 keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
 keymap("n", "<leader>fo", ":Telescope oldfiles<CR>", opts)
 keymap("n", "<leader>fr", ":Telescope oldfiles<CR>", opts)
-keymap("n", "<leader>fc", ":Telescope git_commits<CR>", opts)
+keymap("n", "<leader>fc", ":Telescope git_status<CR>", opts)
 keymap("n", "<leader>fg", ":Telescope git_commits<CR>", opts)
 
 -- Comment
@@ -108,15 +109,15 @@ keymap("n", "<leader>fg", ":Telescope git_commits<CR>", opts)
 keymap("x", "<leader>/", '<ESC><CMD>lua require("Comment.api").toggle_linewise_op(vim.fn.visualmode())<CR>')
 
 -- DAP (debugging)
-keymap("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", opts)
-keymap("n", "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", opts)
-keymap("n", "<leader>di", "<cmd>lua require'dap'.step_into()<cr>", opts)
-keymap("n", "<leader>do", "<cmd>lua require'dap'.step_over()<cr>", opts)
-keymap("n", "<leader>dO", "<cmd>lua require'dap'.step_out()<cr>", opts)
-keymap("n", "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>", opts)
-keymap("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", opts)
-keymap("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", opts)
-keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
+--[[ keymap("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", opts) ]]
+--[[ keymap("n", "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", opts) ]]
+--[[ keymap("n", "<leader>di", "<cmd>lua require'dap'.step_into()<cr>", opts) ]]
+--[[ keymap("n", "<leader>do", "<cmd>lua require'dap'.step_over()<cr>", opts) ]]
+--[[ keymap("n", "<leader>dO", "<cmd>lua require'dap'.step_out()<cr>", opts) ]]
+--[[ keymap("n", "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>", opts) ]]
+--[[ keymap("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", opts) ]]
+--[[ keymap("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", opts) ]]
+--[[ keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts) ]]
 
 -- " -------------------------
 -- " --- VIMWIKI - Listas listas listas..
