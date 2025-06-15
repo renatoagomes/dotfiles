@@ -7,7 +7,9 @@ require("mason").setup({ ui = {
   }
 })
 
+
 require('mason-lspconfig').setup()
+
 
 require("mason-lspconfig").setup_handlers {
   -- The first entry (without a key) will be the default handler
@@ -31,19 +33,59 @@ require("mason-lspconfig").setup_handlers {
     }
   end,
 
-  ["eslint"] = function()
+  ["tsserver"] = function()
     local lspconfig = require("lspconfig")
-    lspconfig.eslint.setup {
-      default_config = {
-        cmd = { 'eslint' },
-        filetypes = { 'js' },
-        root_dir = function(fname)
-          return vim.loop.cwd()
-        end,
-      },
+    lspconfig.tsserver.setup {
+      init_options = {
+        plugins = {
+          {
+            name = '@vue/typescript-plugin',
+            location = '/path/to/@vue/language-server',
+            languages = { 'vue' },
+          }
+        }
+      }
     }
   end,
-  
+
+  ["volar"] = function()
+    local lspconfig = require("lspconfig")
+    lspconfig.volar.setup {
+      init_options = {
+        vue = {
+          hybridMode = false,
+        }
+      }
+    }
+  end,
+
+
+
+
+
+  --[[ ["eslint"] = function() ]]
+  --[[   local lspconfig = require("lspconfig") ]]
+  --[[   local latestNodeVersion = 'v16.20.2' ]]
+  --[[   local homeDir = '/home/zord' ]]
+  --[[   local capabilities = vim.lsp.protocol.make_client_capabilities() ]]
+  --[[   capabilities.textDocument.completion.completionItem.snippetSupport = true ]]
+  --[[]]
+  --[[   lspconfig.eslint.setup { ]]
+		--[[ 		root_dir = function(fname) ]]
+		--[[ 			return require('lspconfig').util.find_git_ancestor(fname) ]]
+		--[[ 		end, ]]
+  --[[       capabilities = capabilities, ]]
+		--[[ 		filetypes = { 'javascript', 'javascriptreact', 'vue' }, ]]
+		--[[ 		settings = { ]]
+		--[[ 			debug = true, ]]
+		--[[ 			rootMarkers = { '.git/' }, ]]
+		--[[ 			workingDirectory = { mode = 'auto' }, ]]
+		--[[ 			nodePath = homeDir .. '/.nvm/versions/node/' .. latestNodeVersion .. '/lib/node_modules/' ]]
+		--[[ 		}, ]]
+		--[[ 		libs = { homeDir .. '/.nvm/versions/node/' .. latestNodeVersion .. '/lib/node_modules/' }, ]]
+		--[[ 	} ]]
+  --[[ end, ]]
+
   ["intelephense"] = function()
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -130,7 +172,5 @@ require("mason-lspconfig").setup_handlers {
       },
       capabilities = capabilities,
     });
-  end
-
+  end,
 }
-

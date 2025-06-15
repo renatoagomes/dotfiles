@@ -1,10 +1,8 @@
--- Shorten function name 
+-- Shorten function name
 local keymap = vim.keymap.set
 
 -- Silent keymap option
 local opts = { silent = true }
-
-vim.g.mapleader = ","
 
 -- Sessions Workflow (<F4> when finishing, <F5> when restarting)
 vim.cmd("let g:session_dir = '~/dotfiles/vim/vim-sessions'")
@@ -53,22 +51,22 @@ keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 -- Clear highlights
-keymap("n", "<Space><Space>", "<cmd>nohlsearch<CR>", opts)
+keymap("n", "<Space><Space>", "<cmd>nohlsearch<CR><cmd>Noice dismiss<CR>", opts)
 
 -- Close buffers
 keymap("n", "<C-q>", "<cmd>Bdelete!<CR>", opts)
 
--- Save current buffer 
-keymap("n", "<C-s>", ":w<CR>", opts)
+-- Save current buffer
+keymap("n", "<C-s>", ":noautocmd w<CR>", opts)
 keymap("i", "<C-s>", "<ESC>:w<CR>a", opts)
 
--- Toggle to previous buffer 
+-- Toggle to previous buffer
 keymap("n", "<Tab>", ":b#<CR>", opts)
 
 -- Reload file com <leader>r
 keymap("n", "<leader>r", ":e!<cr>", opts)
 
--- 
+--
 keymap("i", "<F3>", "<ESC>:.!sh<CR>", opts)
 keymap("n", "<F3>", "<ESC>:.!sh<CR>", opts)
 
@@ -84,8 +82,7 @@ keymap("v", ">", ">gv", opts)
 keymap("n", "<leader>n", ":NvimTreeFindFileToggle<CR>", opts)
 
 -- Telescope
--- keymap("n", "<C-p>", ":Telescope find_files no_ignore=true initial_mode=insert<CR>", opts)
-keymap("n", "<C-p>", ":Telescope find_files cwd=`pwd` no_ignore=true find_command=rg,--files,--with-filename <CR>", opts)
+--[[ keymap("n", "<C-p>", ":Telescope find_files cwd=`pwd` no_ignore=true find_command=rg,--files,--with-filename <CR>", opts) ]]
 
 -- find_command="{'rg'},
 --       '--color=never',
@@ -95,6 +92,7 @@ keymap("n", "<C-p>", ":Telescope find_files cwd=`pwd` no_ignore=true find_comman
 --       '--column',
 --       '--smart-case',
 
+keymap("n", "<C-p>", ":Telescope find_files no_ignore=true initial_mode=insert<CR>", opts)
 keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
 keymap("n", "<leader>ft", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
@@ -130,8 +128,6 @@ keymap("x", "<leader>/", '<ESC><CMD>lua require("Comment.api").toggle_linewise_o
 
 -- " let g:vimwiki_list = [wiki_1, wiki_2]
 
-vim.cmd("let g:vimwiki_list = [{'path': '~/vimwiki/', 'syntax': 'markdown', 'ext': '.md'}]")
-vim.cmd("let g:instant_markdown_autostart = 0")
 vim.cmd("nmap <F1> :VimwikiIndex<cr>")
 vim.cmd("let g:user_emmet_leader_key='<C-e>'")
 
@@ -155,12 +151,12 @@ keymap("n", "<leader>lra", ":e routes/api.php<CR>", opts)
 keymap('n', '<leader>ll', ':e ./storage/logs/laravel.log<CR>', opts)
 
 -- Wildmenu completion
-vim.cmd("call wilder#setup({'modes': [':', '/', '?']})")
+--vim.cmd("call wilder#setup({'modes': [':', '/', '?']})")
 
 -- COC goto definition
 -- vim.cmd("nnoremap <C-l> :call CocActionAsync('jumpDefinition')<CR>")
 
--- PDV 
+-- PDV
 vim.cmd('let g:pdv_template_dir = $HOME . "/.vim/plugged/pdv/templates_snip"')
 vim.cmd("nnoremap <leader>doc :call pdv#DocumentWithSnip()<CR>")
 
@@ -168,6 +164,5 @@ keymap("v", "<C-Space>", ">gv", opts)
 
 -- gx open link in browser
 keymap("n", "gx", [[:silent execute '!$BROWSER ' . shellescape(expand('<cfile>'), 1)<CR>]], opts)
-
 
 

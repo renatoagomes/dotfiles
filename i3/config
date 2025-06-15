@@ -5,8 +5,8 @@
 #####
 # Styles
 ####
-#fontt:URWGothic-Book 11
 font pango: MesloLGS NF Regular 12
+#fontt:URWGothic-Book 11
 
 # border style <normal|1pixel|pixel xx|none|pixel>
 default_border pixel 1
@@ -14,6 +14,7 @@ default_floating_border normal
 
 # Hide borders
 hide_edge_borders none
+
 
 # change borders
 bindsym $mod+u border none
@@ -43,6 +44,7 @@ workspace_auto_back_and_forth yes
 
 # start a terminal
 bindsym $mod+Return exec alacritty
+bindsym $mod+space exec alacritty
 
 # start a terminal at current dir do x
 bindsym $mod+Shift+Return exec alacritty -cd "`xcwd`"
@@ -98,7 +100,7 @@ bindsym $mod+e layout default
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+# bindsym $mod++space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -200,6 +202,7 @@ for_window [class="AlFloat"] floating enable
 bindsym $mod+F1 exec alacritty -e nvim ~/vimwiki/index.md
 bindsym $mod+F2 exec --no-startup-id brave
 bindsym $mod+F3 exec --no-startup-id google-chrome-stable
+bindsym $mod+F4 exec --no-startup-id ~/promiseplay.sh
 
 # file manager
 bindsym $mod+F5 exec --no-startup-id pcmanfm
@@ -261,7 +264,7 @@ bindsym $mod+g exec feh --randomize --bg-fill ~/.wallpapers
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nitrogen --restore; sleep 1; picom -b
-exec --no-startup-id manjaro-hello
+#exec --no-startup-id manjaro-hello
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
@@ -313,12 +316,14 @@ set_from_resource $term_color15    color15
 bar {
     strip_workspace_numbers yes
     status_command ~/dotfiles/i3/bumblebee-status/bumblebee-status -m \
-            pasink pasource disk cpu memory battery date time \
+            pomodoro pasink pasource disk cpu memory battery date time \
             -p disk.format="{percent:01.1f}%" \
             memory.format="{percent:01.1f}%" \
             cpu.format="{:01.1f}%" \
             date.format="%d/%m" \
             time.format="%H:%M" \
+            pomodoro.work="30" \
+            pomodoro.break="15" \
             -t firefox-dark-powerline
 
     tray_output primary

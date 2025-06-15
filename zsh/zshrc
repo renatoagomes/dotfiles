@@ -38,9 +38,9 @@ alias genctags="ctags -R --php-kinds=cfit"
 
 #####
 # PATH'S
-alias screencastpath="cd ~/screencast/" 
-alias ppath="cd ~/projetos/" 
-alias dotpath="cd ~/dotfiles/" 
+alias screencastpath="cd ~/screencast/"
+alias ppath="cd ~/projetos/"
+alias dotpath="cd ~/dotfiles/"
 
 ####
 ## VESSEL ALIASES
@@ -62,6 +62,8 @@ alias ndw='nmcli device wifi '
 alias ndwl='ndw list '
 alias ndwc='ndw connect '
 
+alias dps='docker ps'
+
 #### Scaffold alias
 alias scaffe="scaff exec "
 alias scaffa="scaff exec php artisan "
@@ -69,6 +71,7 @@ alias scaffat="scaff exec php artisan tinker"
 alias scaffamst="scaff exec php artisan migrate:status"
 alias scaffc="scaff exec composer "
 alias scaffn="scaff exec npm "
+alias scaffl="scaff logs"
 
 # symphony aliases
 alias scasym='scaff exec bin/console '
@@ -103,14 +106,13 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.g
 export BAT_THEME="Nord"
 
 # vi'g?
-# alias protocolo='phey -f uggcf://pvqnqnb.evbcergb.fc.tbi.oe/rzceb_pvqnqnb/fwevbcergb/frzsnm/rzceb_pbafhygn_cebgbpbyb.cuc/ncv/VzcevzveEryngbevb\?aeb_cebgbpbyb\=-%2PP%60E%2P3%60C%2P%23%60C-PQE.%60%60%60%0N%60%0N\&qngn_cebgbpbyb\=%2N%2P%23%40B%2P%23%24B%2PP%60E%2P0%60%60%0N%60%0N --bhgchg cebgbpbyb.cqs && cqsgbgrkg -ynlbhg cebgbpbyb.cqs cebgbpbyb.gkg && rpub "\a ##Hygvznf nghnyvmnçõrf: \a\a" && png cebgbpbyb.gkg' 
+# alias protocolo='phey -f uggcf://pvqnqnb.evbcergb.fc.tbi.oe/rzceb_pvqnqnb/fwevbcergb/frzsnm/rzceb_pbafhygn_cebgbpbyb.cuc/ncv/VzcevzveEryngbevb\?aeb_cebgbpbyb\=-%2PP%60E%2P3%60C%2P%23%60C-PQE.%60%60%60%0N%60%0N\&qngn_cebgbpbyb\=%2N%2P%23%40B%2P%23%24B%2PP%60E%2P0%60%60%0N%60%0N --bhgchg cebgbpbyb.cqs && cqsgbgrkg -ynlbhg cebgbpbyb.cqs cebgbpbyb.gkg && rpub "\a ##Hygvznf nghnyvmnçõrf: \a\a" && png cebgbpbyb.gkg'
 
 #118M p/ 5mb com resolução ruinzinha
 alias videoMenor='ffmpeg -i input.mkv -vf "scale=trunc(iw/4)*2:trunc(ih/4)*2" -c:v libx265 -crf 28 '
 alias gravarV='ffmpeg -f alsa -ac 1 -i pulse -f x11grab -r 30 -s 1920x1080  -i :0.0 -acodec aac -vcodec mpeg4 -preset medium -qscale:v 5 '
-alias gravarVH='ffmpeg -f alsa -ac 1 -i pulse -f x11grab -r 30 -s 2560x1080  -i :0.0+1920,0 -acodec aac -vcodec mpeg4 -preset medium -qscale:v 5 '
+alias gravarVH='ffmpeg -f alsa -ac 1 -i pulse -f x11grab -r 30 -s 2560x1080  -i :0.0 -acodec aac -vcodec mpeg4 -preset medium -qscale:v 5 '
 
-alias scaffl="scaff logs"
 
 alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
 alias sa='sail artisan '
@@ -122,15 +124,15 @@ export LS_COLORS
 EXA_COLORS="da=0"
 export EXA_COLORS
 
-
 # nyvnf obyrgbPCSY="~/qbgsvyrf/fpevcgf/obyrgb_pcsy.fu 20719647 05655482800"
 
 source /home/zord/dotfiles/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+alias i3a="i3rename API"
+alias i3f="i3rename FRONT"
 
-alias i3p="i3rename platform"
-alias i3a="i3rename api"
-alias i3n="i3rename notifications"
+alias nvim-kickstart='NVIM_APPNAME="nvim-kickstart" ~/Downloads/nvim-linux64/bin/nvim '
+alias nnvim='NVIM_APPNAME="nvim-new" ~/Downloads/nvim-linux64/bin/nvim '
 
 export DOCKER_BUILDKIT=0
 export BUILDKIT_PROGRESS='auto'

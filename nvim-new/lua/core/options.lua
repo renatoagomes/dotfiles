@@ -1,3 +1,4 @@
+
 -- disable netrw at the very start of your init.lua
 --[[ vim.g.loaded_netrw = 1 ]]
 --[[ vim.g.loaded_netrwPlugin = 1 ]]
@@ -46,7 +47,9 @@ vim.opt.iskeyword:append("-")
 vim.opt.hidden = true
 vim.opt.relativenumber = true
 vim.opt.wildmenu = true
-vim.opt.wildmode = 'longest:full,full' 
+vim.opt.wildmode = 'longest:full,full'
+
+vim.g.have_nerd_font = true
 
 vim.cmd("filetype plugin on")
 vim.cmd("syntax on")
