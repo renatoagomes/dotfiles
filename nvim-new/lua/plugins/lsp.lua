@@ -64,17 +64,15 @@ return {
 				vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
 			end
 
-			local config = {
-				virtual_text = true, -- disable virtual text
-				signs = {
-					active = signs, -- show signs
-				},
+local config = {
+				virtual_text = true,
+				signs = { active = signs },
 				update_in_insert = true,
 				underline = true,
 				severity_sort = true,
 				float = {
 					focusable = true,
-					style = "minimal",
+					-- style = "minimal", -- removed
 					border = "rounded",
 					source = "always",
 					header = "",
@@ -84,13 +82,19 @@ return {
 
 			vim.diagnostic.config(config)
 
-			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-				border = "rounded",
-			})
+			-- LSP hover/signature help with borders
+			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+				vim.lsp.handlers.hover,
+				{ border = "rounded" }
+			)
+			vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+				vim.lsp.handlers.signature_help,
+				{ border = "rounded" }
+			)
 
-			vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-				border = "rounded",
-			})
+			-- Make hover window match completion menu style
+			vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#1e222a", fg = "#c0caf5" })
+			vim.api.nvim_set_hl(0, "FloatBorder", { bg = "#1e222a", fg = "#7aa2f7" })
 
 			--  This function gets run when an LSP attaches to a particular buffer.
 			--    That is to say, every time a new file is opened that is associated with
@@ -430,6 +434,42 @@ return {
 					});
 				end,
 			}
+
+			-- Custom LSP borders for hover and signature help
+			local border = {
+				{ "╭", "FloatBorder" },
+				{ "─", "FloatBorder" },
+				{ "╮", "FloatBorder" },
+				{ "│", "FloatBorder" },
+				{ "╯", "FloatBorder" },
+				{ "─", "FloatBorder" },
+				{ "╰", "FloatBorder" },
+				{ "│", "FloatBorder" },
+			}
+
+			vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
+				vim.lsp.handlers.hover,
+				{ border = border }
+			)
+
+			vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+				vim.lsp.handlers.signature_help,
+				{ border = border }
+			)
+
+			-- Ensure the border has good contrast
+			vim.cmd [[
+			  highlight! link FloatBorder NormalFloat
+			]]
+
+			vim.cmd [[
+			  highlight NormalFloat guibg=#1e222a guifg=white
+			  highlight FloatBorder guibg=#1e222a guifg=#7aa2f7
+			]]
+
+			-- Match autocompletion popup border style
+			vim.api.nvim_set_hl(0, "CmpDocumentation", { bg = "#1e222a", fg = "white" })
+			vim.api.nvim_set_hl(0, "CmpDocumentationBorder", { bg = "#1e222a", fg = "#7aa2f7" })
 		end,
 	},
 }

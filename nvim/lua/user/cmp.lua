@@ -99,7 +99,6 @@ cmp.setup({
 		}),
 	}),
 	formatting = {
-    --[[ format = require('tailwindcss-colorizer-cmp').formatter, ]]
 		fields = { "kind", "abbr", "menu" },
 		format = function(entry, vim_item)
 			vim_item.kind = kind_icons[vim_item.kind]
@@ -111,7 +110,6 @@ cmp.setup({
 				path = "[PATH]",
 				emoji = "",
 			})[entry.source.name]
-      --[[ return require('tailwindcss-colorizer-cmp').formatter(entry, vim_item) ]]
 			return vim_item
 		end,
 	},

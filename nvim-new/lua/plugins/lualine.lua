@@ -57,6 +57,9 @@ return {
         disabled_filetypes = { 'alpha', 'neo-tree', 'dashboard' },
         always_divide_middle = true,
       },
+  inactive_winbar = {
+    lualine_c = {'filename'},
+  },
       sections = {
         lualine_a = { mode },
         lualine_b = { 'branch' },

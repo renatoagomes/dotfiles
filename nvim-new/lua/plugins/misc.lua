@@ -52,7 +52,7 @@ return {
 	{
 		"moll/vim-bbye",
 		config = function()
-			vim.keymap.set("n", "<C-q>", "<cmd>Bdelete!<CR>", { silent = true, noremap = true })
+			vim.keymap.set("n", "<C-q>", "<cmd>Bdelete<CR>", { silent = true, noremap = true })
 		end
 	},
 
@@ -73,29 +73,22 @@ return {
 	-- blade support
 	"jwalton512/vim-blade",
 
-	{
-		'z0rzi/ai-chat.nvim',
-		config = function()
-			require('ai-chat').setup {}
-		end,
-	},
-
 	"NvChad/nvim-colorizer.lua",
 
 	{
-			"folke/noice.nvim",
-			event = "VeryLazy",
-			opts = {
-				-- add any options here
-			},
-			dependencies = {
-				-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
-				"MunifTanjim/nui.nvim",
-				-- OPTIONAL:
-				--   `nvim-notify` is only needed, if you want to use the notification view.
-				--   If not available, we use `mini` as the fallback
-				"rcarriga/nvim-notify",
-			}
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		opts = {
+
 		},
+		dependencies = {
+			-- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+			"MunifTanjim/nui.nvim",
+			-- OPTIONAL:
+			--   `nvim-notify` is only needed, if you want to use the notification view.
+			--   If not available, we use `mini` as the fallback
+			"rcarriga/nvim-notify",
+		}
+	},
 
 }

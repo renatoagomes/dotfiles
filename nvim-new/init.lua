@@ -30,6 +30,7 @@ require('lazy').setup({
 	require "plugins.lsp",
 	require "plugins.misc",
 	require "plugins.copilot",
+	"roobert/tailwindcss-colorizer-cmp.nvim",
 },{
  ui = {
     icons = vim.g.have_nerd_font and {} or {
@@ -52,3 +53,24 @@ require('lazy').setup({
 
 require "core.autocommands"
 require "core.functions"
+
+require('colorizer').setup({
+  user_default_options = {
+    tailwind = true,
+  }
+})
+
+
+require("notify").setup({
+	background_colour = "#302c34",
+})
+
+-- Ensure FloatBorder has a highlight group with good contrast
+vim.cmd [[
+  highlight! link FloatBorder NormalFloat
+]]
+
+vim.cmd [[
+  highlight! link NormalFloat Pmenu
+  highlight! link FloatBorder PmenuBorder
+]]

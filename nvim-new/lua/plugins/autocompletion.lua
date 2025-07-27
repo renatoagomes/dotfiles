@@ -125,9 +125,9 @@ return {
 
 				-- If you prefer more traditional completion keymaps,
 				-- you can uncomment the following lines
-				--['<CR>'] = cmp.mapping.confirm { select = true },
-				--['<Tab>'] = cmp.mapping.select_next_item(),
-				--['<S-Tab>'] = cmp.mapping.select_prev_item(),
+				['<CR>'] = cmp.mapping.confirm { select = true },
+				['<Tab>'] = cmp.mapping.select_next_item(),
+				['<S-Tab>'] = cmp.mapping.select_prev_item(),
 
 				-- Manually trigger a completion from nvim-cmp.
 				--  Generally you don't need this, because nvim-cmp will display
@@ -142,16 +142,16 @@ return {
 				--
 				-- <c-l> will move you to the right of each of the expansion locations.
 				-- <c-h> is similar, except moving you backwards.
-				['<C-l>'] = cmp.mapping(function()
-					if luasnip.expand_or_locally_jumpable() then
-						luasnip.expand_or_jump()
-					end
-				end, { 'i', 's' }),
-				['<C-h>'] = cmp.mapping(function()
-					if luasnip.locally_jumpable(-1) then
-						luasnip.jump(-1)
-					end
-				end, { 'i', 's' }),
+				-- ['<C-l>'] = cmp.mapping(function()
+				-- 	if luasnip.expand_or_locally_jumpable() then
+				-- 		luasnip.expand_or_jump()
+				-- 	end
+				-- end, { 'i', 's' }),
+				-- ['<C-h>'] = cmp.mapping(function()
+				-- 	if luasnip.locally_jumpable(-1) then
+				-- 		luasnip.jump(-1)
+				-- 	end
+				-- end, { 'i', 's' }),
 
 				-- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
 				--    https://github.com/L3MON4D3/LuaSnip?tab=readme-ov-file#keymaps
@@ -168,12 +168,18 @@ return {
 				{ name = 'path' },
 			},
 			window = {
-				completion = cmp.config.window.bordered(),
-				documentation = cmp.config.window.bordered(),
+			  completion = cmp.config.window.bordered({
+				winhighlight = "Normal:Pmenu,FloatBorder:PmenuBorder,CursorLine:PmenuSel,Search:None",
+			  }),
+			  documentation = cmp.config.window.bordered({
+				winhighlight = "NormalFloat:CmpDocumentation,FloatBorder:CmpDocumentationBorder",
+			  }),
 			},
 			experimental = {
 				ghost_text = true,
 			},
 		}
+	vim.api.nvim_set_hl(0, "CmpDocumentation", { bg = "#1e222a", fg = "#c0caf5" })
+	vim.api.nvim_set_hl(0, "CmpDocumentationBorder", { bg = "#1e222a", fg = "#7aa2f7" })
 	end,
 }
