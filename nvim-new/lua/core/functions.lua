@@ -16,6 +16,8 @@ keymap("n", "<leader>td", ":lua ToggleDiagnostic()<cr>", opts)
 
 keymap("n", "-C", ":lua SwitchCase()<cr>", opts)
 
+vim.keymap.set("n", "gx", ":lua Smart_gx()<cr>", { noremap = true, silent = true, desc = "Open URL / GitHub repo / fallback gx" })
+
 -- Functions
 function ToggleColors()
   vim.cmd(":ColorizerToggle")
@@ -94,4 +96,35 @@ function ConvertCase(inputString)
         end)
     end
 end
+
+-- Smart gx: open URLs, GitHub "owner/repo", otherwise fallback to netrw gx
+function Smart_gx()
+  -- get WORD under cursor (matches your current behavior)
+  local target = vim.fn.expand("<cWORD>") or ""
+  target = target:gsub("[)%]%}>,;\"']+$", ""):gsub("^[\"'%(<%[{]+", "") -- trim common punctuation
+
+  if target == "" then
+    return
+  end
+
+  -- already a URL
+  if target:match("^https?://") then
+    vim.ui.open(target)
+    return
+  end
+
+  -- looks like github repo/path: owner/repo or owner/repo/...
+  -- owner: alnum, _, -, .
+  -- repo:  alnum, _, -, .
+  -- optional extra path after that
+  if target:match("^[%w._-]+/[%w._-]+(/.*)?$") then
+    vim.ui.open("https://github.com/" .. target)
+    return
+  end
+
+  -- fallback to built-in gx (netrw)
+  -- (works for local files and other patterns)
+  vim.cmd("normal! gx")
+end
+
 

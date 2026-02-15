@@ -69,3 +69,23 @@ vim.cmd("exe 'ino <script> <C-V>' paste#paste_cmd['i']")
 
 
 vim.cmd("let g:python3_host_prog = '/usr/bin/python3'")
+
+-- Makes it so status bar is shared across panes
+vim.opt.laststatus = 3
+
+-- Makes hover windows rounded
+-- check if winborder exists before setttig it
+-- vim.o.winborder = "rounded"
+
+-- Renders inline errors and warnings on separate lines
+vim.diagnostic.config({
+    virtual_text = true,
+    -- virtual_lines = true
+})
+
+------------------------------------------
+-- Ignore certain dirs in search
+------------------------------------------
+
+-- For node projects
+vim.opt.wildignore:append({ "*/node_modules/*" })

@@ -12,6 +12,23 @@ require "core.keymaps"
 		end ---@diagnostic disable-next-line: undefined-field
 		vim.opt.rtp:prepend(lazypath)
 
+-- Enabled LSPs
+vim.lsp.enable({
+    "bashls",
+    "cssls",
+    "docker_compose_language_service",
+    "dockerls",
+    "html",
+    "intelephense",
+    "jsonls",
+    "lua_ls",
+    "pyright",
+    "vtsls",
+    "eslint",
+    "vue_ls",
+    "yamlls",
+})
+
 require('lazy').setup({
 	require "plugins.colorscheme",
 	require "plugins.tree",
@@ -27,9 +44,11 @@ require('lazy').setup({
 	require "plugins.folding",
 	require "plugins.alpha",
 	require "plugins.autocompletion",
-	require "plugins.lsp",
+	require "plugins.mason",
+	-- require "plugins.lsp",
 	require "plugins.misc",
 	require "plugins.copilot",
+	require "plugins.opencode",
 	"roobert/tailwindcss-colorizer-cmp.nvim",
 },{
  ui = {
@@ -65,12 +84,16 @@ require("notify").setup({
 	background_colour = "#302c34",
 })
 
--- Ensure FloatBorder has a highlight group with good contrast
 vim.cmd [[
   highlight! link FloatBorder NormalFloat
-]]
-
-vim.cmd [[
   highlight! link NormalFloat Pmenu
   highlight! link FloatBorder PmenuBorder
+
 ]]
+
+-- vim.cmd [[
+--   highlight FloatBorder guifg=#FF0000 guibg=#000000
+--   highlight NormalFloat guifg=#00FF00 guibg=#000000
+--   highlight Pmenu guifg=#0000FF guibg=#FFFFFF
+--   highlight PmenuBorder guifg=#FFFF00 guibg=#000000
+-- ]]

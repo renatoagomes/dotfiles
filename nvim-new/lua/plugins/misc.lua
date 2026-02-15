@@ -1,8 +1,14 @@
 return {
 
-	'tpope/vim-sleuth',    -- Detect tabstop and shiftwidth automatically
+	-- 'tpope/vim-sleuth',    -- Detect tabstop and shiftwidth automatically
 
 	"mg979/vim-visual-multi", -- Multicursor
+
+	-- laggy cursor?
+	-- {
+	--   "sphamba/smear-cursor.nvim",
+	--   opts = {},
+	-- },
 
 	{
 		"ahmedkhalf/project.nvim", -- project wd
@@ -90,5 +96,20 @@ return {
 			"rcarriga/nvim-notify",
 		}
 	},
+
+	-- {
+	-- 	'sunjon/Shade.nvim',
+	-- 	config = function()
+	-- 		require('shade').setup({
+	-- 			overlay_opacity = 50,
+	-- 			opacity_step = 1,
+	-- 			keys = {
+	-- 				brightness_up   = '<C-Up>',
+	-- 				brightness_down = '<C-Down>',
+	-- 				toggle          = '<Leader>b',
+	-- 			}
+	-- 		})
+	-- 	end
+	-- }
 
 }

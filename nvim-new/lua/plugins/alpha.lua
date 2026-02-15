@@ -19,9 +19,9 @@ return {
 			dashboard.section.buttons.val = {
 				dashboard.button("F1", " " .. " Logs"),
 				dashboard.button("F2",  " " .. " Git status"),
-				dashboard.button("F5",  "🗘 " .. " Load Session"),
+				dashboard.button("F5",  "🗘 " .. "Load Session"),
 				dashboard.button("t", "❱_ " .. "Terminal", ":term <CR>"),
-				dashboard.button("p", " " .. "Projects", ":Telescope projects <CR>"),
+				dashboard.button("p", " " .. " Projects", ":Telescope projects <CR>"),
 				dashboard.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
 				dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles <CR>"),
 				dashboard.button("c", " " .. " Config", ":e ~/.config/nvim/init.lua <CR>"),

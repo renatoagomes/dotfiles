@@ -22,7 +22,7 @@ return {
     local diagnostics = {
       'diagnostics',
       sources = { 'nvim_diagnostic' },
-      sections = { 'error', 'warn' },
+      sections = { 'info', 'hint',  'warn', 'error'  },
       symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
       colored = false,
       update_in_insert = false,
@@ -63,8 +63,8 @@ return {
       sections = {
         lualine_a = { mode },
         lualine_b = { 'branch' },
-        lualine_c = { filename },
-        lualine_x = { diagnostics, diff, { 'encoding', cond = hide_in_width }, { 'filetype', cond = hide_in_width } },
+        lualine_c = { filename, diagnostics },
+        lualine_x = { diff, { 'encoding', cond = hide_in_width }, { 'filetype', cond = hide_in_width } },
         lualine_y = { 'location' },
         lualine_z = { lines, 'progress' },
       },

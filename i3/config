@@ -43,8 +43,8 @@ set $mod Mod4
 workspace_auto_back_and_forth yes
 
 # start a terminal
-bindsym $mod+Return exec alacritty
-bindsym $mod+space exec alacritty
+bindsym $mod+Return exec ghostty
+bindsym $mod+space exec ghostty
 
 # start a terminal at current dir do x
 bindsym $mod+Shift+Return exec alacritty -cd "`xcwd`"
@@ -53,7 +53,7 @@ bindsym $mod+Shift+Return exec alacritty -cd "`xcwd`"
 bindsym $mod+Shift+q kill
 
 bindsym $mod+r move workspace to output right
-bindsym $mod+l move workspace to output left 
+bindsym $mod+l move workspace to output left
 
 # dmenu
 bindsym $mod+d exec --no-startup-id dmenu_recency
@@ -244,15 +244,15 @@ bindsym --release $mod+Shift+Print exec scrot -s /tmp/tmp_pic.png && xclip -sele
 #exec --no-startup-id pa-applet
 bindsym $mod+Ctrl+m exec pavucontrol
 
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% 
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5%
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
 
 # Screen brightness controls
-# bindsym XF86MonBrightnessUp exec xrandr --current --brightness :q20 
-# bindsym XF86MonBrightnessDown exec xbacklight -dec 20 
+# bindsym XF86MonBrightnessUp exec xrandr --current --brightness :q20
+# bindsym XF86MonBrightnessDown exec xbacklight -dec 20
 
-# Lidando com multiplas screens 
+# Lidando com multiplas screens
 #bindsym $mod+t exec xrandr --output VGA-1 --auto --right-of eDP-1
 #bindsym $mod+Shift+t exec xrandr --output VGA-1 --auto --left-of LVDS-1
 bindsym $mod+Shift+t exec xrandr --output eDP-1 --auto --output HDMI-1-0 --auto --left-of eDP-1
@@ -283,7 +283,7 @@ exec_always --no-startup-id fix_xcursor
 # Change the variable name at the place you want to match the color
 # of your terminal like this:
 # [example]
-# If you want your bar to have the same background color as your 
+# If you want your bar to have the same background color as your
 # terminal background change the line 362 from:
 # background #14191D
 # to:
@@ -347,6 +347,12 @@ bar {
     }
 }
 
+# Prompt for a custom title and apply it to the focused window
+bindsym $mod+Shift+n exec --no-startup-id i3-input -F 'title_format "%s"' -P 'Tab name:'
+
+# Reset to the default title (webpage/app-provided)
+bindsym $mod+Shift+u exec --no-startup-id i3-msg 'title_format "%title"'
+
 
 #############################
 ### settings for i3-gaps: ###
@@ -369,7 +375,7 @@ bindsym $mod+x mode "resize"
 # Smart gaps (gaps used if only more than one container on the workspace)
 smart_gaps on
 
-# Smart borders (draw borders around container only if it is not the only container on this workspace) 
+# Smart borders (draw borders around container only if it is not the only container on this workspace)
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
 smart_borders on
 
