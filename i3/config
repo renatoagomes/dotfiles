@@ -353,6 +353,12 @@ bindsym $mod+Shift+n exec --no-startup-id i3-input -F 'title_format "%s"' -P 'Ta
 # Reset to the default title (webpage/app-provided)
 bindsym $mod+Shift+u exec --no-startup-id i3-msg 'title_format "%title"'
 
+# Set/change Tailscale SSH target via dmenu
+bindsym $mod+Ctrl+Print exec --no-startup-id ~/dotfiles/scripts/screenshot_to_vm.sh select
+
+# Screenshot region → SCP to VM → path to clipboard (prompts host if not set)
+bindsym --release $mod+Print exec --no-startup-id ~/dotfiles/scripts/screenshot_to_vm.sh screenshot
+
 
 #############################
 ### settings for i3-gaps: ###
