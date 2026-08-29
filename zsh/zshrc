@@ -1,6 +1,7 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -28,7 +29,7 @@ TERMINAL="alacritty"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker docker-compose vi-mode)
+plugins=(git docker docker-compose vi-mode z)
 
 source $ZSH/oh-my-zsh.sh
 source ~/dotfiles/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -141,3 +142,12 @@ alias nnvim='NVIM_APPNAME="nvim-new" ~/Downloads/nvim-linux64/bin/nvim '
 
 export DOCKER_BUILDKIT=0
 export BUILDKIT_PROGRESS='auto'
+
+alias tmuxnew='tmux new-session -A -s '
+alias promise='tmux new-session -A -s promise'
+alias zai='tmux new-session -A -s zai'
+
+# OpenClaw Completion
+source "/home/renato_gomes/.openclaw/completions/openclaw.zsh"
+# GOG_KEYRING_PASSWORD movido para ~/.openclaw/.env (nao versionar segredo)
+[ -f "/home/renato_gomes/.openclaw/.env" ] && set -a && . "/home/renato_gomes/.openclaw/.env" && set +a
