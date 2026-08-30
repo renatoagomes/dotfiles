@@ -68,7 +68,10 @@ vim.cmd('cno <c-v> <c-r>+')
 vim.cmd("exe 'ino <script> <C-V>' paste#paste_cmd['i']")
 
 
-vim.cmd("let g:python3_host_prog = '/usr/bin/python3'")
+-- Debian 13 bloqueia pip --user (PEP 668), entao o pynvim vive num venv dedicado.
+-- Cai para o python do sistema se o venv nao existir (mantem a VM antiga funcionando).
+local venv_py = vim.fn.expand("~/.local/venv-tools/bin/python3")
+vim.g.python3_host_prog = vim.fn.executable(venv_py) == 1 and venv_py or "/usr/bin/python3"
 
 -- Makes it so status bar is shared across panes
 vim.opt.laststatus = 3

@@ -16,7 +16,7 @@ fi
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
-command -v yarn &>/dev/null && export PATH="$(yarn global bin):$PATH"
+command -v yarn &>/dev/null && export PATH="$(yarn global bin 2>/dev/null):$PATH"
 export PATH="$HOME/.local/bin/:$PATH"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
