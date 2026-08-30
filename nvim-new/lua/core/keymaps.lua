@@ -57,6 +57,10 @@ vim.keymap.set("n", "<leader>r", ":e!<cr>", opts)
 vim.keymap.set("i", "<F3>", "<ESC>:.!sh<CR>", opts)
 vim.keymap.set("n", "<F3>", "<ESC>:.!sh<CR>", opts)
 
+-- Terminal --
+-- Double-Esc to exit terminal mode (works with toggleterm, floaterm, and any :terminal)
+vim.keymap.set("t", "<Esc><Esc>", [[<C-\><C-n>]], opts)
+
 -- Visual --
 -- Stay in indent mode when changing identation
 vim.keymap.set("v", "<", "<gv", opts)

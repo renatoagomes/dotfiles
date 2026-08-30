@@ -54,7 +54,6 @@ return  {
 			keymap("t", "<F7>", "<C-\\><C-n>:FloatermPrev<CR>", opts)
 			keymap("t", "<F8>", "<C-\\><C-n>:FloatermNext<CR>", opts)
 			keymap("t", "<F9>", "<C-\\><C-n>:FloatermToggle<CR>", opts)
-			keymap("t", "<Esc><Esc>", "<C-\\><C-n>", opts)
 
 			-- " Float terminal config
 			--[[ vim.cmd("let g:floaterm_shell='alacritty'") ]]

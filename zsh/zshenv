@@ -3,3 +3,8 @@
 # Definir aqui cobre qualquer caminho de entrada (OpenSSH, Tailscale SSH, cron).
 export LANG="${LANG:-C.UTF-8}"
 export LC_ALL="${LC_ALL:-}"
+
+# Mesma causa: sem PAM a sessao nasce sem XDG_RUNTIME_DIR, e `systemctl --user`
+# responde "systemd user services are unavailable" -- mentindo sobre o estado real.
+export XDG_RUNTIME_DIR="${XDG_RUNTIME_DIR:-/run/user/$(id -u)}"
+export DBUS_SESSION_BUS_ADDRESS="${DBUS_SESSION_BUS_ADDRESS:-unix:path=$XDG_RUNTIME_DIR/bus}"
