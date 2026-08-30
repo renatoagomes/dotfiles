@@ -1,0 +1,5 @@
+# Tailscale SSH nao passa por PAM, entao /etc/default/locale nunca e aplicado e o
+# LANG fica vazio -> tudo cai para POSIX -> o tmux troca glifos Nerd Font por "_".
+# Definir aqui cobre qualquer caminho de entrada (OpenSSH, Tailscale SSH, cron).
+export LANG="${LANG:-C.UTF-8}"
+export LC_ALL="${LC_ALL:-}"
