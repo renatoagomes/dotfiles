@@ -154,3 +154,6 @@ alias zai='tmux new-session -A -s zai'
 source "/home/renato_gomes/.openclaw/completions/openclaw.zsh"
 # GOG_KEYRING_PASSWORD movido para ~/.openclaw/.env (nao versionar segredo)
 [ -f "/home/renato_gomes/.openclaw/.env" ] && set -a && . "/home/renato_gomes/.openclaw/.env" && set +a
+
+# Composio CLI
+export PATH="$HOME/.local/bin:$PATH"
